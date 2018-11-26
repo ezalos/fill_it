@@ -7,10 +7,17 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2018/11/26 23:19:31 by aboitier         ###   ########.fr       */
 =======
 /*   Updated: 2018/11/26 22:56:27 by aboitier         ###   ########.fr       */
 >>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
+=======
+/*   Updated: 2018/11/26 23:09:00 by ldevelle         ###   ########.fr       */
+=======
+/*   Updated: 2018/11/26 23:19:31 by aboitier         ###   ########.fr       */
+>>>>>>> cd7ddee27fc0f166cba38921604adc593cf7f22b
+>>>>>>> 52cd460488df72429ff9a6705aa6b14705a53eff
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +28,12 @@
 #include <stdlib.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+const char	recognize(char *s);
+
+>>>>>>> 52cd460488df72429ff9a6705aa6b14705a53eff
 char	*ft_strndup(const char *s, size_t len, int *c_backn)
 {
 	char	*new;
@@ -41,7 +53,12 @@ char	*ft_strndup(const char *s, size_t len, int *c_backn)
 	return (new);
 }
 
+<<<<<<< HEAD
 >>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
+=======
+=======
+>>>>>>> cd7ddee27fc0f166cba38921604adc593cf7f22b
+>>>>>>> 52cd460488df72429ff9a6705aa6b14705a53eff
 char	*ft_read_check(char **fillit)
 {
 	char *buf;
@@ -96,7 +113,7 @@ char	*ft_read_check(char **fillit)
 		return (0); // ft_display_error(int error);
 	printf("%s", buf);
 	printf("nb # %d \n", c_hash);
-//	printf("%s\n", (const char)recognize(buf));
+	printf("%s\n", (const char)recognize(buf));
 	}
 	printf("fin read size %d\n", c_backn);
 	return (buf);
