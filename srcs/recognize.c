@@ -6,11 +6,11 @@
 /*   By: anonymou <anonymou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:02:54 by anonymou          #+#    #+#             */
-/*   Updated: 2018/11/26 19:53:36 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/11/26 19:54:57 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static const char	part10(char *s, int div, int mod)
+static const char	part10(char *s, int i, int div, int mod)
 {
 		if (mod >= 2 && s[i + 5 - 1] == '#')
 		{
@@ -28,7 +28,7 @@ static const char	part10(char *s, int div, int mod)
 	return (NULL);
 }
 
-static const char	part1(char *s, int div, int mod)
+static const char	part1(char *s, int i, int div, int mod)
 {
 	if (s[i + 5] == '#' && div < 3)
 	{
@@ -52,11 +52,11 @@ static const char	part1(char *s, int div, int mod)
 			if (mod <= 2 && s[i + 1] == '#')
 				return ("J2");
 		}
-		return (part10(s, div, mod));
+		return (part10(s, i, div, mod));
 	}
 }
 
-static const char	part0(char *s, int div, int mod)
+static const char	part0(char *s, int i, int div, int mod)
 {
 	if (mod <= 2 && s[i + 1] == '#')
 	{
@@ -81,7 +81,7 @@ static const char	part0(char *s, int div, int mod)
 				return ("L2");
 		}
 	}
-	return (part1(s, div, mod););
+	return (part1(s, i, div, mod););
 }
 
 const char	recognize(char *s)
@@ -96,5 +96,5 @@ const char	recognize(char *s)
 	div = i / 5;
 	mod = i % 5;
 
-	return(part0(s, div, mod));
+	return(part0(s, i, div, mod));
 }
