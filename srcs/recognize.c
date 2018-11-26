@@ -6,11 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/26 22:52:58 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/26 23:13:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static const char	part10(char *s, int i, int div, int mod)
+#include <string.h>
+
+static const char	*part10(char *s, int i, int div, int mod)
 {
 		if (mod >= 2 && s[i + 5 - 1] == '#')
 		{
@@ -28,7 +30,7 @@ static const char	part10(char *s, int i, int div, int mod)
 	return (NULL);
 }
 
-static const char	part1(char *s, int i, int div, int mod)
+static const char	*part1(char *s, int i, int div, int mod)
 {
 	if (s[i + 5] == '#' && div < 3)
 	{
@@ -56,7 +58,7 @@ static const char	part1(char *s, int i, int div, int mod)
 	}
 }
 
-static const char	part0(char *s, int i, int div, int mod)
+static const char	*part0(char *s, int i, int div, int mod)
 {
 	if (mod <= 2 && s[i + 1] == '#')
 	{
@@ -74,7 +76,7 @@ static const char	part0(char *s, int i, int div, int mod)
 		if (s[i + 1 + 5] == '#' && div < 3)
 		{
 			if (mod <= 1 && s[i + 2 + 5] == '#')
-				return("S0");
+				return ("S0");
 			if (s[i + 1 + 5] == '#')
 				return ("O0");
 			if (mod <= 1 && s[i + 2 + (2 * 5)] == '#' && div < 2)
@@ -84,7 +86,7 @@ static const char	part0(char *s, int i, int div, int mod)
 	return (part1(s, i, div, mod));
 }
 
-const char	recognize(char *s)
+const char			*recognize(char *s)
 {
 	int		i;
 	int		div;

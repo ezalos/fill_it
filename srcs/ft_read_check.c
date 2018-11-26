@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/26 22:56:27 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/26 23:09:00 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+const char	recognize(char *s);
 
 char	*ft_strndup(const char *s, size_t len, int *c_backn)
 {
@@ -75,7 +77,7 @@ char	*ft_read_check(char **fillit)
 		return (0); // ft_display_error(int error);
 	printf("%s", buf);
 	printf("nb # %d \n", c_hash);
-//	printf("%s\n", (const char)recognize(buf));
+	printf("%s\n", (const char)recognize(buf));
 	}
 	printf("fin read size %d\n", c_backn);
 	return (buf);
