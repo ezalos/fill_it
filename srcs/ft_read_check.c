@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/26 22:56:27 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/26 23:19:31 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-char	*ft_strndup(const char *s, size_t len, int *c_backn)
-{
-	char	*new;
-	size_t	i;
-
-	if (!(new = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	i = 0;
-	while (i < len && s[i])
-	{
-		new[i] = s[i];
-		if (s[i] == '\n')
-			c_backn++;
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
-}
 
 char	*ft_read_check(char **fillit)
 {
@@ -47,18 +28,18 @@ char	*ft_read_check(char **fillit)
 		return (0);
 	if (!(fd = open(*fillit, O_RDONLY)))
 		return (0);
-	while ((c_backn = read(fd, buf, 21) == 21))
+	while (read(fd, buf, 21) == 21)
 	{
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
+		{
+			if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
 			{
-				if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
-				{
-					if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
-						return (0);
-					i++;
-				} 	// ft_display_error(int error);
+				if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
+					return (0); // ft_display_error(int error)
+				i++;
+			}
 			else if (buf[i] == '#')
 			{
 				c_hash++;
