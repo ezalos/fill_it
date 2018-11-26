@@ -6,7 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/26 23:19:31 by aboitier         ###   ########.fr       */
+=======
+/*   Updated: 2018/11/26 22:56:27 by aboitier         ###   ########.fr       */
+>>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +20,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+<<<<<<< HEAD
+=======
+char	*ft_strndup(const char *s, size_t len, int *c_backn)
+{
+	char	*new;
+	size_t	i;
+
+	if (!(new = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	i = 0;
+	while (i < len && s[i])
+	{
+		new[i] = s[i];
+		if (s[i] == '\n')
+			c_backn++;
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+>>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
 char	*ft_read_check(char **fillit)
 {
 	char *buf;
@@ -28,11 +54,16 @@ char	*ft_read_check(char **fillit)
 		return (0);
 	if (!(fd = open(*fillit, O_RDONLY)))
 		return (0);
+<<<<<<< HEAD
 	while (read(fd, buf, 21) == 21)
+=======
+	while ((c_backn = read(fd, buf, 21) == 21))
+>>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
 	{
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
+<<<<<<< HEAD
 		{
 			if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
 			{
@@ -40,6 +71,15 @@ char	*ft_read_check(char **fillit)
 					return (0); // ft_display_error(int error)
 				i++;
 			}
+=======
+			{
+				if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
+				{
+					if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
+						return (0);
+					i++;
+				} 	// ft_display_error(int error);
+>>>>>>> 733ffc6554d054f51a9a9aa437d6b1cd3e9147f3
 			else if (buf[i] == '#')
 			{
 				c_hash++;
