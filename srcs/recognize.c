@@ -6,19 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/26 23:13:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:12:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "../head.h"
 
 static const char	*part10(char *s, int i, int div, int mod)
 {
-		if (mod >= 2 && s[i + 5 - 1] == '#')
+		if (mod >= 1 && s[i + 5 - 1] == '#')
 		{
 			if (s[i + (5 * 2) - 1] == '#' && div < 2)
 				return ("S1");
-			if (mod >= 3 && s[i + 5 - 2] == '#')
+			if (mod >= 2 && s[i + 5 - 2] == '#')
 				return ("L3");
 			if (s[i + (5 * 2)] == '#' && div < 2)
 				return ("T1");
@@ -34,6 +34,7 @@ static const char	*part1(char *s, int i, int div, int mod)
 {
 	if (s[i + 5] == '#' && div < 3)
 	{
+//			printf("1\n");
 		if (mod <= 2 && s[i + 5 + 1] == '#')
 		{
 			if (mod <= 1 && s[i + 5 + 2] == '#')
@@ -45,12 +46,17 @@ static const char	*part1(char *s, int i, int div, int mod)
 		}
 		if (s[i + (5 * 2)] == '#' && div < 2)
 		{
+//			printf("%s\n",s );
+//				printf("2 %d |%c%c%c%c|\n", div, s[i], s[i + (5 * 1)], s[i + (5 * 2)], s[i + (5 * 3)]);
 			if (mod <= 2 && s[i + (5 * 2) + 1] == '#')
 				return ("L0");
 			if (s[i + (5 * 3)] == '#' && div < 1)
 				return ("I0");
-			if (mod >= 2 && s[i + (5 * 2) - 1] == '#')
+			if (mod >= 1 && s[i + (5 * 2) - 1] == '#')
+			{
+//					printf("3\n");
 				return ("J0");
+			}
 			if (mod <= 2 && s[i + 1] == '#')
 				return ("J2");
 		}
@@ -60,6 +66,7 @@ static const char	*part1(char *s, int i, int div, int mod)
 
 static const char	*part0(char *s, int i, int div, int mod)
 {
+//	printf("0\n");
 	if (mod <= 2 && s[i + 1] == '#')
 	{
 		if (mod <= 1 && s[i + 2] == '#')
@@ -96,7 +103,7 @@ const char			*recognize(char *s)
 	while (s[i] != '#')
 		i++;
 	div = i / 5;
-	mod = i % 5;
+	mod = (i % 5);
 
 	return(part0(s, i, div, mod));
 }
