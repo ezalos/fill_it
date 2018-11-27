@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/27 02:09:48 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:19:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-char	*ft_read_check(char **fillit)
+char	*ft_read_check(char *fillit)
 {
 	char *buf;
 	int fd;
