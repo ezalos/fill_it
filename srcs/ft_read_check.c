@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/26 22:56:27 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/27 00:21:27 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ char	*ft_read_check(char **fillit)
 		return (0);
 	if (!(fd = open(*fillit, O_RDONLY)))
 		return (0);
-	while ((c_backn = read(fd, buf, 21) == 21))
+
+	while (read(fd, buf, 21) == 21)
 	{
+
+
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
@@ -69,15 +72,13 @@ char	*ft_read_check(char **fillit)
 			else
 				return (0);	//	ft_display_error(int error)
 		}
-		printf("read size %d\n", c_backn);
+//		printf("read size %d\n", c_backn);
 		printf("hash %d\n", c_hash);
 	if (c_hash != 4)
 		return (0); // ft_display_error(int error);
 	printf("%s", buf);
 	printf("nb # %d \n", c_hash);
-//	printf("%s\n", (const char)recognize(buf));
 	}
-	printf("fin read size %d\n", c_backn);
 	return (buf);
 }
 
