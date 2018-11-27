@@ -6,9 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:40:30 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/26 21:40:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:24:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "head.h"
 
 int		size_square(int p)
 {

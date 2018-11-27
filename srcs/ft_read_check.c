@@ -6,11 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/27 02:19:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:27:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head.h"
+#include "head.h"
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -24,7 +24,7 @@ char	*ft_read_check(char *fillit)
 
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
 		return (0);
-	if (!(fd = open(*fillit, O_RDONLY)))
+	if (!(fd = open((const char*)fillit, O_RDONLY)))
 		return (0);
 	while (read(fd, buf, 21) == 21)
 	{
@@ -50,6 +50,7 @@ char	*ft_read_check(char *fillit)
 		}
 	if (c_hash != 4)
 		return (0); // ft_display_error(int error);
+	printf("%s\n", recognize(buf));
 	}
 	return (buf);
 }
