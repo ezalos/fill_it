@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/27 02:23:56 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:33:26 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static const char	*part1(char *s, int i, int div, int mod)
 			if (mod <= 2 && s[i + 1] == '#')
 				return ("J2");
 		}
-		return (part10(s, i, div, mod));
 	}
+	return (part10(s, i, div, mod));
 }
 
 static const char	*part0(char *s, int i, int div, int mod)
