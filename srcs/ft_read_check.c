@@ -6,14 +6,13 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/27 02:07:12 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/27 02:09:48 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "head.h"
+#include "../head.h"
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 char	*ft_read_check(char **fillit)
