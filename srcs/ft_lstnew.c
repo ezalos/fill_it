@@ -6,30 +6,34 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:41:56 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/27 18:48:12 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/28 22:58:07 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
-{
-	t_list *new;
+#include "head.h"
 
-	if (!(new = (t_list*)malloc(sizeof(t_list))))
+t_piece	*ft_lstnew(char *name)
+{
+	size_t name_size;
+	t_piece *new;
+
+	name_size = sizeof(char);
+	if (!(new = (t_piece*)malloc(sizeof(t_head))))
 		return (NULL);
-	if (content)
+	if (name)
 	{
-		if (!(new->content = ft_memalloc(content_size)))
+		if (!(new->name = ft_memalloc(name_size)))
 		{
 			free(new);
 			return (NULL);
 		}
-		ft_memcpy(new->content, content, content_size);
-		new->content_size = content_size;
+		ft_memcpy(new->name, name, name_size);
+		new->name_size = name_size;
 	}
 	else
 	{
-		new->content = NULL;
-		new->content_size = 0;
+		new->name = NULL;
+		new-> = 0;
 	}
 	new->next = NULL;
 	return (new);
