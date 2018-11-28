@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/27 19:20:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/28 21:41:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,11 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct	s_head
+typedef struct	s_coord
 {
-	char		**solution;
-	int			size_square;
-	int			p; //number of pieces
-	int			actual; //initialize to 0
-	int			o;//initialize to 0
-	int			x;//initialize to 0
-	int			y;//initialize to 0
-	t_piece		*next;
-}				t_head;
+	int			y;
+	int			x;
+}				t_coord;
 
 typedef struct	s_piece
 {
@@ -48,11 +42,17 @@ typedef struct	s_piece
 	t_piece		*next;
 }				t_piece;
 
-typedef struct	s_coord
+typedef struct	s_head
 {
-	int			y;
-	int			x;
-}				t_coord;
+	char		**solution;
+	int			size_square;
+	int			p; //number of pieces
+	int			actual; //initialize to 0
+	int			o;//initialize to 0
+	int			x;//initialize to 0
+	int			y;//initialize to 0
+	t_piece		*next;
+}				t_head;
 
 char		*ft_read_check(char *fillit);
 const char	*recognize(char *s);
