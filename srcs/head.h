@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/29 05:00:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 06:18:00 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <time.h>
+# include <stdlib.h>
 
 typedef	struct		s_list
 {
@@ -46,14 +47,14 @@ typedef struct	s_piece
 
 typedef struct	s_head
 {
-	char		**solution;
-	int			size_square;
-	int			p; //number of pieces
-	int			actual; //initialize to 0
-	int			o;//initialize to 0
-	int			x;//initialize to 0
-	int			y;//initialize to 0
-	t_piece		*next;
+	char				**solution;
+	int					size_square;
+	int					p; //number of pieces
+	int					actual; //initialize to 0
+	int					o;//initialize to 0
+	int					x;//initialize to 0
+	int					y;//initialize to 0
+	struct t_piece		*next;
 }				t_head;
 
 char		*ft_read_check(char *fillit);
@@ -62,5 +63,11 @@ int			float_to_int(float i);
 float		f_sqrt(int nb, int limite);
 int			size_square(int p);
 int			size_pieces(char *s, int size);
+void 		ft_bzero(void *s, int n);
+void		*ft_memalloc(size_t size);
+t_piece		*ft_lstnew(const char *name, size_t name_size);
+void		*ft_memcpy(void *dest, const void *src, size_t n);
+
+
 
 #endif

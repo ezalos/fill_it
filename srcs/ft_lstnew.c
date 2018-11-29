@@ -6,15 +6,14 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:41:56 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/28 22:58:07 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/29 00:46:40 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-t_piece	*ft_lstnew(char *name)
+t_piece	*ft_lstnew(const char *name, size_t name_size)
 {
-	size_t name_size;
 	t_piece *new;
 
 	name_size = sizeof(char);
@@ -28,12 +27,12 @@ t_piece	*ft_lstnew(char *name)
 			return (NULL);
 		}
 		ft_memcpy(new->name, name, name_size);
-		new->name_size = name_size;
+	//	new-> = name_size;
 	}
 	else
 	{
 		new->name = NULL;
-		new-> = 0;
+//		new-> = 0;
 	}
 	new->next = NULL;
 	return (new);
