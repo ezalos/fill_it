@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/29 06:57:13 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 21:46:30 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static const char	*part10(char *s, int i, int div, int mod)
 		if (mod >= 1 && s[i + 5 - 1] == '#')
 		{
 			if (s[i + (5 * 2) - 1] == '#' && div < 2)
-				return ("Z1");//should be named Z101101120
+				return ("Z110011120");//should be named Z101101120
 			if (mod >= 2 && s[i + 5 - 2] == '#')
-				return ("L3");
+				return ("L310110212");
 			if (s[i + (5 * 2)] == '#' && div < 2)
-				return ("T1");
+				return ("T110011121");
 			if (mod <= 2 && s[i + 5 + 1] == '#')
-				return ("T2");
+				return ("T210011112");
 			if (mod <= 2 && s[i + 1] == '#')
-				return ("S0");
+				return ("S010011102");
 		}
 	return (NULL);
 }
@@ -38,27 +38,27 @@ static const char	*part1(char *s, int i, int div, int mod)
 		if (mod <= 2 && s[i + 5 + 1] == '#')
 		{
 			if (mod <= 1 && s[i + 5 + 2] == '#')
-				return ("J1");
+				return ("J100101112");
 			if (s[i + (5 * 2) + 1] == '#' && div < 2)
-				return ("S1");
+				return ("S100101121");
 			if (s[i + (5 * 2)] == '#' && div < 2)
-				return ("T3");
+				return ("T300101120");
 		}
 		if (s[i + (5 * 2)] == '#' && div < 2)
 		{
 //			printf("%s\n",s );
 //				printf("2 %d |%c%c%c%c|\n", div, s[i], s[i + (5 * 1)], s[i + (5 * 2)], s[i + (5 * 3)]);
 			if (mod <= 2 && s[i + (5 * 2) + 1] == '#')
-				return ("L0");
+				return ("L000102021");
 			if (s[i + (5 * 3)] == '#' && div < 1)
-				return ("I0");
+				return ("I000102030");
 			if (mod >= 1 && s[i + (5 * 2) - 1] == '#')
 			{
 //					printf("3\n");
-				return ("J0");
+				return ("J001112021");
 			}
 			if (mod <= 2 && s[i + 1] == '#')
-				return ("J2");
+				return ("J200100120");
 		}
 		return (part10(s, i, div, mod));
 	}
@@ -73,22 +73,22 @@ static const char	*part0(char *s, int i, int div, int mod)
 		if (mod <= 1 && s[i + 2] == '#')
 		{
 			if (mod <= 0 && s[i + 3] == '#')
-				return ("I1");
+				return ("I100010203");
 			if (s[i + 2 + 5] == '#' && div < 3)
-				return ("J3");
+				return ("J300010212");
 			if (s[i + 1 + 5] == '#' && div < 3)
-				return ("T0");
+				return ("T000011102");
 			if (s[i + 5] == '#' && div < 3)
-				return ("L1");
+				return ("L100100102");
 		}
 		if (s[i + 1 + 5] == '#' && div < 3)
 		{
 			if (mod <= 1 && s[i + 2 + 5] == '#')
-				return ("Z0");
+				return ("Z000011112");
 			if (s[i + 1 + 5] == '#')
-				return ("O0");
+				return ("O000100111");
 			if (mod <= 1 && s[i + 2 + (2 * 5)] == '#' && div < 2)
-				return ("L2");
+				return ("L200011121");
 		}
 	}
 	return (part1(s, i, div, mod));
