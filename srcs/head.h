@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/28 21:41:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 05:00:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ typedef struct	s_piece
 	int			pc_pos; //number of placement possible for this piece
 	int			tt_pos; //total sum of pc_pos until this struct, actual one included //initialize to 0
 	int			i; //initialize to 0
-	t_coord		coord[4]; //need to be a tab of 4:1
+	t_coord		*coord; //need to be a tab of 4:1
 	t_piece		*next;
+	t_piece		*prev;
+	t_piece		*head;
 }				t_piece;
 
 typedef struct	s_head
