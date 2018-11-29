@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/29 07:39:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 20:35:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,24 @@ int		nb_char_to_int(char	*c)
 	return (c - '0');
 }
 
-void 	coord_rot(t_piece *piece, int rot)//NEED TO BE DONE FROM PIECE MODEL
+/*void 	coord_rot(t_piece *piece, int rot)//NEED TO BE DONE FROM PIECE MODEL
 {
 	int		i;
 	int		tmp;
 
 	i = -1;
-/*	while (++i < rot)
-	{
-		piece->coord[i]->y = x_model(piece->name, i); //need a function holding all values
-		piece->coord[i]->x = -y_model(piece->name, i); //y need to be negative
-	}*/
+//	while (++i < rot)
+//	{
+//		piece->coord[i]->y = x_model(piece->name, i); //need a function holding all values
+//		piece->coord[i]->x = -y_model(piece->name, i); //y need to be negative
+//	}
 	while (++i < rot)
 	{
 		tmp = piece->coord[i]->y;
 		piece->coord[i]->y = piece->coord[i]->x;
 		piece->coord[i]->x = -tmp;
 	}
-}
+}*/
 
 void	coord_setup(t_piece *piece)
 {
@@ -108,7 +108,7 @@ void	coord_setup(t_piece *piece)
 		coord[i]->x = nb_char_to_int(name[2 + (i * 2) + 1]);
 		coord[i]->y = nb_char_to_int(name[2 + (i * 2)]);
 	}
-	coord_rot(piece, nb_char_to_int(name[1]));
+//	coord_rot(piece, nb_char_to_int(name[1]));
 }
 
 void	setup_pieces(t_head head)
