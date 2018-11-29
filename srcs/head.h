@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/29 06:18:00 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 07:05:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_head
 	char				**solution;
 	int					size_square;
 	int					p; //number of pieces
-	int					actual; //initialize to 0
+	int					tt_pos_all;
 	int					o;//initialize to 0
 	int					x;//initialize to 0
 	int					y;//initialize to 0
