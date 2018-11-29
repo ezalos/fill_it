@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/28 18:46:24 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/11/29 00:46:36 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int ft_check_input(int fd, char *buf)
 {
 	while (read(fd, buf, 21) <= 20)
 	{
+		int i;
+		int c_hash;
+
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
@@ -41,9 +44,9 @@ int ft_check_input(int fd, char *buf)
 		}
 	if (c_hash != 4)
 		return (0); // ft_display_error(int error);
-
+	ft_lstnew(recognize(buf), 2);
 	}
-
+	return (1);
 }
 
 char	*ft_read_check(char *fillit)
@@ -58,32 +61,5 @@ char	*ft_read_check(char *fillit)
 	if (!(fd = open((const char*)fillit, O_RDONLY)))
 		return (0);
 	ft_check_input(fd, buf);
-	while (read(fd, buf, 21) == 21)
-	{
-		i = 0;
-		c_hash = 0;
-		while (i < 21)
-		{
-			if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
-			{
-				if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
-					return (0);
-				i++;
-			} 	// ft_display_error(int error);
-			else if (buf[i] == '#')
-			{
-				c_hash++;
-				i++;
-			}
-			else if (buf[i] == '.')
-				i++;
-			else
-				return (0);	//	ft_display_error(int error)
-		}
-	if (c_hash != 4)
-		return (0); // ft_display_error(int error);
-	printf("%s\n", recognize(buf));
-
-	}
-	return (buf);
+	return (NULL);
 }
