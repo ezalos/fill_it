@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/29 07:05:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/29 20:24:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_piece
 	t_coord		*coord; //need to be a tab of 4:1
 	t_piece		*next;
 	t_piece		*prev;
-	t_piece		*head;
+	t_head		*head;
 }				t_piece;
 
 typedef struct	s_head
