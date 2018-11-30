@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/29 20:35:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 02:49:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,7 @@ t_head	*setup_head(t_head *head)
 	setup_pieces(*head);
 	if (!(head->solution = malloc_solution(head)))
 		return (NULL);
+
+	head->possible_solutions = 0;//need to be setup before
+	head->the_choosen_configuration[0] = 1;//need to be setup before
 }

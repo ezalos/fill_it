@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/29 23:45:02 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 03:00:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,31 +63,36 @@ void	clean_solution(t_head *head)
 
 int		solve_solution(t_head *head)
 {
-	int sum_one_of_line;
-	int best_line_of_sum_one;
-	int duplication;
+	int the_1_of_the_chosen_configuration;
 
-	head->possible_solutions = 0;//need to be setup before
-	head->first_try = 1;//need to be setup before
-
-
-	while (head->first_try < head->next->pc_pos + 1)
+	if (head->the_choosen_configuration == head->next->pc_pos)
+		return (did_it_work());
+	while (head->the_choosen_configuration < head->next->pc_pos + 1)//need to change head for current piece and setup for "1st"choice
 	{
-		if (head->solution[0][head->first_try] == 1)
+		if (head->solution[0][head->the_choosen_configuration] == 1)
 		{
-			duplication = 0;
-			while (++duplication < head->tt_pos_all + 1)
+			the_1_of_the_chosen_configuration = 0;
+			while (++the_1_of_the_chosen_configuration < head->tt_pos_all + 1)
 			{
-				try = head->first_try;
-				while (++try < 1 + head->p + (head->size_square * head->size_square))
-					if (head->solution[duplication][head->first_try] == 1)
-						if (head->solution[duplication][try] == 1)
-							head->solution[0][try] == 0;
-			}
+				if (head->solution[the_1_of_the_chosen_configuration][head->the_choosen_configuration] == 1)
+				{
+					the_deleter_of_configuration = 0; //head->the_choosen_configuration; maybe an amelioration
+					while (++the_deleter_of_configuration < 1 + head->p + (head->size_square * head->size_square))
+							if (head->solution[the_1_of_the_chosen_configuration][the_deleter_of_configuration] == 1)
+								head->solution[0][the_deleter_of_configuration] == 0;
+				}
+			}//all competitors of the choosen one have been destroy
 		}
-		else
-			head->first_try++;
-	}
+		head->the_choosen_configuration++;
+	}//we now need to repeat all of this for the second line which exist (and if all the pieces still exists)
+	save_solution();
+	clean_solution(&head);
+	head->the_choosen_configuration++;
+	return (solve_solution(&head));
+}
+
+	//if work, save config
+	//then clean up mess and restart function with the choosen one + 1;
 
 	//which line have the less 1 ? choose the first of them
 	//delete line (change 1 in 0) for each one meeting a 1 of the column
@@ -96,4 +101,3 @@ int		solve_solution(t_head *head)
 			//save the coordinate of each piece and her dead space
 		//else
 			//choose the next line
-}
