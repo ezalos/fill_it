@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/30 23:20:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 00:16:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,21 +95,22 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 		}
 		head->the_choosen_configuration++;//in case it's not the 1st time the function is run
 	}//we now need to repeat all of this for the second line which exist (and if all the pieces still exists)
-	if (head->the_choosen_configuration == head->next->pc_pos)//if no possibility, might be unecessary
-		return (-1);
+	if (head->the_choosen_configuration == find_piece(deepness)->tt_pos)//if no possibility, might be unecessary
+		return (NULL);
 	return (head->the_choosen_configuration);
 }
 
-int		how_many_paths(int piece, int the_choosen_configuration)//need to be values that only live in the function
+int		how_many_paths(t_head *head, int deepness)//need to be values that only live in the function
 {
 	int path;
 
 	path = 0;
-	while (the_choosen_configuration < find_piece(piece)->pc_pos + 1)
+	head->the_choosen_configuration = find_piece(deepness)->tt_pos - find_piece(deepness)->pc_pos;
+	while (head->the_choosen_configuration < find_piece(deepness)->tt_pos + 1)
 	{
-		if (head->solution[0][the_choosen_configuration] == 1)
+		if (find_sol(deepness)->y_all_PxNx[head->the_choosen_configuration] == 1)
 			path++;
-		the_choosen_configuration++;
+		head->the_choosen_configuration++;
 	}
 	return (path);
 }
@@ -119,10 +120,28 @@ void	save_solution(int the_choosen_configuration)
 
 }
 
-int		solve_solution(t_head *head)
+int		solve_solution(t_head *head, int deepness)
 {
+	int	position_choice;
 
+	deepness = -1; //need to be setup before
+	position_choice = -1;
+	next_solve_step(&head);
+	find_sol(deepness + 1)->nb_of_paths = how_many_paths(&head, deepness + 1)
+	while (++deepness < head->p)
+	{
+		while (++position_choice <= find_sol(deepness)->nb_of_paths)
+		{
+			if(!(deleter_of_competitors(&head, deepness, position_choice)))
+				return(1);
+			if (-1 == solve_solution(&head, deepness + 1))//NEED TO QUIT WHEN ALL IS SOLVED
+				return (-1);
+			delete_last_sol(deepness + 1); //NEED
+		}
+	}
+	return (-1);
 }
+
 /*
 int		solve_solution(t_head *head)
 {
