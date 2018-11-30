@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/30 22:06:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 23:06:12 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct	s_piece
 	int			pc_pos; //number of placement possible for this piece
 	int			tt_pos; //total sum of pc_pos until this struct, actual one included //initialize to 0
 	int			i; //initialize to 0
-	t_coord		*coord; //need to be a tab of 4:1
-	s_piece		*next;
-	s_piece		*prev;
-	t_head		*head;
+	struct t_coord		*coord; //need to be a tab of 4:1
+	struct s_piece		*next;
+	struct s_piece		*prev;
+	struct s_head		*head;
 }				t_piece;
 
 typedef struct	s_sol
@@ -75,6 +75,7 @@ int			size_square(int p);
 int			size_pieces(char *s, int size);
 void 		ft_bzero(void *s, int n);
 void		*ft_memalloc(size_t size);
+t_piece		*create_tetro(const char *buf);
 t_piece		*ft_lstnew(const char *name, size_t name_size);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 
