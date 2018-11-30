@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/30 19:06:13 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 22:52:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	clean_solution(t_head *head)
 	}
 }
 
-int		deleter_of_competitors(t_head *head, int position_choice)
+int		deleter_of_competitors(t_head *head, int position_choice, int deepness)
 {
 	int the_1_of_the_chosen_configuration;
 	int	position_review;
@@ -69,6 +69,7 @@ int		deleter_of_competitors(t_head *head, int position_choice)
 
 	choice_of_path_made = 0;
 	position_review = 0;
+	head->the_choosen_configuration = find_piece(deepness)->tt_pos - find_piece(deepness)->pc_pos
 	while (head->the_choosen_configuration < head->next->pc_pos + 1 && !choice_of_path_made)//need to be active until one is choosen && cant work for last piece && need to change head for current piece and setup for "1st"choice
 	{
 		if (head->solution[0][head->the_choosen_configuration] == 1)//we are choosing the 1st option here, we need to have the choice
@@ -119,6 +120,11 @@ void	save_solution(int the_choosen_configuration)
 
 int		solve_solution(t_head *head)
 {
+
+}
+/*
+int		solve_solution(t_head *head)
+{
 	int	current_path;
 	int	number_of_paths;
 	int save;
@@ -142,7 +148,7 @@ int		solve_solution(t_head *head)
 	clean_solution(&head);
 	head->the_choosen_configuration++;
 	return (solve_solution(&head));
-}
+}*/
 
 	//if work, save config
 	//then clean up mess and restart function with the choosen one + 1;

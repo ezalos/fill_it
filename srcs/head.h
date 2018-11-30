@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/30 19:11:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 22:06:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,18 @@ typedef struct	s_piece
 	int			tt_pos; //total sum of pc_pos until this struct, actual one included //initialize to 0
 	int			i; //initialize to 0
 	t_coord		*coord; //need to be a tab of 4:1
-	t_piece		*next;
-	t_piece		*prev;
+	s_piece		*next;
+	s_piece		*prev;
 	t_head		*head;
 }				t_piece;
 
 typedef struct	s_sol
 {
-	char		*y_all_Pn;
+	char		*y_all_PxNx;
 	char		*x_P_J;
 	int			the_choosen_configuration;
-	t_sol		**next; //string of pointers to next possible solution from this one.
+	int			nb_of_paths;
+	s_sol		*next; //string of pointers to next possible solution from this one.
 }				t_sol;
 
 typedef struct	s_head
@@ -62,7 +63,7 @@ typedef struct	s_head
 	int					possible_solutions;//initialize to 0
 	int					first_try;//initialize to 0
 //	int					y;//initialize to 0
-	s_sol				*sol;
+	t_sol				*sol;
 	struct t_piece		*next;
 }				t_head;
 
