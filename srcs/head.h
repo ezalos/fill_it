@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/30 23:06:12 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 23:34:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct	s_piece
 typedef struct	s_sol
 {
 	char		*y_all_PxNx;
-	char		*x_P_J;
-	int			the_choosen_configuration;
+//	char		*x_P_J;
+	int			current_path;
 	int			nb_of_paths;
 	s_sol		*next; //string of pointers to next possible solution from this one.
 }				t_sol;

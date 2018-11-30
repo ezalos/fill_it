@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/30 22:52:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 23:20:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,19 @@ void	clean_solution(t_head *head)
 	}
 }
 
-int		deleter_of_competitors(t_head *head, int position_choice, int deepness)
+int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 {
 	int the_1_of_the_chosen_configuration;
 	int	position_review;
 	int	choice_of_path_made;
+	int	the_deleter_of_configuration;
 
 	choice_of_path_made = 0;
 	position_review = 0;
-	head->the_choosen_configuration = find_piece(deepness)->tt_pos - find_piece(deepness)->pc_pos
-	while (head->the_choosen_configuration < head->next->pc_pos + 1 && !choice_of_path_made)//need to be active until one is choosen && cant work for last piece && need to change head for current piece and setup for "1st"choice
+	head->the_choosen_configuration = find_piece(deepness)->tt_pos - find_piece(deepness)->pc_pos;
+	while (head->the_choosen_configuration < find_piece(deepness)->tt_pos && !choice_of_path_made)//need to be active until one is choosen && cant work for last piece && need to change head for current piece and setup for "1st"choice
 	{
-		if (head->solution[0][head->the_choosen_configuration] == 1)//we are choosing the 1st option here, we need to have the choice
+		if (find_sol(deepness)->y_all_PxNx[head->the_choosen_configuration] == 1)//we are choosing the 1st option here, we need to have the choice
 		{
 			if (position_review <= position_choice)
 				position_review++;
@@ -87,7 +88,7 @@ int		deleter_of_competitors(t_head *head, int position_choice, int deepness)
 						the_deleter_of_configuration = 0; //head->the_choosen_configuration; maybe an amelioration
 						while (++the_deleter_of_configuration < 1 + head->p + (head->size_square * head->size_square))
 								if (head->solution[the_1_of_the_chosen_configuration][the_deleter_of_configuration] == 1)
-									head->solution[0][the_deleter_of_configuration] == 0;
+									find_sol(deepness)->y_all_PxNx[the_deleter_of_configuration] == 0;
 					}
 				}//all competitors of the choosen one have been destroy
 			}
