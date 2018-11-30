@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/30 23:34:20 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 00:13:43 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ int			size_square(int p);
 int			size_pieces(char *s, int size);
 void 		ft_bzero(void *s, int n);
 void		*ft_memalloc(size_t size);
-t_piece		*create_tetro(const char *buf);
+t_piece		*create_tetro(const char *buf, t_head *head);
 t_piece		*ft_lstnew(const char *name, size_t name_size);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
-
-
+t_sol		*next_solve_step(t_head *head);
+t_piece		*find_piece(t_head *head, int piece);
+t_sol		*find_sol(t_head *head, int sol);
 
 #endif
