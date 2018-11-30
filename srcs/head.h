@@ -63,7 +63,7 @@ typedef struct	s_head
 	int					possible_solutions;//initialize to 0
 	int					first_try;//initialize to 0
 //	int					y;//initialize to 0
-	t_sol				*sol;
+	struct t_sol		*sol;
 	struct t_piece		*next;
 }				t_head;
 
