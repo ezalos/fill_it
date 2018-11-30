@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/29 22:03:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 19:11:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ typedef struct	s_piece
 
 typedef struct	s_sol
 {
-	int			*px_dstj0; //line of p integer + 1. 1st for DeadSpaceTotal, then J0 coordinate of each piece
-	t_sol		*next; //pointer to next possible solution
+	char		*y_all_Pn;
+	char		*x_P_J;
+	int			the_choosen_configuration;
+	t_sol		**next; //string of pointers to next possible solution from this one.
 }				t_sol;
 
 typedef struct	s_head
