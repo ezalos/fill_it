@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:24:06 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/27 14:38:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 20:28:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-##include "head.h"
+#include "head.h"
 char	**big_malloc(int p, list pieces)
 {
 	char	**tab_sol;

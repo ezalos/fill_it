@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/30 02:49:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/30 22:30:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,13 @@ void	coord_setup(t_piece *piece)
 void	setup_pieces(t_head head)
 {
 	t_piece		tmp;
+	int			i;
 
+	i = 0;
 	tmp = head.next;
 	while (tmp->next != NULL)
 	{
+		tmp->i = i++
 		pieces_yx(*tmp);
 		tmp->pc_pos = size_pieces(tmp->name[0], head->size_square);
 //		piece_placement(tmp); not sure about the purpose of this function
@@ -157,6 +160,6 @@ t_head	*setup_head(t_head *head)
 	if (!(head->solution = malloc_solution(head)))
 		return (NULL);
 
-	head->possible_solutions = 0;//need to be setup before
-	head->the_choosen_configuration[0] = 1;//need to be setup before
+	head->sol->possible_solutions = 0;
+	head->the_choosen_configuration[0] = 1;
 }
