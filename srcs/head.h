@@ -6,7 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/30 02:40:22 by aboitier         ###   ########.fr       */
+=======
+/*   Updated: 2018/11/30 19:11:01 by ldevelle         ###   ########.fr       */
+>>>>>>> a86aed625ad62d579b9599b6c71627525443c102
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +49,24 @@ typedef struct	s_piece
 	struct s_head		*head;
 }				t_piece;
 
+typedef struct	s_sol
+{
+	char		*y_all_Pn;
+	char		*x_P_J;
+	int			the_choosen_configuration;
+	t_sol		**next; //string of pointers to next possible solution from this one.
+}				t_sol;
+
 typedef struct	s_head
 {
 	char				**solution;
 	int					size_square;
 	int					p; //number of pieces
 	int					tt_pos_all;
-	int					o;//initialize to 0
-	int					x;//initialize to 0
-	int					y;//initialize to 0
+	int					possible_solutions;//initialize to 0
+	int					first_try;//initialize to 0
+//	int					y;//initialize to 0
+	s_sol				*sol;
 	struct t_piece		*next;
 }				t_head;
 
