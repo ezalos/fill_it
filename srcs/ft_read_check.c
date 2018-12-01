@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 01:35:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 03:37:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int ft_check_input(int fd, char *buf, t_head *head)
 		}
 		if (c_hash != 4)
 			return (0); // ft_display_error(int error);
-		if (!(head->next = create_tetro(recognize(buf), &head)))
+		if (!(head->next = create_tetro(recognize(buf), head)))
 			return (0);
 	}
 	return (1);
@@ -52,9 +52,9 @@ int ft_check_input(int fd, char *buf, t_head *head)
 
 t_head	*ft_read_check(char *fillit)
 {
-	char *buf;
-	t_head *head;
-	int fd;
+	char 	*buf;
+	t_head 	*head;
+	int 	fd;
 
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
 		return (NULL);

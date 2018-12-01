@@ -6,12 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 01:27:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 03:41:03 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
-#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
@@ -103,7 +102,7 @@ t_sol	*find_sol(t_head *head, int sol)
 
 	solution = head->sol;
 	i = -1;
-	while (++i <= sol && solution->next != NULL)
-		solution = solution->next;
+	while (++i <= sol && solution->sol != NULL)
+		solution = solution->sol;
 	return (solution);
 }
