@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/11/29 00:46:36 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/12/01 01:35:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-int ft_check_input(int fd, char *buf)
+int ft_check_input(int fd, char *buf, t_head *head)
 {
 	while (read(fd, buf, 21) <= 20)
 	{
@@ -42,24 +42,27 @@ int ft_check_input(int fd, char *buf)
 			else
 				return (0);	//	ft_display_error(int error)
 		}
-	if (c_hash != 4)
-		return (0); // ft_display_error(int error);
-	ft_lstnew(recognize(buf), 2);
+		if (c_hash != 4)
+			return (0); // ft_display_error(int error);
+		if (!(head->next = create_tetro(recognize(buf), &head)))
+			return (0);
 	}
 	return (1);
 }
 
-char	*ft_read_check(char *fillit)
+t_head	*ft_read_check(char *fillit)
 {
 	char *buf;
+	t_head *head;
 	int fd;
-	int c_hash;
-	int i;
 
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
-		return (0);
+		return (NULL);
 	if (!(fd = open((const char*)fillit, O_RDONLY)))
-		return (0);
-	ft_check_input(fd, buf);
+		return (NULL);
+	if (!(head = (t_head*)malloc(sizeof(t_head))))
+		return (NULL);
+	if (ft_check_input(fd, buf, head))
+		return (head);
 	return (NULL);
 }

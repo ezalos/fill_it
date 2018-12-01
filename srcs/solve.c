@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   all_positions.c                                    :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/01 00:16:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 01:37:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
-
-char	**tab_solution()
 
 void	write_solutions(t_head *head)
 {
@@ -43,21 +41,6 @@ void	write_solutions(t_head *head)
 		}
 		piece = piece->next;
 		p++;
-	}
-}
-
-void	clean_solution(t_head *head)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (piece->coord[0]->y + ++y < head->square_size + 1)
-	{
-		piece->coord[0]->x = 0;//DEAD SPACE is stored here
-		x = 0;
-		while (piece->coord[0]->x + ++x < head->square_size + 1)// <= || < ?
-			head->solution[piece->pc_pos + 1][0] = 1;//to say that every line currently exist
 	}
 }
 
@@ -115,16 +98,11 @@ int		how_many_paths(t_head *head, int deepness)//need to be values that only liv
 	return (path);
 }
 
-void	save_solution(int the_choosen_configuration)
-{
-
-}
-
 int		solve_solution(t_head *head, int deepness)
 {
 	int	position_choice;
 
-	deepness = -1; //need to be setup before
+//	deepness = -1; //need to be setup before
 	position_choice = -1;
 	next_solve_step(&head);
 	find_sol(deepness + 1)->nb_of_paths = how_many_paths(&head, deepness + 1)
@@ -141,42 +119,3 @@ int		solve_solution(t_head *head, int deepness)
 	}
 	return (-1);
 }
-
-/*
-int		solve_solution(t_head *head)
-{
-	int	current_path;
-	int	number_of_paths;
-	int save;
-
-	if (head->the_choosen_configuration == head->next->pc_pos)
-		return (did_it_work());
-
-	if (!(number_of_paths = how_many_paths(head->the_choosen_configuration))//IF no paths : no solutions
-		return (NO SOLUTIONS);
-	save = head->the_choosen_configuration;
-	current_path = 0;
-	while (is_unsolved())
-	{
-		while (current_path < number_of_paths))
-		{
-			head->the_choosen_configuration = save;
-			//we also need to tweek back all the 0 and 1 that have been changed
-			solve_solution(save_solution(deleter_of_competitors(&head, current_path)));
-		}
-	}
-	clean_solution(&head);
-	head->the_choosen_configuration++;
-	return (solve_solution(&head));
-}*/
-
-	//if work, save config
-	//then clean up mess and restart function with the choosen one + 1;
-
-	//which line have the less 1 ? choose the first of them
-	//delete line (change 1 in 0) for each one meeting a 1 of the column
-	//repeat the process on the new tab in a new function (recursive)
-		//if good
-			//save the coordinate of each piece and her dead space
-		//else
-			//choose the next line

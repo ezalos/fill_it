@@ -6,12 +6,28 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 00:12:14 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/12/01 01:27:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 #include "libft.h"
+
+char	*ft_strdup(char *src)
+{
+	char	*dest;
+	int		i;
+	int		size;
+
+	size = ft_strlen(src);
+	if (!(dest = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	dest[size] = '\0';
+	i = -1;
+	while (++i < size)
+		dest[i] = src[i];
+	return (dest);
+}
 
 t_piece *create_tetro(const char *buf, t_head *head)
 {
@@ -25,7 +41,7 @@ t_piece *create_tetro(const char *buf, t_head *head)
 		tetro->next = NULL;
 	}
 	else
-	{	
+	{
 		tmp = tetro->next;
 		if (!(tetro = (t_piece*)malloc(sizeof(t_piece))))
 			return (NULL);
@@ -34,7 +50,7 @@ t_piece *create_tetro(const char *buf, t_head *head)
 
 		tmp->name = (char*)buf;
 		tmp->next = NULL;
-			
+
 	}
 	head->p += 1;
 	return (tetro);
@@ -77,7 +93,7 @@ t_piece	*find_piece(t_head *head, int piece)
 	i = -1;
 	while (++i <= piece && tetro->next != NULL)
 		tetro = tetro->next;
-	return (tetro);	
+	return (tetro);
 }
 
 t_sol	*find_sol(t_head *head, int sol)

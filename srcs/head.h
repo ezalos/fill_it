@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 00:13:43 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/12/01 01:53:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 # include <string.h>
 # include <time.h>
 # include <stdlib.h>
-
-typedef	struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 typedef struct	s_coord
 {
@@ -41,7 +34,7 @@ typedef struct	s_piece
 	int			i; //initialize to 0
 	struct t_coord		*coord; //need to be a tab of 4:1
 	struct s_piece		*next;
-	struct s_piece		*prev;
+//	struct s_piece		*prev;
 	struct s_head		*head;
 }				t_piece;
 
