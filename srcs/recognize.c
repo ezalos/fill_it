@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/11/29 21:46:30 by aboitier         ###   ########.fr       */
+/*   Updated: 2018/12/01 04:28:26 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ const char			*recognize(char *s)
 		i++;
 	div = i / 5;
 	mod = (i % 5);
-
 	return(part0(s, i, div, mod));
 }

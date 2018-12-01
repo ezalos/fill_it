@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 03:37:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 04:28:16 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 
 int ft_check_input(int fd, char *buf, t_head *head)
 {
-	while (read(fd, buf, 21) <= 20)
+	while (read(fd, buf, 21) >= 20)
 	{
 		int i;
 		int c_hash;
-
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
@@ -62,6 +61,7 @@ t_head	*ft_read_check(char *fillit)
 		return (NULL);
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 		return (NULL);
+	head->p = 0;
 	if (ft_check_input(fd, buf, head))
 		return (head);
 	return (NULL);

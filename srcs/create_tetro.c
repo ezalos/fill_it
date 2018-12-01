@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 03:41:03 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/01 04:30:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_piece *create_tetro(const char *buf, t_head *head)
 		tmp->next = NULL;
 
 	}
-	head->p += 1;
+	head->p = 1 + head->p;
+	printf("crete_tetro\t%d\n", head->p);
 	return (tetro);
 }
 
