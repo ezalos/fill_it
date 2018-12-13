@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 03:40:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/13 21:34:37 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_coord
 typedef struct	s_piece
 {
 	char		*name;
+	char		letter;
 	int			y_size; //piece dimension
 	int			x_size;
 	int			pc_pos; //number of placement possible for this piece
@@ -69,7 +70,7 @@ float		f_sqrt(int nb, int limite);
 int			size_square(int p);
 void 		ft_bzero(void *s, int n);
 void		*ft_memalloc(size_t size);
-t_piece		*create_tetro(const char *buf, t_head *head);
+int			create_tetro(const char *name, t_head **head, char p);
 t_piece		*ft_lstnew(const char *name, size_t name_size);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 t_sol		*next_solve_step(t_head *head);

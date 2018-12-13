@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 04:30:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/13 22:10:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,29 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
-t_piece *create_tetro(const char *buf, t_head *head)
+int		create_tetro(const char *name, t_head **head, char p)
 {
 	t_piece *tetro;
-	t_piece *tmp;
-	if (head->next == NULL)
-	{
-		if (!(tetro = (t_piece*)malloc(sizeof(t_piece))))
-			return (NULL);
-		tetro->name = (char*)buf;
-		tetro->next = NULL;
-	}
-	else
-	{
-		tmp = tetro->next;
-		if (!(tetro = (t_piece*)malloc(sizeof(t_piece))))
-			return (NULL);
-		while (tmp->next->next != NULL)
-			tmp = tmp->next;
 
-		tmp->name = (char*)buf;
-		tmp->next = NULL;
-
+	tetro = (*head)->next;
+	if (tetro == NULL)
+	{
+		if (!((*head)->next = (t_piece*)malloc(sizeof(t_piece))))
+			return (0);
+		(*head)->next->name = (char*)name;
+		(*head)->next->next = NULL;
+		(*head)->next->letter = p - 1;
+		return (1);
 	}
-	head->p = 1 + head->p;
-	printf("crete_tetro\t%d\n", head->p);
-	return (tetro);
+	while (tetro->next != NULL)
+		tetro = tetro->next;
+	if (!(tetro->next = (t_piece*)malloc(sizeof(t_piece))))
+		return (0);
+	tetro = tetro->next;
+	tetro->name = (char*)name;
+	tetro->next = NULL;
+	tetro->letter = p;
+	return (1);
 }
 
 t_sol	*next_solve_step(t_head *head)

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/01 04:28:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/13 22:09:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
-int ft_check_input(int fd, char *buf, t_head *head)
+int ft_check_input(int fd, char *buf, t_head **head)
 {
-	while (read(fd, buf, 21) >= 20)
+	int 	i;
+	int		c_hash;
+	char	p;
+
+	while (read(fd, buf, 21) >= 21)
 	{
-		int i;
-		int c_hash;
 		i = 0;
 		c_hash = 0;
 		while (i < 21)
@@ -43,7 +45,7 @@ int ft_check_input(int fd, char *buf, t_head *head)
 		}
 		if (c_hash != 4)
 			return (0); // ft_display_error(int error);
-		if (!(head->next = create_tetro(recognize(buf), head)))
+		if (!(create_tetro(recognize(buf), head, ++(*head)->p + '1')))
 			return (0);
 	}
 	return (1);
@@ -61,8 +63,9 @@ t_head	*ft_read_check(char *fillit)
 		return (NULL);
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 		return (NULL);
+	head->next = NULL;
 	head->p = 0;
-	if (ft_check_input(fd, buf, head))
+	if (ft_check_input(fd, buf, &head))
 		return (head);
 	return (NULL);
 }
