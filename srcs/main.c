@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/13 22:09:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 12:10:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,7 @@
 void time_exe(const char* s, clock_t *t)
 {
 	*t = clock() - *t;
-	printf("%s took %f seconds to execute \n", s, ((double)*t)/CLOCKS_PER_SEC);
-}
-
-void	print_pieces_list(t_head *head)
-{
-	t_piece *tmp;
-
-	tmp = head->next;
-	if (tmp != NULL)
-	{
-		printf("\n1RETOUR tetro\t%c\n\t\tname:\t%s\n", head->next->letter, (char*)head->next->name);
-		while (tmp->next != NULL)
-		{
-			printf("XRETOUR tetro\t%c\n\t\tname:\t%s\n", tmp->letter, (char*)tmp->name);
-			tmp = tmp->next;
-		}
-	}
-	printf("IN HEAD P=%d\n", head->p);
+	printf(_CYAN "%s took %f seconds to execute \n" _RESET, s, ((double)*t)/CLOCKS_PER_SEC);
 }
 
 int		main(int ac, char **av)
@@ -49,12 +32,13 @@ int		main(int ac, char **av)
 
 	if (!(head = ft_read_check(av[1])))
 		return (0);
-	print_pieces_list(head);
+	print_debug(head);
 	time_exe("ft_Read_Check", &t);
-//		if (!(setup_head(head)))
+	if (!(setup_head(head)))
 			return (0);
+	print_debug(head);
 	time_exe("Setup_Head", &t);
-		check = solve_solution(head, -1);
+//		check = solve_solution(head, -1);
 	time_exe("Solve_Solution", &t);
 
 

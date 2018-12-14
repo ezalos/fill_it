@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/13 22:09:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:47:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int ft_check_input(int fd, char *buf, t_head **head)
 		}
 		if (c_hash != 4)
 			return (0); // ft_display_error(int error);
-		if (!(create_tetro(recognize(buf), head, ++(*head)->p + '1')))
+		//write(1, buf, 21);
+		if (!create_tetro(recognize(buf), head, (*head)->p++ + 'A'))
 			return (0);
+		//print_pieces_list(*head);
 	}
 	return (1);
 }
@@ -67,5 +69,6 @@ t_head	*ft_read_check(char *fillit)
 	head->p = 0;
 	if (ft_check_input(fd, buf, &head))
 		return (head);
+	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
 	return (NULL);
 }

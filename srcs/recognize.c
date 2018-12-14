@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/01 04:28:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:48:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,15 @@ const char			*recognize(char *s)
 	int		i;
 	int		div;
 	int		mod;
+	//const char	*tmp;
 
 	i = 0;
 	while (s[i] != '#')
 		i++;
 	div = i / 5;
 	mod = (i % 5);
+	//tmp = part0(s, i, div, mod);
+	//printf(_RED "RECOGNIZE POINTER : %s\n", tmp);
+	//return(tmp);
 	return(part0(s, i, div, mod));
 }

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/13 21:34:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:51:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@
 # include <string.h>
 # include <time.h>
 # include <stdlib.h>
+
+//COLORS IN PRINTF
+#define _RED     "\x1b[31m"
+#define _GREEN   "\x1b[32m"
+#define _YELLOW  "\x1b[33m"
+#define _BLUE    "\x1b[34m"
+#define _MAGENTA "\x1b[35m"
+#define _CYAN    "\x1b[36m"
+#define _RESET   "\x1b[0m"
 
 typedef struct	s_coord
 {
@@ -62,6 +71,10 @@ typedef struct	s_head
 	t_piece		*next;
 }				t_head;
 
+//print_debug.c
+void		print_debug(t_head *head);
+
+//un peu de tout ?
 int			yx_to_j(int y, int x);
 t_head		*ft_read_check(char *fillit);
 const char	*recognize(char *s);

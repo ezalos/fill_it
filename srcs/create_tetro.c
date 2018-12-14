@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/13 22:10:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 11:37:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,18 @@ int		create_tetro(const char *name, t_head **head, char p)
 {
 	t_piece *tetro;
 
-	tetro = (*head)->next;
-	if (tetro == NULL)
+	if (name == NULL)
+		return (0);
+	if ((*head)->next == NULL)
 	{
 		if (!((*head)->next = (t_piece*)malloc(sizeof(t_piece))))
 			return (0);
 		(*head)->next->name = (char*)name;
 		(*head)->next->next = NULL;
-		(*head)->next->letter = p - 1;
+		(*head)->next->letter = p;
 		return (1);
 	}
+	tetro = (*head)->next;
 	while (tetro->next != NULL)
 		tetro = tetro->next;
 	if (!(tetro->next = (t_piece*)malloc(sizeof(t_piece))))
