@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/14 15:10:21 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 17:28:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct	s_coord
 {
 	int			y;
 	int			x;
+	int			j;
 }				t_coord;
 
 typedef struct	s_piece

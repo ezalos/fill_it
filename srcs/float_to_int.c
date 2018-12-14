@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/01 03:53:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 17:54:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ int		yx_to_j(int y, int x)
 	else
 	{
 		nb = 1;
-		while (x > y)
+//		if (y == 0 && x == 1)
+//			return (1);
+/*		while (x > y)
 		{
 			nb = nb + 2;
 			x--;
 		}
-		return ((y * (y + 1)) + nb);
+		return ((y * (y + 1)) + nb);*/
+		return ((x * x) + y);
 	}
 }
 

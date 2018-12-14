@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/01 03:18:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 17:29:48 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int		coord_setup(t_piece *piece)
 	i = -1;
 	while (++i <= 3)
 	{
-		piece->coord[i]->x = nb_char_to_int(piece->name[2 + (i * 2) + 1]);
 		piece->coord[i]->y = nb_char_to_int(piece->name[2 + (i * 2)]);
+		piece->coord[i]->x = nb_char_to_int(piece->name[2 + (i * 2) + 1]);
+		piece->coord[i]->j = yx_to_j(piece->coord[i]->y, piece->coord[i]->x);
 	}
 	return (1);
 }
