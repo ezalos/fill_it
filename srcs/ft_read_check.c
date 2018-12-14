@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/14 11:47:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:39:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_check_input(int fd, char *buf, t_head **head)
 	int		c_hash;
 	char	p;
 
-	while (read(fd, buf, 21) >= 21)
+	while (read(fd, buf, 21) >= 20)
 	{
 		i = 0;
 		c_hash = 0;

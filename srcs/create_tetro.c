@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/14 11:37:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 13:55:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_piece	*find_piece(t_head *head, int piece)
 	int i;
 
 	tetro = head->next;
-	i = -1;
+	i = 1;
 	while (++i <= piece && tetro->next != NULL)
 		tetro = tetro->next;
 	return (tetro);

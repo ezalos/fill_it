@@ -6,41 +6,41 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 12:29:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 14:02:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-void		print_piece_debug(t_piece	*piece, int i)
+void		print_piece_debug(t_piece	*piece)
 {
-	printf(_RESET"Tetro n*%d" _YELLOW"\tname:\t%s\n", i, (char*)piece->name);
-	printf("\tLetter:\t%c\n", piece->letter);
-	printf("\tY_size:\t%d\n", piece->y_size);
-	printf("\tX_size:\t%d\n", piece->x_size);
-	printf("\ti:\t%d\n", piece->i);
-	printf("\tNb of placement:\t\t%d\n", piece->pc_pos);
-	printf("\tSum until now of placements:\t%d\n", piece->tt_pos);
-	printf(_RESET "\n");
+	printf(_RESET"Tetro n*%d" _YELLOW"\tname:\t%s\n", piece->i, (char*)piece->name);
+	printf("\t\t\tLetter:\t%c\n", piece->letter);
+	printf("\t\t\tY_size:\t%d\n", piece->y_size);
+	printf("\t\t\tX_size:\t%d\n", piece->x_size);
+	//printf("\t\t\ti:\t%d\n", piece->i);
+	printf("\t\t_____\n");
+	printf("\t\tNb of placement:\t\t%d\n", piece->pc_pos);
+	printf("\t\tSum until now of placements:\t%d\n", piece->tt_pos);
+	printf(_RESET "---------\n\n");
 	//printf("\t:\t%d\n", piece->);
 }
 
 void		print_pieces_debug(t_head *head)
 {
 	t_piece *tmp;
-	int		i;
 
 	tmp = head->next;
-	i = 1;
 	if (tmp != NULL)
 	{
-		print_piece_debug(tmp, i);
+		print_piece_debug(tmp);
 		tmp = tmp->next;
 		while (tmp->next != NULL)
 		{
-			print_piece_debug(tmp, ++i);
+			print_piece_debug(tmp);
 			tmp = tmp->next;
 		}
+		print_piece_debug(tmp);
 	}
 }
 
