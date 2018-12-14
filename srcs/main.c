@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 12:10:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:16:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int ac, char **av)
 
 	if (!(head = ft_read_check(av[1])))
 		return (0);
-	print_debug(head);
+//	print_debug(head);
 	time_exe("ft_Read_Check", &t);
 	if (!(setup_head(head)))
 			return (0);

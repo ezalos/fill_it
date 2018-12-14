@@ -6,11 +6,43 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/01 04:16:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:53:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
+
+void	write_solutions(t_head *head)
+{
+	t_piece *piece;
+	int	i;
+	int p;
+	int y;
+	int x;
+
+	p = 0;
+	piece = head->next;
+	while (piece->next != NULL) //for each piece convert y and x of possibilty to j, and write 1 to the 4 coord of piece
+	{
+		y = 0;
+		while (piece->coord[0]->y + ++y < head->size_square + 1)
+		{
+			x = 0;
+			while (piece->coord[0]->x + ++x < head->size_square + 1)// <= || < ?
+			{
+				head->solution[piece->pc_pos + 1][0] = 1;//to say that every line currently exist
+				head->solution[piece->pc_pos + 1][p] = 1;//need to write which piece is currently writen +1 & -1 as down
+				i = -1;
+				while (++i < 4)
+					head->solution[piece->pc_pos + 1]
+					[head->p + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x) + 1 - 1] //+1 for follow up of solution    -1 bc it's a tab
+					= 1;  //Maxwell idea to implement here
+			}
+		}
+		piece = piece->next;
+		p++;
+	}
+}
 
 void	setup_pieces(t_head *head)
 {
@@ -73,5 +105,6 @@ t_head	*setup_head(t_head *head)
 		head->y_all_PxNx[i] = 1;
 //	head->sol->possible_solutions = 0;
 	head->the_choosen_configuration = 1;
+	write_solutions(head);
 	return (head);
 }

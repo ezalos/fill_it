@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 14:02:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:54:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,27 @@ void		print_pieces_debug(t_head *head)
 void		print_head_soltion_debug(t_head *head)
 {
 	int		i;
+	int		j;
+	char	c;
 
 	i = -1;
 	while (++i < head->tt_pos_all)
-		printf("\t: %s\n", head->solution[i]);
+	{
+		j = -1;
+		//printf("%d|", i);
+		ft_putnbr(i);
+		write(1, "\t:", 2);
+		while (++j < head->p + (head->size_square * head->size_square) + 1)
+		{
+			c = (char)(head->solution[i][j] + 48);
+			write(1, &c, 1);
+		}
+		write(1, "\n", 1);
+	}
+	write(1, "\n", 1);
+	//write(1, "\n", 1);
+
+		//printf("%d\t: %s\n", i, head->solution[i]);
 }
 
 void		print_head_debug(t_head *head)
@@ -70,5 +87,6 @@ void	print_debug(t_head *head)
 	printf(_GREEN "\n####################### <PRINT DEBUG> #######################\n" _RESET);
 	print_head_debug(head);
 	print_pieces_debug(head);
+	print_head_soltion_debug(head);//think to add the little string
 	printf(_GREEN "####################### <\\PRINT DEBUG> ######################\n\n" _RESET);
 }

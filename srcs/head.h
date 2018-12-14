@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/14 11:51:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/14 15:10:21 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <time.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 //COLORS IN PRINTF
 #define _RED     "\x1b[31m"
@@ -89,7 +90,12 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 t_sol		*next_solve_step(t_head *head);
 t_piece		*find_piece(t_head *head, int piece);
 t_sol		*find_sol(t_head *head, int sol);
+
+//libft
 size_t		ft_strlen(const char *s);
+void		ft_putnbr(int n);
+void		ft_putchar(char c);
+void		ft_putstr(char const *s);
 
 //float_to_int.c
  int		nb_char_to_int(char	c);
