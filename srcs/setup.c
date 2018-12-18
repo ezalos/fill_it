@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 19:00:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/18 13:46:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	setup_pieces(t_head *head)
 	i = 0;
 	while (++i <= head->p)
 	{
+		//printf("WESH\n");
 		pieces_yx(find_piece(head, i));
 		find_piece(head, i)->pc_pos = size_pieces(find_piece(head, i)->name[0], head->size_square);
 //		piece_placement(tmp); not sure about the purpose of this function
@@ -81,6 +82,7 @@ void	setup_pieces(t_head *head)
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos;
 		else
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos + find_piece(head, i - 1)->tt_pos;//		sum_placement(tmp);
+		//printf("HELLO\n");
 		coord_setup(find_piece(head, i));
 		head->tt_pos_all = find_piece(head, i)->tt_pos;
 		find_piece(head, i)->i = i;
@@ -130,5 +132,9 @@ t_head	*setup_head(t_head *head)
 //	head->sol->possible_solutions = 0;
 	head->the_choosen_configuration = 1;
 	write_solutions(head);
+	i = 0;
+	while (i <= head->p)
+		if (!(next_solve_step(head, i++)))
+			return (NULL);
 	return (head);
 }

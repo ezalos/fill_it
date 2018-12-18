@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 18:59:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/18 10:30:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,63 @@ void		print_pieces_debug(t_head *head)
 	}
 }
 
+void		print_soltion_link_debug(t_head *head, int step)
+{
+	t_sol	*tmp;
+	int		i;
+	int		j;
+	char	c;
+
+	tmp = find_sol(head, step);
+	if (tmp == NULL)
+		return ;
+	else
+	{
+		write(1, "\x1b[32m", 5);
+		ft_putstr("\n\n\tStep:\t");
+		ft_putnbr(step);
+		ft_putstr("\tCurrent path:\t");
+		ft_putnbr(tmp->current_path);
+		ft_putstr("\n\t\t\tNb of path:\t");
+		ft_putnbr(tmp->nb_of_paths);
+		write(1, "\n", 1);
+			i = -1;
+			while (++i < head->tt_pos_all)
+			{
+				j = -1;
+				//printf("%d|", i);
+				c = tmp->y_all_PxNx[i] + 48;
+				if (c == '0')
+					write(1, "\x1b[31m", 5);
+				else
+					write(1, "\x1b[33m", 5);
+				ft_putnbr(i);
+				write(1, "\t", 1);
+				write(1, &c, 1);
+				write(1, "-->", 3);
+
+				while (++j < head->p + (head->size_square * head->size_square))
+				{
+					c = (char)(head->solution[i][j] + 48);
+					write(1, &c, 1);
+					if (j == head->p - 1)
+						write(1, " ", 1);
+				}
+				write(1, "\n", 1);
+			}
+		//	write(1, "\n", 1);
+		}
+		write(1, "\x1b[32m", 5);
+		ft_putstr("\tStep:\t");
+		ft_putnbr(step);
+		ft_putstr("\tCurrent path:\t");
+		ft_putnbr(tmp->current_path);
+		ft_putstr("\n\t\t\tNb of path:\t");
+		ft_putnbr(tmp->nb_of_paths);
+		write(1, "\n\n\n", 3);
+		write(1, "\x1b[0m", 5);
+
+}
 void		print_head_soltion_debug(t_head *head)
 {
 	int		i;
@@ -68,6 +125,7 @@ void		print_head_soltion_debug(t_head *head)
 	char	c;
 
 	i = -1;
+
 	while (++i < head->tt_pos_all)
 	{
 		j = -1;

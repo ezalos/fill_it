@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 17:54:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/18 18:21:48 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		float_to_int(float i)
 //		sol = ((int)i / 1) + 1;
 //	else
 //		sol = (int)i / 1;
-	return (((int)i / 1) + 0.9999);
+//	printf("%f -> %d\n", i, ((int)i / 1) + 0.9999);
+	return ((int)((i / 1) + 0.9999));
 }
 
 int		ft_char_srch(char src, char *dlt)
@@ -53,6 +54,29 @@ int		yx_to_j(int y, int x)
 		return ((y * (y + 1)) + nb);*/
 		return ((x * x) + y);
 	}
+}
+
+int		j_to_yx(t_head *head, int j, int o)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y <= head->size_square)
+	{
+		x = -1;
+		while (++x <= head->size_square)
+		{
+			if (j == yx_to_j(y, x))
+			{
+				if (o == 0)
+					return (y);
+				else
+					return (x);
+			}
+		}
+	}
+	return (-1);
 }
 
 int		nb_char_to_int(char	c)
