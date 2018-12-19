@@ -12,22 +12,6 @@
 
 #include "head.h"
 
-char	*ft_strdup(char *src)
-{
-	char	*dest;
-	int		i;
-	int		size;
-
-	size = ft_strlen(src);
-	if (!(dest = (char*)malloc(sizeof(char) * (size + 1))))
-		return (NULL);
-	dest[size] = '\0';
-	i = -1;
-	while (++i < size)
-		dest[i] = src[i];
-	return (dest);
-}
-
 int		create_tetro(const char *name, t_head **head, char p)
 {
 	t_piece *tetro;
