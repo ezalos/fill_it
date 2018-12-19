@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/20 00:25:15 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/20 00:29:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	print_time(t_time *time)
 	tmp = time;
 	while (tmp)
 	{
-		printf(_CYAN "%f\%\t%s\n\t\t\ttook %f seconds to execute \n" _RESET, t/total, s, ((double)*t)/CLOCKS_PER_SEC);
+		printf(_CYAN "%f\%\t%s\n\t\t\ttook %f seconds to execute \n" _RESET, ((double)t)/total, s, ((double)*t)/CLOCKS_PER_SEC);
 		tmp = tmp->next;
 	}
 }
