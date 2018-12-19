@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/18 17:19:30 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/19 13:04:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void		ft_putstr(char const *s);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		*ft_memalloc(size_t size);
 void		*ft_memset(void *str, int c, size_t n);
+char		*ft_strstr(const char *meule_de_foin, const char *aiguille);
+char		*ft_strdup(char *src);
 
 //float_to_int.c
  int		nb_char_to_int(char	c);
@@ -116,10 +118,17 @@ void		*ft_memset(void *str, int c, size_t n);
  int	size_pieces(char s, int size);
  void	p_yx(t_piece *piece, int y, int x);
 
+// free
+t_head	*restart_and_grow(t_head *head);
+void	free_solsol(t_head *head);
+void	free_linked_sol(t_sol **sol);
+void	update_pieces(t_head *head);
+
  //setup.c
 void	setup_pieces(t_head *head);
 char	**malloc_solution(t_head *head);
 t_head	*setup_head(t_head *head);
+t_head	*setup_head_sol_part(t_head *head);
 
 //solve.c
 int		solve_solution(t_head *head, int deepness);

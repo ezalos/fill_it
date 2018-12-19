@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/18 13:46:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/19 11:10:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	setup_pieces(t_head *head)
 		pieces_yx(find_piece(head, i));
 		find_piece(head, i)->pc_pos = size_pieces(find_piece(head, i)->name[0], head->size_square);
 //		piece_placement(tmp); not sure about the purpose of this function
-		if (i == 0)
+		if (i == 1)
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos;
 		else
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos + find_piece(head, i - 1)->tt_pos;//		sum_placement(tmp);
@@ -114,14 +114,10 @@ char	**malloc_solution(t_head *head)
 	return (sol);
 }
 
-t_head	*setup_head(t_head *head)
+t_head	*setup_head_sol_part(t_head *head)
 {
 	int i;
 
-	//printf("Nb of pieces = %d\n", head->p);
-	head->size_square = (float_to_int(f_sqrt(head->p, 0) * 2));
-	//printf("size_square = %d\n", head->size_square);
-	setup_pieces(head);
 	if (!(head->solution = malloc_solution(head)))
 		return (NULL);
 	if (!(head->y_all_PxNx = (char*)malloc(sizeof(char) * (head->tt_pos_all))))
@@ -129,12 +125,23 @@ t_head	*setup_head(t_head *head)
 	i = -1;
 	while (++i < head->tt_pos_all + 1)
 		head->y_all_PxNx[i] = 1;
-//	head->sol->possible_solutions = 0;
+	//	head->sol->possible_solutions = 0;
 	head->the_choosen_configuration = 1;
 	write_solutions(head);
 	i = 0;
-	while (i <= head->p)
+	while (i <= head->p)// one less might be better
 		if (!(next_solve_step(head, i++)))
 			return (NULL);
+	return (head);
+}
+
+t_head	*setup_head(t_head *head)
+{
+	//printf("Nb of pieces = %d\n", head->p);
+	head->size_square = (float_to_int(f_sqrt(head->p, 0) * 2));
+	//printf("size_square = %d\n", head->size_square);
+	setup_pieces(head);
+	if (!(setup_head_sol_part(head)))
+		return (NULL);
 	return (head);
 }

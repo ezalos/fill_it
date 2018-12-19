@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/18 19:12:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/19 11:07:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 	int	the_one_in_the_champion;
 	int save;
 
-	//printf(_MAGENTA "DELETER OF COMPETITORS, with choice n*%d\n", position_choice);
+	printf(_MAGENTA "DELETER OF COMPETITORS, with choice n*%d\n", position_choice);
 	choice_of_path_made = 0;
 	position_review = 0;
 	the_one_in_the_champion = -1;
 	head->the_choosen_configuration = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos;
-	//printf("\tthe_choosen_configuration start with %d/%d\n", head->the_choosen_configuration, find_piece(head, deepness)->tt_pos);
+	printf("\tthe_choosen_configuration start with %d/%d\n", head->the_choosen_configuration, find_piece(head, deepness)->tt_pos);
 	//if (head->the_choosen_configuration != 0)
 	//	head->the_choosen_configuration++;
 	while (head->the_choosen_configuration <= find_piece(head, deepness)->tt_pos && !choice_of_path_made)//need to be active until one is choosen && cant work for last piece && need to change head for current piece and setup for "1st"choice
@@ -38,7 +38,7 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 				position_review++;
 			else
 			{
-				//printf("\t\t\tWE HAVE CHOOSED A CONFIGURATION: %d\n", head->the_choosen_configuration);
+				printf("\t\t\tWE HAVE CHOOSED A CONFIGURATION: %d\n", head->the_choosen_configuration);
 				save = head->the_choosen_configuration;
 				while (the_one_in_the_champion < head->p + (head->size_square * head->size_square))
 				{
@@ -68,13 +68,13 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 					}
 					//write(1, "\n", 1);
 				}//all competitors of the choosen one have been destroy
-				//printf("GOOD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
+				printf("GOOD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
 				return (1);
 			}
 		}
 		head->the_choosen_configuration++;//in case it's not the 1st time the function is run
 	}//we now need to repeat all of this for the second line which exist (and if all the pieces still exists)
-	//printf("BAD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
+	printf("BAD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
 	return (0);
 	/*if (head->the_choosen_configuration == find_piece(head, deepness)->tt_pos)//if no possibility, might be unecessary
 		return (0);
@@ -116,7 +116,7 @@ int		solve_solution(t_head *head, int deepness)
 
 //	deepness = -1; //need to be setup before
 	position_choice = -1;
-	//printf("ENTER Solve_Solution. Deepness: %d\n", deepness);
+	printf("ENTER Solve_Solution. Deepness: %d\n", deepness);
 	if (deepness <= head->p)
 	{
 		if (deepness == 1)
@@ -129,12 +129,12 @@ int		solve_solution(t_head *head, int deepness)
 		while (++position_choice < find_sol(head, deepness)->nb_of_paths)
 		{
 			find_sol(head, deepness)->current_path = position_choice;
-			//printf(_CYAN "BEF\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
+			printf(_CYAN "BEF\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
 			//find_sol(head, deepness)->current_path = position_choice;
 			if(!(deleter_of_competitors(head, deepness, position_choice)))
 				return(1);
-//			print_soltion_link_debug(head, deepness);
-			//printf(_CYAN "AFT\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
+			print_soltion_link_debug(head, deepness);
+			printf(_CYAN "AFT\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
 			if (solve_solution(head, deepness + 1) == -1)//NEED TO QUIT WHEN ALL IS SOLVED
 				return (-1);
 			find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);

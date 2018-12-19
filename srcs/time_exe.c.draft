@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time_exe.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/12/19 13:10:10 by ldevelle         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <time_exe.h>
+
+/*
+
+	time_exe("NAME OF PROGRAM", clock())
+
+	clock_t	t = clock();
+ */
+
+int		time_link_creation()
+{
+	time = (t_time*)malloc(sizeof(t_time));
+	time->name = ft_strdup(s);
+	time->t = t;
+	time->next = NULL;
+}
+
+void time_exe(const char* s, clock_t t)
+{
+	static t_time	*time;
+	t_time			*tmp;
+	static clock_t	origin = clock();
+	static clock_t	latest;
+
+	if (s == NULL)
+		return ;
+	if (!time)
+	{
+		time_link_creation();
+		return ;
+	}
+	tmp = time;
+
+	while (tmp)
+	{
+		if (ft_strstr(s, tmp->name))
+
+	}
+	latest = t;
+	*t = clock() - *t;
+	//printf(_CYAN "%s took %f seconds to execute \n" _RESET, s, ((double)*t)/CLOCKS_PER_SEC);
+}
