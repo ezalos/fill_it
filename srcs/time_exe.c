@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/19 13:10:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/20 00:25:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,45 @@
 
 	time_exe("NAME OF PROGRAM", clock())
 
+
+time_exe(__func__, clock());
+
+
 	clock_t	t = clock();
  */
 
-int		time_link_creation()
+void	print_time(t_time *time)
 {
-	time = (t_time*)malloc(sizeof(t_time));
-	time->name = ft_strdup(s);
-	time->t = t;
-	time->next = NULL;
+	t_time		*tmp;
+	double		total;
+
+	total = 0;
+	tmp = time;
+	while (tmp)
+	{
+		total += (double)tmp->t;
+		tmp = tmp->next;
+	}
+
+	tmp = time;
+	while (tmp)
+	{
+		printf(_CYAN "%f\%\t%s\n\t\t\ttook %f seconds to execute \n" _RESET, t/total, s, ((double)*t)/CLOCKS_PER_SEC);
+		tmp = tmp->next;
+	}
 }
 
-void time_exe(const char* s, clock_t t)
+t_time	*time_link_creation(t_time **time, const char* s, clock_t t)
+{
+	if(!((*time) = (t_time*)malloc(sizeof(t_time))))
+		return (NULL);
+	(*time)->name = ft_strdup(s);
+	(*time)->t = t;
+	(*time)->next = NULL;
+	return(*time);
+}
+
+t_time	*time_exe(const char* s, clock_t t)
 {
 	static t_time	*time;
 	t_time			*tmp;
@@ -35,20 +62,31 @@ void time_exe(const char* s, clock_t t)
 	static clock_t	latest;
 
 	if (s == NULL)
-		return ;
+	{
+		latest = t;
+		return (NULL);
+	}
 	if (!time)
 	{
-		time_link_creation();
-		return ;
+		t -= origin;
+		time_link_creation(&time, s, t);
+		latest = t;
+		return (time);
 	}
-	tmp = time;
 
+	t -= latest;
+	tmp = time;
 	while (tmp)
 	{
 		if (ft_strstr(s, tmp->name))
-
+		{
+			tmp->t += t;
+			latest = t;
+			return (time);
+		}
+		tmp = tmp->next;
 	}
+	time_link_creation(&time, s, t);
 	latest = t;
-	*t = clock() - *t;
-	//printf(_CYAN "%s took %f seconds to execute \n" _RESET, s, ((double)*t)/CLOCKS_PER_SEC);
+	return (time);
 }
