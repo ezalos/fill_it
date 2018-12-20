@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/19 11:10:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/20 10:53:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ t_head	*setup_head(t_head *head)
 	setup_pieces(head);
 	if (!(setup_head_sol_part(head)))
 		return (NULL);
+//	time_exe(__func__, clock());
 	return (head);
 }

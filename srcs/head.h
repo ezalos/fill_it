@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/19 13:04:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/20 12:50:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <time.h>
+//# include "time_exe.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -105,7 +106,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 void		*ft_memalloc(size_t size);
 void		*ft_memset(void *str, int c, size_t n);
 char		*ft_strstr(const char *meule_de_foin, const char *aiguille);
-char		*ft_strdup(char *src);
+char		*ft_strdup(const char *src);
 
 //float_to_int.c
  int		nb_char_to_int(char	c);
@@ -136,6 +137,9 @@ int		how_many_paths(t_head *head, int deepness);//need to be values that only li
 int		deleter_of_competitors(t_head *head, int deepness, int position_choice);
 void	write_solutions(t_head *head);
 
-
+//time_exe
+struct	s_time	*time_exe(const char* s, long double t);
+long double			cl(clock_t t);
+void			print_time(struct s_time *time);
 
 #endif
