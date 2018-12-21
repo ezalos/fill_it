@@ -6,37 +6,43 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/20 13:07:06 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 11:42:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "time_exe.h"
 
 /*
-
-	time_exe("NAME OF PROGRAM", clock())
-
-
 time_exe(__func__, clock());
-
 print_time(time_exe(__func__, clock()));
+*/
 
-	clock_t	t = clock();
- */
-
-
-void print_time_struct(t_time *g)
+void 	print_time_struct(t_time *g)
 {
 	printf(_RED"\tAdress:\t\t%p\n", (void *)g);
  	printf("\tNAME:\t\t%s\t\tTime:%Lf\n", g->name, g->t);
  	printf("\tNEXT:\t\t%p\n" _RESET, (void*)g->next);
 }
 
+void	ft_puttab(const char *s, int separation)
+{
+	int tab;
+
+	tab = ft_strlen(s);
+	if (s % 4 != 0)
+		tab = (tab / 4) + 1;
+	else
+		tab = tab / 4;
+	while (separation - tab++ > 0)
+		printf("\t");
+//		write(1, "\t", 1);
+}
 
 void	print_time(t_time *timee)
 {
-	t_time		*tmp;
+	t_time			*tmp;
 	long double		total;
+	int				tab;
 
 	total = 0;
 	tmp = timee;
@@ -45,12 +51,14 @@ void	print_time(t_time *timee)
 		total += (long double)tmp->t;
 		tmp = tmp->next;
 	}
-	printf(_CYAN "Total: %Lf\n" _RESET, (long double)total);
+	printf(_CYAN "Total time of program: %Lf\n" _RESET, (long double)total);
 
 	tmp = timee;
 	while (tmp)
 	{
-		printf(_CYAN "%Lf%%\t%s\n\t\t\ttook %Lf seconds to execute \n" _RESET, ((long double)tmp->t)/total, tmp->name, ((long double)tmp->t));
+		printf(_CYAN "%Lf%%\tfor %s" _RESET, ((long double)tmp->t)/total, tmp->name);
+		ft_puttab(tmp->name, 4);
+		printf(_CYAN "in %Lf seconds\n" _RESET, ((long double)tmp->t));
 		tmp = tmp->next;
 	}
 }
@@ -61,74 +69,62 @@ long double	cl(clock_t t)
 	long double m;
 
 	if (!origin)
-		origin = ((long double)(clock()))/CLOCKS_PER_SEC;
+		origin = ((long double)(clock()));
 	m = ((long double)(t - origin))/CLOCKS_PER_SEC;
 	return (m);
+	//origin = ((long double)(clock()))/CLOCKS_PER_SEC;
 }
 
-t_time	*time_link_creation(const char* s, long double t)
+static t_time	*time_link_creation(const char* s, long double t)
 {
 	t_time	*timee;
 
 	if(!(timee = (t_time*)malloc(sizeof(t_time))))
 		return (NULL);
 	timee->name = ft_strdup((const char*)s);
-//	printf("t:%LF\ntimee->t:%LF",t ,timee->t);
 	timee->t = t;
-	printf("t:%LF\ntimee->t:%LF\n",t ,timee->t);
 	timee->next = NULL;
 	print_time_struct(timee);
 	return(timee);
+}
+
+static t_time	*time_exceptions( t_time *timee, const char* s, long double t)
+{
+	if (s == NULL)
+		return (NULL);
+	else
+	{
+		timee = time_link_creation(s, t);
+		return (timee);
+	}
+}
+
+static int		update_time( t_time *timee, const char* s, long double t)
+{
+	if (ft_strstr(s, tmp->name))
+	{
+		tmp->t = tmp->t + t;
+		return (1);
+	}
+	return (0);
 }
 
 t_time	*time_exe(const char* s, long double t)
 {
 	static t_time		*timee;
 	t_time				*tmp;
-	static long double	latest;
 
-	//write(1, "@", 1);
-	printf(_CYAN"NAME :__func__ :%s\t\tpointer :%p\ntime :%Lf\n\n\t\tLatest:%Lf\n", s, (void*)timee, t, latest);
-	if (s == NULL)
-	{
-		latest = t;
-		return (NULL);
-	}
-	if (timee == NULL)
-	{
-		printf("\t\tFirst link created for : %s\n", s);
-		timee = time_link_creation(s, t);
-		latest = t;
-		return (timee);
-	}
+	if (s == NULL || timee == NULL)
+		return (time_exceptions(timee, s, t));
 	tmp = timee;
-	if (ft_strstr(s, tmp->name))
-	{
-		printf("YES!\n");
-		tmp->t = tmp->t + t;
-		printf("t:%LF\ntmp->t:%LF\n",t ,tmp->t);
-		latest = t;
+	if (update_time(timee, s, t))
 		return (timee);
-	}
 	while (tmp->next != NULL)
-//	while (tmp)
 	{
-		printf("\t\tDoes %s could be stored in %s ?\n", s, tmp->name);
-		print_time_struct(tmp);
-		if (ft_strstr(s, tmp->name))
-		{
-			printf("YES!\n");
-			tmp->t = tmp->t + t;
-			printf("t:%LF\ntmp->t:%LF\n",t ,tmp->t);
-			latest = t;
+		if (update_time(timee, s, t))
 			return (timee);
-		}
 		tmp = tmp->next;
 	}
-	printf("\tNop, let's create a new one\n");
 	tmp->next = time_link_creation(s, t);
-	latest = t;
-	printf("\tEnd\n" _RESET);
-	printf("\tPointer TIMEE:%p\n"_RESET, (void *)timee);
 	return (timee);
 }
