@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 11:42:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 12:39:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_puttab(const char *s, int separation)
 	int tab;
 
 	tab = ft_strlen(s);
-	if (s % 4 != 0)
+	if (tab % 4 != 0)
 		tab = (tab / 4) + 1;
 	else
 		tab = tab / 4;
@@ -101,9 +101,9 @@ static t_time	*time_exceptions( t_time *timee, const char* s, long double t)
 
 static int		update_time( t_time *timee, const char* s, long double t)
 {
-	if (ft_strstr(s, tmp->name))
+	if (ft_strstr(s, timee->name))
 	{
-		tmp->t = tmp->t + t;
+		timee->t = timee->t + t;
 		return (1);
 	}
 	return (0);
