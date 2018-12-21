@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 12:54:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 12:59:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ print_time(time_exe(__func__, clock()));
 void 	print_time_struct(t_time *g)
 {
 	printf(_RED"\tAdress:\t\t%p\n", (void *)g);
- 	printf("\tNAME:\t\t%s\t\tTime:%Lf\n", g->name, g->t);
+	printf(_CYAN "\t%s" _RESET, tmp->name);
+	ft_puttab(tmp->name, 3);
+	printf(_CYAN "Time: %Lf s.\n" _RESET, ((long double)tmp->t));
  	printf("\tNEXT:\t\t%p\n" _RESET, (void*)g->next);
 }
 
@@ -116,11 +118,12 @@ t_time	*time_exe(const char* s, long double t)
 
 	if (s == NULL || timee == NULL)
 		return (time_exceptions(timee, s, t));
-	tmp = timee;
 	if (update_time(timee, s, t))
 		return (timee);
+	tmp = timee;
 	while (tmp->next != NULL)
 	{
+		printf(_RESET"WHILE\n"_CYAN);
 		print_time_struct(tmp);
 		if (update_time(tmp, s, t))
 			return (timee);
