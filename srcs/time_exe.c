@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 12:42:21 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 12:44:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_time(t_time *timee)
 	tmp = timee;
 	while (tmp)
 	{
-		printf(_CYAN "%Lf%%\tfor %s" _RESET, (((long double)tmp->t)/total) * 100, tmp->name);
+		printf(_CYAN "\t%Lf%%\tfor %s" _RESET, (((long double)tmp->t)/total) * 100, tmp->name);
 		ft_puttab(tmp->name, 4);
 		printf(_CYAN "in %Lf seconds\n" _RESET, ((long double)tmp->t));
 		tmp = tmp->next;
