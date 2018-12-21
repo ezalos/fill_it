@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 13:04:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 13:06:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void 	print_time_struct(t_time *g)
 {
 	printf(_RED"\tAdress:\t\t%p\n", (void *)g);
 	printf(_CYAN "\t%s" _RESET, g->name);
-	ft_puttab(g->name, 3);
+	ft_puttab(g->name, 4);
 	printf(_CYAN "Time: %Lf s.\n" _RESET, ((long double)g->t));
  	printf("\tNEXT:\t\t%p\n" _RESET, (void*)g->next);
 }
@@ -56,11 +56,11 @@ void	print_time(t_time *timee)
 	printf(_CYAN "Total time of program: %Lf\n" _RESET, (long double)total);
 
 	tmp = timee;
-	while (tmp)
+	while (tmp->next)
 	{
 		printf(_CYAN "\t%Lf%%\tfor %s" _RESET, (((long double)tmp->t)/total) * 100, tmp->name);
-		ft_puttab(tmp->name, 3);
-		printf(_CYAN "in %Lf seconds\n" _RESET, ((long double)tmp->t));
+		ft_puttab(tmp->name, 4);
+		printf(_CYAN " in %Lf seconds\n" _RESET, ((long double)tmp->t));
 		tmp = tmp->next;
 	}
 }
@@ -86,7 +86,7 @@ static t_time	*time_link_creation(const char* s, long double t)
 	timee->name = ft_strdup((const char*)s);
 	timee->t = t;
 	timee->next = NULL;
-	print_time_struct(timee);
+//	print_time_struct(timee);
 	return(timee);
 }
 
@@ -123,8 +123,8 @@ t_time	*time_exe(const char* s, long double t)
 	tmp = timee;
 	while (tmp->next != NULL)
 	{
-		printf(_RESET"WHILE\n"_CYAN);
-		print_time_struct(tmp);
+//		printf(_RESET"WHILE\n"_CYAN);
+//		print_time_struct(tmp);
 		if (update_time(tmp, s, t))
 			return (timee);
 		tmp = tmp->next;
