@@ -6,14 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 12:44:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 12:48:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "time_exe.h"
 
 /*
-time_exe(__func__, clock());
+time_exe(__func__, cl(clock()));
 print_time(time_exe(__func__, clock()));
 */
 
@@ -121,7 +121,7 @@ t_time	*time_exe(const char* s, long double t)
 		return (timee);
 	while (tmp->next != NULL)
 	{
-		if (update_time(timee, s, t))
+		if (update_time(tmp, s, t))
 			return (timee);
 		tmp = tmp->next;
 	}
