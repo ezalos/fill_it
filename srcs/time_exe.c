@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 13:10:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 13:15:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_puttab(const char *s, int separation)
 	int tab;
 
 	tab = ft_strlen(s);
-	if (tab % 4 != 0)
-		tab = (tab / 4) + 1;
-	else
+//	if (tab % 4 != 0)
+//		tab = (tab / 4) + 1;
+//	else
 		tab = tab / 4;
 	while (separation - tab++ >= 0)
 		printf("\t");
