@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 13:00:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 13:04:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ static t_time	*time_link_creation(const char* s, long double t)
 	return(timee);
 }
 
-static t_time	*time_exceptions( t_time *timee, const char* s, long double t)
+static t_time	*time_exceptions( t_time **timee, const char* s, long double t)
 {
 	if (s == NULL)
 		return (NULL);
 	else
 	{
-		timee = time_link_creation(s, t);
-		return (timee);
+		*timee = time_link_creation(s, t);
+		return (*timee);
 	}
 }
 
@@ -117,7 +117,7 @@ t_time	*time_exe(const char* s, long double t)
 	t_time				*tmp;
 
 	if (s == NULL || timee == NULL)
-		return (time_exceptions(timee, s, t));
+		return (time_exceptions(&timee, s, t));
 	if (update_time(timee, s, t))
 		return (timee);
 	tmp = timee;
