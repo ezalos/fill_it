@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 13:06:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 13:10:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_puttab(const char *s, int separation)
 		tab = (tab / 4) + 1;
 	else
 		tab = tab / 4;
-	while (separation - tab++ > 0)
+	while (separation - tab++ >= 0)
 		printf("\t");
 //		write(1, "\t", 1);
 }
@@ -48,7 +48,7 @@ void	print_time(t_time *timee)
 
 	total = 0;
 	tmp = timee;
-	while (tmp)
+	while (tmp->next)
 	{
 		total += (long double)tmp->t;
 		tmp = tmp->next;
