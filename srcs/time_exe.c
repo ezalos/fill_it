@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/21 12:52:06 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/21 12:54:36 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_time	*time_exe(const char* s, long double t)
 		return (timee);
 	while (tmp->next != NULL)
 	{
+		print_time_struct(tmp);
 		if (update_time(tmp, s, t))
 			return (timee);
 		tmp = tmp->next;
