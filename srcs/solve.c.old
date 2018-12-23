@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/20 12:45:38 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 11:48:06 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,12 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 					//write(1, "\n", 1);
 				}//all competitors of the choosen one have been destroy
 				//printf("GOOD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
-				time_exe(__func__, cl(clock()));
 				return (1);
 			}
 		}
 		head->the_choosen_configuration++;//in case it's not the 1st time the function is run
 	}//we now need to repeat all of this for the second line which exist (and if all the pieces still exists)
 	//printf("BAD END OF DELETER OF COMPETITORS.\tthe_choosen_configuration: %d/%d\n" _RESET, save, find_piece(head, deepness)->tt_pos);
-	time_exe(__func__, cl(clock()));
 	return (0);
 	/*if (head->the_choosen_configuration == find_piece(head, deepness)->tt_pos)//if no possibility, might be unecessary
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/18 10:30:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:00:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void		print_pieces_debug(t_head *head)
 	}
 }
 
-void		print_soltion_link_debug(t_head *head, int step)
+void		print_soltion_link_debug(t_head *head, int step, int current_path)
 {
 	t_sol	*tmp;
 	int		i;
@@ -77,7 +77,7 @@ void		print_soltion_link_debug(t_head *head, int step)
 		ft_putstr("\n\n\tStep:\t");
 		ft_putnbr(step);
 		ft_putstr("\tCurrent path:\t");
-		ft_putnbr(tmp->current_path);
+		ft_putnbr(current_path);
 		ft_putstr("\n\t\t\tNb of path:\t");
 		ft_putnbr(tmp->nb_of_paths);
 		write(1, "\n", 1);
@@ -111,7 +111,7 @@ void		print_soltion_link_debug(t_head *head, int step)
 		ft_putstr("\tStep:\t");
 		ft_putnbr(step);
 		ft_putstr("\tCurrent path:\t");
-		ft_putnbr(tmp->current_path);
+		ft_putnbr(current_path);
 		ft_putstr("\n\t\t\tNb of path:\t");
 		ft_putnbr(tmp->nb_of_paths);
 		write(1, "\n\n\n", 3);

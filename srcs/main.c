@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/20 11:31:50 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:02:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 int		main(int ac, char **av)
 {
-	clock_t	t = clock();
 	t_head	*head;
 	int		check;
 
@@ -29,25 +28,18 @@ int		main(int ac, char **av)
 	time_exe(__func__, cl(clock()));
 	if (!(head = ft_read_check(av[1])))
 		return (0);
-//	time_exe("ft_Read_Check", &t);
 	if (!(setup_head(head)))
 			return (0);
-//	time_exe("Setup_Head", &t);
-
-	while (check != -1)
+	while (check != 1)
 	{
 		print_debug(head);
 		check = solve_solution(head, 1);
-		printf("Check = %d\n", check);
-//		time_exe("Solve_Solution", &t);
-		if (check == -1)
+		if (check == 1)
 			print_result(head);
 		else
 			if (!(restart_and_grow(head)))
 				return (0);
 	}
-//	time_exe("Print_Solution", &t);
-	//free everything
 	print_time(time_exe(__func__, cl(clock())));
 	return (0);
 }
