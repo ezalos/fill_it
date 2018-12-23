@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 12:01:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:10:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 	return (0);
 }
 
-int		how_many_paths(t_head *head, int deepness)//need to be values that only live in the function
+int		how_many_paths(t_head *head, int deepness)
 {
 	int path;
 
@@ -85,8 +85,8 @@ int		solve_solution(t_head *head, int deepness)
 			print_soltion_link_debug(head, deepness, position_choice);
 			if(!(deleter_of_competitors(head, deepness, position_choice)))
 				return(0);
-			if (solve_solution(head, deepness + 1) == -1)//NEED TO QUIT WHEN ALL IS SOLVED
-				return (0);
+			if (solve_solution(head, deepness + 1))//NEED TO QUIT WHEN ALL IS SOLVED
+				return (1);
 			sol_turn_mem(head, deepness);
 
 		}
