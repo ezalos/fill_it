@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/20 12:50:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 12:03:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct	s_head
 
 //print_debug.c
 void		print_debug(t_head *head);
-void		print_soltion_link_debug(t_head *head, int step);
+void		print_soltion_link_debug(t_head *head, int step, int current_path);
 
 //un peu de tout ?
 int			yx_to_j(int y, int x);
