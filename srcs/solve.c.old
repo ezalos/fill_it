@@ -132,11 +132,11 @@ int		solve_solution(t_head *head, int deepness)
 			//printf(_CYAN "BEF\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
 			//find_sol(head, deepness)->current_path = position_choice;
 			if(!(deleter_of_competitors(head, deepness, position_choice)))
-				return(1);
-//			print_soltion_link_debug(head, deepness);
+				return(0);
+//			print_soltion_link_debug(head, deepness, position_choice);
 			//printf(_CYAN "AFT\tPlacement of\t%d/%d piece\n\t\tCurrent try\t%d/%d\n" _RESET, deepness, head->p, position_choice, find_sol(head, deepness)->nb_of_paths);
-			if (solve_solution(head, deepness + 1) == -1)//NEED TO QUIT WHEN ALL IS SOLVED
-				return (-1);
+			if (solve_solution(head, deepness + 1))//NEED TO QUIT WHEN ALL IS SOLVED
+				return (1);
 			find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);
 	//		scanf("%c\n", &c);
 			if (deepness == 1)
@@ -146,7 +146,7 @@ int		solve_solution(t_head *head, int deepness)
 			find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);
 
 		}
-		return (1); //NO SOLUTION
+		return (0); //NO SOLUTION
 	}
-	return (-1); //SOLVED
+	return (1); //SOLVED
 }
