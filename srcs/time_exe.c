@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 02:43:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 03:42:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 time_exe(__func__, cl(clock()));
 print_time(time_exe(__func__, clock()));
 */
+
 
 void 	print_time_struct(t_time *g)
 {
@@ -119,18 +120,19 @@ static t_time	*time_link_creation(const char* s, double t)
 	return(timee);
 }
 
-static t_time	*time_exceptions( t_time **timee, const char* s, double t)
+static t_time	*time_exceptions( t_time **timee, char **last, const char* s, double t)
 {
 	if (s == NULL)
 		return (NULL);
 	else
 	{
+		*last = ft_strdup((const char*)s);
 		*timee = time_link_creation(s, t);
 		return (*timee);
 	}
 }
 
-static int		update_time( t_time *timee, const char* s, double t)
+static int		update_time(t_time *timee, const char* s, double t)
 {
 	if (!ft_strcmp(s, timee->name))
 	{
@@ -141,24 +143,39 @@ static int		update_time( t_time *timee, const char* s, double t)
 	return (0);
 }
 
+t_time	*update_last(t_time *timee, char **last, const char* s)
+{
+	char* tmp;
+
+	if (ft_strcmp(s, *last))
+	{
+		tmp = (char *)*last;
+		*last = ft_strdup((const char*)s);
+		free(tmp);
+	}
+	return (timee);
+}
+
 t_time	*time_exe(const char* s, double t)
 {
 	static t_time		*timee;
+	static char			*last;
 	t_time				*tmp;
 
-	if (s == NULL || timee == NULL)
-		return (time_exceptions(&timee, s, t));
-	if (update_time(timee, s, t))
-		return (timee);
+	printf("last:%s\ns:%s\ntime %f\n", last, s, t);
+	if (s == NULL || timee == NULL || last == NULL)
+		return (time_exceptions(&timee, &last, s, t));
+	if (update_time(timee, (const char*)last, t))
+		return (update_last(timee, &last, s));
 	tmp = timee;
 	while (tmp->next != NULL)
 	{
-		if (update_time(tmp, s, t))
-			return (timee);
+		if (update_time(tmp, (const char*)last, t))
+			return (update_last(timee, &last, s));
 		tmp = tmp->next;
 	}
-	if (update_time(tmp, s, t))
-		return (timee);
-	tmp->next = time_link_creation(s, t);
-	return (timee);
+	if (update_time(tmp, (const char*)last, t))
+		return (update_last(timee, &last, s));
+	tmp->next = time_link_creation((const char*)last, t);
+	return (update_last(timee, &last, s));
 }
