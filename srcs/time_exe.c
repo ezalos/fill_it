@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 02:38:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/23 02:43:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 time_exe(__func__, cl(clock()));
 print_time(time_exe(__func__, clock()));
 */
+
 void 	print_time_struct(t_time *g)
 {
 	printf(_RED"\t\tAdress:\t\t%p\n", (void *)g);
