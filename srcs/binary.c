@@ -6,12 +6,55 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 14:36:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 16:52:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "head.h"
+
+int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
+{
+	int the_competitor;
+	int	position_review;
+	int	the_one_in_the_champion;
+
+	position_review = 0;
+	the_one_in_the_champion = 0;
+	head->the_choosen_configuration = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
+	while (++head->the_choosen_configuration <= find_piece(head, deepness)->tt_pos)
+		if (find_sol(head, deepness)->y_all_PxNx[head->the_choosen_configuration] == 1)
+		{
+			if (position_review < position_choice)
+				position_review++;
+			else
+			{
+				the_competitor = -1;
+				while (++the_competitor < find_piece(head, deepness)->tt_pos)
+					if (the_competitor != the_choosen_configuration && binary_string_and(head->solution[the_choosen_configuration], head->solution[the_competitor], head->p + (head->size_square * head->size_square)))
+						find_sol(head, deepness)->y_all_PxNx[the_competitor] = 0;
+				return (1);
+			}
+		}
+	return (0);
+}
+
+char	binary_string_and(char *s1, char *s2, size_t length)
+{
+	size_t i;
+
+	i = 0;
+	if (s1 == NULL && s2 == NULL)
+		return (0);
+	if (s1 == NULL || s2 == NULL)
+		return (1);
+	while (i < length)
+	{
+		if (s1[i] & s2[i])
+			return(1);
+		i++;
+	}
+	return (0);
+}
 
 void	write_binary(t_head *head)
 {
