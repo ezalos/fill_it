@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 10:19:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:36:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,18 @@ void	write_binary(t_head *head)
 			x = -1;
 			while (++x <= head->size_square - piece->x_size)
 			{
-				head->solution[piece->tt_pos - piece->pc_pos + ++PnNx][current_piece] = 1;//need to write which piece is currently writen +1 & -1 as down
+				binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + ++PnNx], current_piece);//need to write which piece is currently writen +1 & -1 as down
 				i = -1;
 				while (++i < 4)
-					head->solution[piece->tt_pos - piece->pc_pos + PnNx]
-					[head->p + 1 + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x) - 1] // -1 bc it's a tab ?
-					= 1;  //Maxwell idea to implement here
+					binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + PnNx],
+					head->p + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x));
+  				//Maxwell idea to implement here
 			}
 		}
 		piece = piece->next;
 		current_piece++;
 	}
-
 //we need to do it on last time for the last piece, it's just a copy/paste
-	y = -1;
-	PnNx = -1;
-	while (++y < head->size_square - piece->y_size + 1)
-	{
-		x = -1;
-		while (++x < head->size_square - piece->x_size + 1)// <= || < ?
-		{
-			head->solution[piece->tt_pos - piece->pc_pos + ++PnNx][current_piece] = 1;//need to write which piece is currently writen +1 & -1 as down
-			i = -1;
-			while (++i < 4)
-				head->solution[piece->tt_pos - piece->pc_pos + PnNx]
-				[head->p + 1 + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x) - 1] // -1 bc it's a tab ?
-				= 1;  //Maxwell idea to implement here
-		}
-	}
-	piece = piece->next;
-	current_piece++;
 }
 
 int	ft_iterative_power(int nb, int power)
