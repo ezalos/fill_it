@@ -1,13 +1,12 @@
 #!/bin/bash
 
-#grep -n  printf ../*.c >> .gres.txt	= to input all lines numbered with printf from previous dir files into .gres.txt;
+#grep -n  printf ../*.c >> .gres.txt	= to input all lines with printf from previous dir files into .gres.txt;
 #cut -d ':' -f1 .gres.txt | sort -u		= to get each file listed only once;
 #sed 's/.*printf.*//' <file> 			= to transform lines containing printf to blank lines;
 #sed '/printf/d' <file>					= to remove lines containing printf;
 
 declare -i i=0
-while IFS=: read -r line target lno str
-do
+while IFS=: read -r line target lno str; do
 {
 file[$i]="$(cut -d ':' -f1 <<< $line)"
 line_nb[$i]="$(cut -d ':' -f2 <<< $line)"

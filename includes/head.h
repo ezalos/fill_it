@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/26 16:53:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 23:22:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,27 @@
 # include <unistd.h>
 
 //COLORS IN PRINTF
-#define _RED     "\x1b[31m"
-#define _GREEN   "\x1b[32m"
-#define _YELLOW  "\x1b[33m"
-#define _BLUE    "\x1b[34m"
-#define _MAGENTA "\x1b[35m"
-#define _CYAN    "\x1b[36m"
-#define _RESET   "\x1b[0m"
+# define COLOR
+
+# ifndef COLOR
+#  define _RED     ""
+#  define _GREEN   ""
+#  define _YELLOW  ""
+#  define _BLUE    ""
+#  define _MAGENTA ""
+#  define _CYAN    ""
+#  define _RESET   ""
+# endif
+
+# ifdef COLOR
+#  define _RED     "\x1b[31m"
+#  define _GREEN   "\x1b[32m"
+#  define _YELLOW  "\x1b[33m"
+#  define _BLUE    "\x1b[34m"
+#  define _MAGENTA "\x1b[35m"
+#  define _CYAN    "\x1b[36m"
+#  define _RESET   "\x1b[0m"
+# endif
 
 typedef struct	s_coord
 {
