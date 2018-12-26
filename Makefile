@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 00:42:55 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 00:52:18 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,10 +104,10 @@ check2 :
 		yes n | bash /Users/ldevelle/42/Libftest/grademe.sh
 
 bhead :
-		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
+		@sed -i "s~../../includes/head.h~head.h~g" $(A_SRC)
 
 ahead :
-		@sed -i '' "s~head.h~../../includes/head.h~g" $(patsubst %,%.c,$(SRCS))
+		@sed -i "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
 
 before :	bhead
 			@mkdir $(FOLD0) $(FOLD1)
