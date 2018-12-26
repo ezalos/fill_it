@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/14 14:39:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:43:47 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int ft_check_input(int fd, char *buf, t_head **head)
 {
+	time_exe(__func__, cl(clock()));
 	int 	i;
 	int		c_hash;
 	char	p;
@@ -55,6 +56,7 @@ int ft_check_input(int fd, char *buf, t_head **head)
 
 t_head	*ft_read_check(char *fillit)
 {
+	time_exe(__func__, cl(clock()));
 	char 	*buf;
 	t_head 	*head;
 	int 	fd;

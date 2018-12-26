@@ -6,14 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 03:42:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:46:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "time_exe.h"
 
 /*
-time_exe(__func__, cl(clock()));
+	time_exe(__func__, cl(clock()));
 print_time(time_exe(__func__, clock()));
 */
 
@@ -162,7 +162,7 @@ t_time	*time_exe(const char* s, double t)
 	static char			*last;
 	t_time				*tmp;
 
-	printf("last:%s\ns:%s\ntime %f\n", last, s, t);
+//	printf("last:%s\ns:%s\ntime %f\n", last, s, t);
 	if (s == NULL || timee == NULL || last == NULL)
 		return (time_exceptions(&timee, &last, s, t));
 	if (update_time(timee, (const char*)last, t))

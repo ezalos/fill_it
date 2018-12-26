@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/23 12:03:23 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 22:54:36 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,16 @@ void	setup_pieces(t_head *head);
 char	**malloc_solution(t_head *head);
 t_head	*setup_head(t_head *head);
 t_head	*setup_head_sol_part(t_head *head);
+
+//binary
+void	ft_putbinary_rev(char *str, int piece, int length);
+int		deleter_of_binaries(t_head *head, int deepness, int position_choice);
+char	binary_string_and(char *s1, char *s2, size_t length);
+int		ft_iterative_power(int nb, int power);
+void	binary_to_str(char *binary, int size, int binary_position);
+void	write_binary(t_head *head);
+int		binary_size(int length);
+char	**malloc_binary(t_head *head);
 
 //solve.c
 int		solve_solution(t_head *head, int deepness);

@@ -6,14 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:51:05 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 02:41:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:37:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TIME_EXE_H
 # define TIME_EXE_H
 
-# define WINDOWS
+# define MAC
 
 # include "libft.h"
 # include <time.h>

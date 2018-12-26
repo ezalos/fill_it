@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/18 18:21:48 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:41:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		float_to_int(float i)
 {
+	time_exe(__func__, cl(clock()));
 	int sol;
 
 //	if (i % 1 > 0)
@@ -26,6 +27,7 @@ int		float_to_int(float i)
 
 int		ft_char_srch(char src, char *dlt)
 {
+	time_exe(__func__, cl(clock()));
 	while (*dlt)
 	{
 		if (src == *dlt)
@@ -37,6 +39,7 @@ int		ft_char_srch(char src, char *dlt)
 
 int		yx_to_j(int y, int x)
 {
+	time_exe(__func__, cl(clock()));
 	int nb;
 
 	if (y >= x)
@@ -58,6 +61,7 @@ int		yx_to_j(int y, int x)
 
 int		j_to_yx(t_head *head, int j, int o)
 {
+	time_exe(__func__, cl(clock()));
 	int		x;
 	int		y;
 
@@ -81,6 +85,7 @@ int		j_to_yx(t_head *head, int j, int o)
 
 int		nb_char_to_int(char	c)
 {
+	time_exe(__func__, cl(clock()));
 	if (c < '0' || c > '9')
 		return (-1);
 	return (c - '0');
@@ -88,6 +93,7 @@ int		nb_char_to_int(char	c)
 
 float	f_sqrt(int nb, int limite)
 {
+	time_exe(__func__, cl(clock()));
 	float	x;
 	float	n;
 	int		i;

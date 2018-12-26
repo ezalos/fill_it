@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 17:29:48 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:44:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	p_yx(t_piece *piece, int y, int x)//TO CHANGE
 {
+	time_exe(__func__, cl(clock()));
 	piece->y_size = y;
 	piece->x_size = x;
 }
 
 int		size_pieces(char s, int size)
 {
+	time_exe(__func__, cl(clock()));
 	if (s == 'O')
 		return ((size - 1) * (size - 1));
 	else if (s == 'I')
@@ -30,6 +32,7 @@ int		size_pieces(char s, int size)
 
 void	pieces_yx(t_piece *tmp)
 {
+	time_exe(__func__, cl(clock()));
 	if (tmp->name[0] == 'O')
 		p_yx(tmp, 2, 2);
 	else if (tmp->name[0] == 'I')
@@ -57,6 +60,7 @@ void	pieces_yx(t_piece *tmp)
 
 int		coord_setup(t_piece *piece)
 {
+	time_exe(__func__, cl(clock()));
 	int		rot;
 	int		i;
 	int		x;

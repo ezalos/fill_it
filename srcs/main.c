@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 12:02:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 23:14:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		main(int ac, char **av)
 			if (!(restart_and_grow(head)))
 				return (0);
 	}
+	time_exe(__func__, cl(clock()));
 	print_time(time_exe(__func__, cl(clock())));
 	return (0);
 }

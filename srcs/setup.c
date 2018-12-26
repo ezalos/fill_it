@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 10:07:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/25 21:42:52 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	write_solutions(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	t_piece *piece;
 	int	i;
 	int current_piece;
@@ -68,6 +69,7 @@ void	write_solutions(t_head *head)
 
 void	setup_pieces(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	t_piece		*tmp;
 	int			i;
 
@@ -92,6 +94,7 @@ void	setup_pieces(t_head *head)
 
 char	**malloc_solution(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	char	**sol;
 	int		i;
 	int		line;
@@ -116,9 +119,10 @@ char	**malloc_solution(t_head *head)
 
 t_head	*setup_head_sol_part(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	int i;
 
-	if (!(head->solution = malloc_solution(head)))
+	if (!(head->solution = malloc_binary(head)))
 		return (NULL);
 	if (!(head->y_all_PxNx = (char*)malloc(sizeof(char) * (head->tt_pos_all))))
 		return (NULL);
@@ -127,7 +131,7 @@ t_head	*setup_head_sol_part(t_head *head)
 		head->y_all_PxNx[i] = 1;
 	//	head->sol->possible_solutions = 0;
 	head->the_choosen_configuration = 1;
-	write_solutions(head);
+	write_binary(head);
 	i = 0;
 	while (i <= head->p)// one less might be better
 		if (!(next_solve_step(head, i++)))
@@ -137,6 +141,7 @@ t_head	*setup_head_sol_part(t_head *head)
 
 t_head	*setup_head(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	//printf("Nb of pieces = %d\n", head->p);
 	head->size_square = (float_to_int(f_sqrt(head->p, 0) * 2));
 	//printf("size_square = %d\n", head->size_square);

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/18 13:43:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 00:47:15 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		create_tetro(const char *name, t_head **head, char p)
 {
+	time_exe(__func__, cl(clock()));
 	t_piece *tetro;
 
 	if (name == NULL)
@@ -41,11 +42,12 @@ int		create_tetro(const char *name, t_head **head, char p)
 
 t_sol	*next_solve_step(t_head *head, int step)
 {
+	time_exe(__func__, cl(clock()));
 	t_sol 	*solution;
 	t_sol 	*tmp;
 	int		i;
 
-	printf("Next solve step\n");
+//	printf("Next solve step\n");
 	if (head->sol == NULL)
 	{
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
@@ -53,7 +55,7 @@ t_sol	*next_solve_step(t_head *head, int step)
 		head->sol = solution;
 		solution->sol = NULL;
 		solution->y_all_PxNx = ft_strdup(head->y_all_PxNx);
-		printf("First link of solve created\n");
+	//	printf("First link of solve created\n");
 		return (solution);
 	}
 	else
@@ -78,13 +80,14 @@ t_sol	*next_solve_step(t_head *head, int step)
 			return (NULL);
 		ft_memcpy(tmp->sol->y_all_PxNx, tmp->y_all_PxNx, head->tt_pos_all);
 		tmp->sol->sol = NULL;
-		printf("Last link of solve created\n");
+//		printf("Last link of solve created\n");
 		return (solution);
 	}
 }
 
 t_piece	*find_piece(t_head *head, int piece)
 {
+	time_exe(__func__, cl(clock()));
 	t_piece	*tetro;
 	int i;
 
@@ -110,6 +113,7 @@ t_piece	*find_piece(t_head *head, int piece)
 
 t_sol	*find_sol(t_head *head, int sol)
 {
+	time_exe(__func__, cl(clock()));
 	t_sol *solution;
 	int i;
 

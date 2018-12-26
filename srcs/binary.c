@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 16:52:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 00:46:33 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 {
+	time_exe(__func__, cl(clock()));
 	int the_competitor;
 	int	position_review;
 	int	the_one_in_the_champion;
@@ -29,8 +30,8 @@ int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 			else
 			{
 				the_competitor = -1;
-				while (++the_competitor < find_piece(head, deepness)->tt_pos)
-					if (the_competitor != the_choosen_configuration && binary_string_and(head->solution[the_choosen_configuration], head->solution[the_competitor], head->p + (head->size_square * head->size_square)))
+				while (++the_competitor < head->tt_pos_all)
+					if (the_competitor != head->the_choosen_configuration && binary_string_and(head->solution[head->the_choosen_configuration], head->solution[the_competitor], head->p + (head->size_square * head->size_square)))
 						find_sol(head, deepness)->y_all_PxNx[the_competitor] = 0;
 				return (1);
 			}
@@ -40,13 +41,15 @@ int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 
 char	binary_string_and(char *s1, char *s2, size_t length)
 {
+	time_exe(__func__, cl(clock()));
 	size_t i;
 
-	i = 0;
 	if (s1 == NULL && s2 == NULL)
 		return (0);
 	if (s1 == NULL || s2 == NULL)
 		return (1);
+	i = 0;
+	length = binary_size(length);
 	while (i < length)
 	{
 		if (s1[i] & s2[i])
@@ -56,8 +59,39 @@ char	binary_string_and(char *s1, char *s2, size_t length)
 	return (0);
 }
 
+int	ft_iterative_power(int nb, int power)
+{
+	time_exe(__func__, cl(clock()));
+	int x;
+
+	x = 1;
+	if (power == 0)
+		return (1);
+	if (power < 0)
+		return (0);
+	while (power-- > 0)
+		x *= nb;
+	return (x);
+}
+
+void	binary_to_str(char *binary, int size, int binary_position)
+{
+	time_exe(__func__, cl(clock()));
+	int one;
+
+	one = 1;
+//	ft_putbinary_rev(binary, 4, size);
+//	printf("\n");
+//	one = one << (binary_position % 8);
+	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
+//	printf("\n%d\t[%d]\t[%d]\t\tone: %d\tbinary: %d\n", binary_position, binary_position / 8, binary_position % 8, one, binary[binary_size(binary_position)]);
+//	ft_putbinary_rev(binary, 4, size);
+//	printf("\n\n");
+}
+
 void	write_binary(t_head *head)
 {
+	time_exe(__func__, cl(clock()));
 	t_piece *piece;
 	int	i;
 	int current_piece;
@@ -67,7 +101,7 @@ void	write_binary(t_head *head)
 
 	current_piece = 0;
 	piece = head->next;
-	while (piece->next != NULL) //for each piece convert y and x of possibilty to j, and write 1 to the 4 coord of piece
+	while (piece != NULL) //for each piece convert y and x of possibilty to j, and write 1 to the 4 coord of piece
 	{
 		y = -1;
 		PnNx = -1;
@@ -76,10 +110,10 @@ void	write_binary(t_head *head)
 			x = -1;
 			while (++x <= head->size_square - piece->x_size)
 			{
-				binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + ++PnNx], current_piece);//need to write which piece is currently writen +1 & -1 as down
+				binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + ++PnNx], head->p + (head->size_square * head->size_square), current_piece);//need to write which piece is currently writen +1 & -1 as down
 				i = -1;
 				while (++i < 4)
-					binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + PnNx],
+					binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + PnNx], head->p + (head->size_square * head->size_square),
 					head->p + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x));
   				//Maxwell idea to implement here
 			}
@@ -90,38 +124,17 @@ void	write_binary(t_head *head)
 //we need to do it on last time for the last piece, it's just a copy/paste
 }
 
-int	ft_iterative_power(int nb, int power)
-{
-	int x;
-
-	x = 1;
-	if (power == 0)
-		return (1);
-	if (power < 0)
-		return (0);
-	while (power > 0)
-	{
-		x = x * nb;
-		power--;
-	}
-	return (x);
-}
-
-void	binary_to_str(char *binary, int binary_position)
-{
-	binary[binary_position / 8] += ft_iterative_power(2, binary_position % 8);
-}
-
 int		binary_size(int length)
 {
+	time_exe(__func__, cl(clock()));
 	if (length % 8 != 0)
-		return ((length / 8) + 1 + 1);
+		return ((length / 8) + 1);
 	return ((length / 8) + 1);
 }
 
 char	**malloc_binary(t_head *head)
 {
-
+	time_exe(__func__, cl(clock()));
 	char	**sol;
 	int		i;
 	int		line;

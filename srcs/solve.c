@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_clean.c                                      :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/23 12:10:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 00:45:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 {
+	time_exe(__func__, cl(clock()));
 	int the_competitor;
 	int	position_review;
 	int	the_one_in_the_champion;
@@ -34,8 +35,9 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 						the_one_in_the_champion++;
 					the_competitor = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
 					while (++the_competitor < head->tt_pos_all)
-						if (head->solution[the_competitor][the_one_in_the_champion] == 1 && the_competitor != the_choosen_configuration)
+						if (head->solution[the_competitor][the_one_in_the_champion] == 1 && the_competitor != head->the_choosen_configuration)
 							find_sol(head, deepness)->y_all_PxNx[the_competitor] = 0;
+					the_one_in_the_champion++;
 				}
 				return (1);
 			}
@@ -45,6 +47,7 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 
 int		how_many_paths(t_head *head, int deepness)
 {
+	time_exe(__func__, cl(clock()));
 	int path;
 
 	path = 0;
@@ -65,6 +68,7 @@ int		how_many_paths(t_head *head, int deepness)
 
 void	sol_turn_mem(t_head *head, int deepness)
 {
+	time_exe(__func__, cl(clock()));
 	if (deepness == 1)
 		ft_memcpy(find_sol(head, deepness)->y_all_PxNx, head->y_all_PxNx, head->tt_pos_all);
 	else
@@ -74,6 +78,7 @@ void	sol_turn_mem(t_head *head, int deepness)
 
 int		solve_solution(t_head *head, int deepness)
 {
+	time_exe(__func__, cl(clock()));
 	int	position_choice;
 
 	position_choice = -1;
@@ -82,8 +87,8 @@ int		solve_solution(t_head *head, int deepness)
 		sol_turn_mem(head, deepness);
 		while (++position_choice < find_sol(head, deepness)->nb_of_paths)
 		{
-			print_soltion_link_debug(head, deepness, position_choice);
-			if(!(deleter_of_competitors(head, deepness, position_choice)))
+	//		print_soltion_link_debug(head, deepness, position_choice);
+			if(!(deleter_of_binaries(head, deepness, position_choice)))
 				return(0);
 			if (solve_solution(head, deepness + 1))//NEED TO QUIT WHEN ALL IS SOLVED
 				return (1);
