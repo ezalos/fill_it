@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 21:41:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:44:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 int		float_to_int(float i)
 {
 	time_exe(__func__, cl(clock()));
-	int sol;
-
-//	if (i % 1 > 0)
-//		sol = ((int)i / 1) + 1;
-//	else
-//		sol = (int)i / 1;
-//	printf("%f -> %d\n", i, ((int)i / 1) + 0.9999);
-	return ((int)((i / 1) + 0.9999));
+	return ((int)((i / 1) + 0.99999));
 }
 
 int		ft_char_srch(char src, char *dlt)
@@ -40,23 +33,11 @@ int		ft_char_srch(char src, char *dlt)
 int		yx_to_j(int y, int x)
 {
 	time_exe(__func__, cl(clock()));
-	int nb;
 
 	if (y >= x)
 		return ((y * (y + 1)) + x);
 	else
-	{
-		nb = 1;
-//		if (y == 0 && x == 1)
-//			return (1);
-/*		while (x > y)
-		{
-			nb = nb + 2;
-			x--;
-		}
-		return ((y * (y + 1)) + nb);*/
 		return ((x * x) + y);
-	}
 }
 
 int		j_to_yx(t_head *head, int j, int o)

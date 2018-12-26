@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 23:14:49 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:53:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	time_exe(__func__, cl(clock()));
-	if (!(head = ft_read_check(av[1])))
+	if (!(head = read_check(av[1])))
 		return (0);
 	if (!(setup_head(head)))
 			return (0);

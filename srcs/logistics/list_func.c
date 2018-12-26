@@ -1,44 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_tetro.c                                     :+:      :+:    :+:   */
+/*   list_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 05:43:25 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/26 00:47:15 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/12/26 16:46:48 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/12/26 16:49:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
-
-int		create_tetro(const char *name, t_head **head, char p)
-{
-	time_exe(__func__, cl(clock()));
-	t_piece *tetro;
-
-	if (name == NULL)
-		return (0);
-	if ((*head)->next == NULL)
-	{
-		if (!((*head)->next = (t_piece*)malloc(sizeof(t_piece))))
-			return (0);
-		(*head)->next->name = (char*)name;
-		(*head)->next->next = NULL;
-		(*head)->next->letter = p;
-		return (1);
-	}
-	tetro = (*head)->next;
-	while (tetro->next != NULL)
-		tetro = tetro->next;
-	if (!(tetro->next = (t_piece*)malloc(sizeof(t_piece))))
-		return (0);
-	tetro = tetro->next;
-	tetro->name = (char*)name;
-	tetro->next = NULL;
-	tetro->letter = p;
-	return (1);
-}
+#include "../../includes/head.c"
 
 t_sol	*next_solve_step(t_head *head, int step)
 {

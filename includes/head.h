@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/25 22:54:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 16:53:52 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path);
 
 //un peu de tout ?
 int			yx_to_j(int y, int x);
-t_head		*ft_read_check(char *fillit);
+t_head		*read_check(char *fillit);
 const char	*recognize(char *s);
 int			float_to_int(float i);
 float		f_sqrt(int nb, int limite);
