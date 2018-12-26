@@ -6,21 +6,21 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:51:05 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 21:37:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/26 23:21:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TIME_EXE_H
 # define TIME_EXE_H
 
-# define MAC
-
 # include "libft.h"
 # include <time.h>
 # include <stdlib.h>
 # include <stdio.h>
 
-# ifdef WINDOWS
+# define COLOR
+
+# ifndef COLOR
 #  define _RED     ""
 #  define _GREEN   ""
 #  define _YELLOW  ""
@@ -30,7 +30,7 @@
 #  define _RESET   ""
 # endif
 
-# ifdef MAC
+# ifdef COLOR
 #  define _RED     "\x1b[31m"
 #  define _GREEN   "\x1b[32m"
 #  define _YELLOW  "\x1b[33m"
