@@ -6,14 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/26 16:52:43 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 00:39:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.c"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "head.h"
 
 int		create_tetro(const char *name, t_head **head, char p)
 {
