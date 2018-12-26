@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 00:37:43 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 00:42:55 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,14 +120,14 @@ after :	ahead
 		@mkdir	$(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
 				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(HEAD)
 		@mv -f $(FT_H) $(HEAD)
-		@mv -f $(patsubst %, %.c, $(SRCS0)) $(SRC_PATH0)
-		@mv -f $(patsubst %, %.c, $(SRCS1)) $(SRC_PATH1)
-		@mv -f $(patsubst %, %.c, $(SRCS2)) $(SRC_PATH2)
-		@mv -f $(patsubst %, %.c, $(SRCS3)) $(SRC_PATH3)
-		@mv -f $(patsubst %, %.c, $(SRCS4)) $(SRC_PATH4)
-		@mv -f $(patsubst %, %.c, $(SRCS5)) $(SRC_PATH5)
-		@mv -f $(patsubst %, %.c, $(SRCS6)) $(SRC_PATH6)
-		@mv -f $(FOLD1) $(LIBFOLD)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS0)) $(SRC_PATH0)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS1)) $(SRC_PATH1)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS2)) $(SRC_PATH2)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS3)) $(SRC_PATH3)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS4)) $(SRC_PATH4)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS5)) $(SRC_PATH5)
+		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS6)) $(SRC_PATH6)
+		@mv -f $(FOLD0)$(FOLD1) $(LIBFOLD)
 		@rm -rf $(FOLD0) $(FOLD1)
 
 hide :
