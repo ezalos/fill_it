@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/27 00:39:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:29:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ int ft_check_input(int fd, char *buf, t_head **head)
 
 	while (read(fd, buf, 21) >= 20)
 	{
+//		printf("one turn \n");
 		i = 0;
 		c_hash = 0;
+//		write(1, buf, 21);
 		while (i < 21)
 		{
 			if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
@@ -71,11 +73,11 @@ int ft_check_input(int fd, char *buf, t_head **head)
 		}
 		if (c_hash != 4)
 			return (0); // ft_display_error(int error);
-		//write(1, buf, 21);
+//		write(1, buf, 21);
 		if (!create_tetro(recognize(buf), head, (*head)->p++ + 'A'))
 			return (0);
-		//print_pieces_list(*head);
 	}
+//	printf("OUT OF WHILE\n");
 	return (1);
 }
 
@@ -88,14 +90,17 @@ t_head	*read_check(char *fillit)
 
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
 		return (NULL);
+//	printf("mdr\n");
 	if (!(fd = open((const char*)fillit, O_RDONLY)))
 		return (NULL);
+//	printf("lol\n");
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 		return (NULL);
 	head->next = NULL;
 	head->p = 0;
+//	printf("weird\n");
 	if (ft_check_input(fd, buf, &head))
 		return (head);
-	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
+//	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
 	return (NULL);
 }

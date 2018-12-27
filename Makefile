@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 01:57:23 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 02:32:49 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,8 @@ OBJS = $(patsubst %, %.o,$(SRCS))
 
 TEMPORAIRE = intlen memalloc memcpy memset putchar putnbr putstr strcmp strdup strlen strstr
 
+PIECE = ./annex/tests/good/fit/6_0
+
 all :	$(NAME)
 
 $(NAME):
@@ -96,6 +98,9 @@ git :
 		@git status
 		@git commit -am "Makefile automated push"
 		@git push
+
+test :	re
+		./$(NAME) $(PIECE)
 
 check1 :
 		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh
