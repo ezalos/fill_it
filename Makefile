@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 00:52:18 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 01:06:38 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-HEAD = ./includes/
+HEAD = ./includes
 FT_H = head.h
 
 LIBFOLD =	./annex/libft/
@@ -113,21 +113,21 @@ before :	bhead
 			@mkdir $(FOLD0) $(FOLD1)
 			@mv -f $(HEAD)$(FT_H) $(FOLD0)
 			@mv -f $(A_SRC) $(FOLD0)
-			@mv -f $(LIBFOLD) $(FOLD1)
-			@rm -rf $(SRC_PATH) $(HEAD)
+			@mv -f $(LIBFOLD) ./
+			@rm -rf $(A_SRC_P) $(HEAD)
 
 after :	ahead
 		@mkdir	$(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
 				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(HEAD)
-		@mv -f $(FT_H) $(HEAD)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS0)) $(SRC_PATH0)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS1)) $(SRC_PATH1)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS2)) $(SRC_PATH2)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS3)) $(SRC_PATH3)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS4)) $(SRC_PATH4)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS5)) $(SRC_PATH5)
-		@mv -f $(FOLD0)$(patsubst %, %.c, $(SRCS6)) $(SRC_PATH6)
-		@mv -f $(FOLD0)$(FOLD1) $(LIBFOLD)
+		@mv -f $(FOLD0)$(FT_H) $(HEAD)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS0)) $(SRC_PATH0)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS1)) $(SRC_PATH1)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS2)) $(SRC_PATH2)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS3)) $(SRC_PATH3)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS4)) $(SRC_PATH4)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS5)) $(SRC_PATH5)
+		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS6)) $(SRC_PATH6)
+		@mv -f $(FOLD1) $(LIBFOLD)
 		@rm -rf $(FOLD0) $(FOLD1)
 
 hide :
