@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 21:42:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:05:25 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ t_head	*setup_head_sol_part(t_head *head)
 	return (head);
 }
 
-t_head	*setup_head(t_head *head)
+t_head	*setup_(t_head *head)
 {
 	time_exe(__func__, cl(clock()));
 	//printf("Nb of pieces = %d\n", head->p);

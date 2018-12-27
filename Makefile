@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 01:49:30 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 01:57:23 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ FT_H = head.h
 LIBFOLD =	./annex/libft/
 LIB =		libft.a
 
-A_SRC_P	=	srcs $(SRC_PATH0), $(SRC_PATH1), $(SRC_PATH2), $(SRC_PATH3),\
- 			$(SRC_PATH4), $(SRC_PATH5), $(SRC_PATH6)
+A_SRC_P	=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
+ 			$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
 
 SRC_PATH0 = srcs/main/
 SRC_PATH1 = srcs/read/
@@ -75,7 +75,7 @@ all :	$(NAME)
 
 $(NAME):
 			@echo "Creating $(NAME)"
-			$(CC) $(A_SRC) $(TIME_EXE) $(patsubst %, ./annex/libft/ft_%.c,$(TEMPORAIRE)) -o $(NAME)
+			@$(CC) $(A_SRC) $(TIME_EXE) $(patsubst %, ./annex/libft/ft_%.c,$(TEMPORAIRE)) -o $(NAME)
 
 d :
 			@$(CC) -c $(DFLAGS) $(patsubst %,%.c,$(A_SRC))
@@ -105,11 +105,11 @@ check2 :
 
 bhead :
 		@sed -i "s~../../includes/head.h~head.h~g" $(A_SRC)
-		@sed -i "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
+		@sed -i "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
 
 ahead :
 		@sed -i "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
-		@sed -i "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
+		@sed -i "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
 
 before :	bhead
 			@mkdir $(FOLD0) $(FOLD1)
@@ -119,8 +119,7 @@ before :	bhead
 			@rm -rf $(A_SRC_P) $(HEAD)
 
 after :	ahead
-		@mkdir	$(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
-				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(HEAD)
+		@mkdir $(A_SRC_P) $(HEAD)
 		@mv -f $(FOLD0)$(FT_H) $(HEAD)
 		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS0)) $(SRC_PATH0)
 		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS1)) $(SRC_PATH1)
