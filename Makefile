@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 02:32:49 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 02:46:55 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,8 +99,11 @@ git :
 		@git commit -am "Makefile automated push"
 		@git push
 
-test :	re
+gtest :	re
 		./$(NAME) $(PIECE)
+
+test :	re
+		./$(NAME) ./annex/tests/good/unfit/5_0
 
 check1 :
 		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh
