@@ -6,11 +6,11 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 01:06:38 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/27 01:49:30 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fill_it
+NAME = fill_it.out
 
 CC = gcc
 
@@ -33,10 +33,10 @@ FT_H = head.h
 LIBFOLD =	./annex/libft/
 LIB =		libft.a
 
-A_SRC_P	=	$(SRC_PATH0), $(SRC_PATH1), $(SRC_PATH2), $(SRC_PATH3),\
+A_SRC_P	=	srcs $(SRC_PATH0), $(SRC_PATH1), $(SRC_PATH2), $(SRC_PATH3),\
  			$(SRC_PATH4), $(SRC_PATH5), $(SRC_PATH6)
 
-SRC_PATH0 = srcs/
+SRC_PATH0 = srcs/main/
 SRC_PATH1 = srcs/read/
 SRC_PATH2 = srcs/setup/
 SRC_PATH3 = srcs/solve/
@@ -57,6 +57,8 @@ SRCS4 = print_debug printing_the_result
 SRCS5 = free_all
 SRCS6 = float_to_int list_func
 
+TIME_EXE = ./annex/time/time_exe.c
+
 A_SRC =	$(addsuffix .c, $(addprefix $(SRC_PATH0), $(SRCS0))\
 						$(addprefix $(SRC_PATH1), $(SRCS1))\
 						$(addprefix $(SRC_PATH2), $(SRCS2))\
@@ -67,23 +69,21 @@ A_SRC =	$(addsuffix .c, $(addprefix $(SRC_PATH0), $(SRCS0))\
 
 OBJS = $(patsubst %, %.o,$(SRCS))
 
+TEMPORAIRE = intlen memalloc memcpy memset putchar putnbr putstr strcmp strdup strlen strstr
+
 all :	$(NAME)
 
-$(NAME):	#$(OBJS)
+$(NAME):
 			@echo "Creating $(NAME)"
-			@$(CC) -o $(NAME) $(A_SRC)
-
-$(OBJS):
-			@echo "Creating objects"
-			@$(CC) -c $(CFLAGS) $(patsubst %,%.c,$(SRCS))
+			$(CC) $(A_SRC) $(TIME_EXE) $(patsubst %, ./annex/libft/ft_%.c,$(TEMPORAIRE)) -o $(NAME)
 
 d :
-			@$(CC) -c $(DFLAGS) $(patsubst %,%.c,$(SRCS))
-			@$(CC) -o $(NAME) $(OBJS)
+			@$(CC) -c $(DFLAGS) $(patsubst %,%.c,$(A_SRC))
+			@$(CC) $(A_SRC) -o $(NAME)
 
 clean :
 	@echo "Cleaning objects"
-	@rm -f $(OBJS) libft.h.gch
+	@rm -f $(OBJS)
 
 fclean : clean
 	@echo "Cleaning project"
@@ -105,13 +105,15 @@ check2 :
 
 bhead :
 		@sed -i "s~../../includes/head.h~head.h~g" $(A_SRC)
+		@sed -i "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
 
 ahead :
 		@sed -i "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
+		@sed -i "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
 
 before :	bhead
 			@mkdir $(FOLD0) $(FOLD1)
-			@mv -f $(HEAD)$(FT_H) $(FOLD0)
+			@mv -f $(HEAD)/$(FT_H) $(FOLD0)
 			@mv -f $(A_SRC) $(FOLD0)
 			@mv -f $(LIBFOLD) ./
 			@rm -rf $(A_SRC_P) $(HEAD)
@@ -128,7 +130,7 @@ after :	ahead
 		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS5)) $(SRC_PATH5)
 		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS6)) $(SRC_PATH6)
 		@mv -f $(FOLD1) $(LIBFOLD)
-		@rm -rf $(FOLD0) $(FOLD1)
+		@rm -rf libft fill_it_files
 
 hide :
 		grep -n  printf ./*/*.c >> ./annex/show/.saves/.gres.txt

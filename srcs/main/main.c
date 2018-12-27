@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 /*void time_exe(const char* s, clock_t *t)
 {
@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 	time_exe(__func__, cl(clock()));
 	if (!(head = read_check(av[1])))
 		return (0);
-	if (!(setup_../../includes/../../includes/../../includes/../../includes/head.head)))
+	if (!(setup_head(head)))
 			return (0);
 	while (check != 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/27 00:39:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 01:20:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //# include "time_exe.h"
 # include <stdlib.h>
 # include <unistd.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 //COLORS IN PRINTF
 # define COLOR
