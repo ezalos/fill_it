@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 14:45:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/14 15:10:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:01:30 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 void	ft_putstr(char const *s)
 {

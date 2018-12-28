@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 17:03:31 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/18 17:19:56 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:00:48 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 void	*ft_memset(void *str, int c, size_t n)
 {

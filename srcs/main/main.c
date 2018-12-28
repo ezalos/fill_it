@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/26 16:53:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:31:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 /*void time_exe(const char* s, clock_t *t)
 {
@@ -28,7 +28,7 @@ int		main(int ac, char **av)
 	time_exe(__func__, cl(clock()));
 	if (!(head = read_check(av[1])))
 		return (0);
-	if (!(setup_head(head)))
+	if (!(setup_(head)))
 			return (0);
 	while (check != 1)
 	{
@@ -41,6 +41,6 @@ int		main(int ac, char **av)
 				return (0);
 	}
 	time_exe(__func__, cl(clock()));
-	print_time(time_exe(__func__, cl(clock())));
+//	print_time(time_exe(__func__, cl(clock())));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/26 23:22:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/12/27 02:04:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 //# include "time_exe.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 //COLORS IN PRINTF
 # define COLOR
@@ -142,7 +143,7 @@ void	update_pieces(t_head *head);
  //setup.c
 void	setup_pieces(t_head *head);
 char	**malloc_solution(t_head *head);
-t_head	*setup_head(t_head *head);
+t_head	*setup_(t_head *head);
 t_head	*setup_head_sol_part(t_head *head);
 
 //binary
