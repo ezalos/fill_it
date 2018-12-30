@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/27 02:46:55 by ldevelle         ###   ########.fr        #
+#    Updated: 2018/12/30 22:25:23 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC_PATH5 = srcs/free/
 SRC_PATH6 = srcs/logistics/
 
 FOLD0 = ./fill_it_files/
-FOLD1 = ./libft/
+#FOLD1 = ./libft/
 
 SRCS =	$(SRCS0) $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6)
 
@@ -73,22 +73,28 @@ TEMPORAIRE = intlen memalloc memcpy memset putchar putnbr putstr strcmp strdup s
 
 PIECE = ./annex/tests/good/fit/6_0
 
+GREEN   = '\x1b[32m'
+RED     = '\x1b[31m'
+END     = '\x1b[0m'
+
 all :	$(NAME)
 
 $(NAME):
-			@echo "Creating $(NAME)"
 			@$(CC) $(A_SRC) $(TIME_EXE) $(patsubst %, ./annex/libft/ft_%.c,$(TEMPORAIRE)) -o $(NAME)
+			@echo "$(GREEN)$(NAME) has been created $(END)"
+			@cd libft && $(MAKE) 
+			@echo "$(GREEN) $(LIB) has been created $(END)"
 
 d :
 			@$(CC) -c $(DFLAGS) $(patsubst %,%.c,$(A_SRC))
 			@$(CC) $(A_SRC) -o $(NAME)
 
 clean :
-	@echo "Cleaning objects"
+	@echo "$(RED) Objects have been removed $(END)"
 	@rm -f $(OBJS)
 
 fclean : clean
-	@echo "Cleaning project"
+	@echo "$(RED) Project has been removed $(END)"
 	@rm -f $(NAME)
 
 re : fclean all
@@ -112,12 +118,12 @@ check2 :
 		yes n | bash /Users/ldevelle/42/Libftest/grademe.sh
 
 bhead :
-		@sed -i "s~../../includes/head.h~head.h~g" $(A_SRC)
-		@sed -i "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
+		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
+		@sed -i '' "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
 
 ahead :
-		@sed -i "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
-		@sed -i "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
+		@sed -i '' "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
+		@sed -i '' "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
 
 before :	bhead
 			@mkdir $(FOLD0) $(FOLD1)
@@ -139,10 +145,11 @@ after :	ahead
 		@mv -f $(FOLD1) $(LIBFOLD)
 		@rm -rf libft fill_it_files
 
-hide :
+showprt :
+		bash ./show/.show.sh
+
+hideprt :
 		grep -n  printf ./*/*.c >> ./annex/show/.saves/.gres.txt
 
-show :
-		bash ./show/.show.sh
 
 .PHONY : clean fclean re all d git check1 check2
