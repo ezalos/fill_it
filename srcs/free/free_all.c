@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/26 00:49:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/02 19:45:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void update_pieces(t_head *head)
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos;
 		else
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos + find_piece(head, i - 1)->tt_pos;
-		coord_setup(find_piece(head, i));
 		head->tt_pos_all = find_piece(head, i)->tt_pos;
 	}
 }
@@ -36,8 +35,9 @@ void free_linked_sol(t_sol **sol)
 	if (*sol)
 	{
 		free_linked_sol(&((*sol)->sol));
-		free((*sol)->y_all_PxNx);
 		(*sol)->sol = NULL;
+		free((*sol)->y_all_PxNx);
+		(*sol)->y_all_PxNx = NULL;
 	}
 }
 
@@ -48,10 +48,16 @@ void free_solsol(t_head *head)
 //	printf("free_solsol\n");
 	y = -1;
 	while (++y < head->size_square)
+	{
 		free(head->solution[y]);
+		head->solution[y] = NULL;
+	}
 	free(head->solution);
+	head->solution = NULL;
 	free(head->y_all_PxNx);
+	head->y_all_PxNx = NULL;
 	free_linked_sol(&(head->sol));
+	head->sol = NULL;
 }
 
 

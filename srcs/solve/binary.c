@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/26 00:46:33 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:02:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 	while (++head->the_choosen_configuration <= find_piece(head, deepness)->tt_pos)
 		if (find_sol(head, deepness)->y_all_PxNx[head->the_choosen_configuration] == 1)
 		{
+			time_exe(__func__, cl(clock()));
 			if (position_review < position_choice)
 				position_review++;
 			else
@@ -33,6 +34,7 @@ int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 				while (++the_competitor < head->tt_pos_all)
 					if (the_competitor != head->the_choosen_configuration && binary_string_and(head->solution[head->the_choosen_configuration], head->solution[the_competitor], head->p + (head->size_square * head->size_square)))
 						find_sol(head, deepness)->y_all_PxNx[the_competitor] = 0;
+				time_exe(__func__, cl(clock()));
 				return (1);
 			}
 		}
@@ -44,12 +46,12 @@ char	binary_string_and(char *s1, char *s2, size_t length)
 	time_exe(__func__, cl(clock()));
 	size_t i;
 
-	if (s1 == NULL && s2 == NULL)
+/*	if (s1 == NULL && s2 == NULL)
 		return (0);
 	if (s1 == NULL || s2 == NULL)
-		return (1);
+		return (1);*/
 	i = 0;
-	length = binary_size(length);
+	length = (length / 8) + 1;
 	while (i < length)
 	{
 		if (s1[i] & s2[i])

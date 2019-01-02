@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/26 00:45:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/02 19:08:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,12 @@ void		show_pieces_binary(t_head *head, char **tab_result)
 //			printf("\t\tBlock[%d]=%d\n", i, block);
 			tab_result[j_to_yx(head, block, 0)][j_to_yx(head, block, 1)] = j_piece + 'A';
 		}
+//		print_pieces(head, tab_result);
 		line++;
 		j_piece++;
 	}
 //	printf("Finish\n");
+	print_time(time_exe(__func__, cl(clock())));
 	print_pieces(head, tab_result);
 }
 
@@ -172,9 +174,13 @@ void	free_print_result(t_head *head, char ***tab_result)
 	int		i;
 
 	i = -1;
-	while (++i < head->p)
+	while (++i < head->size_square)
+	{
 		free((*tab_result)[i]);
+		(*tab_result)[i] = NULL;
+	}
 	free(*tab_result);
+	*tab_result = NULL;
 }
 
 int		print_result(t_head *head)
@@ -187,7 +193,7 @@ int		print_result(t_head *head)
 	if (!(tab_result = (char**)malloc((head->size_square) * sizeof(char*))))
 		return (0);
 		i = -1;
-	while (++i < head->p)
+	while (++i < head->size_square)
 	{
 		if (!(tab_result[i] = ft_memalloc((head->size_square + 1))))
 			return (0);

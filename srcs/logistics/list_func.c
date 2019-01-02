@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 16:46:48 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/27 00:40:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/02 18:43:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@ t_sol	*next_solve_step(t_head *head, int step)
 	else
 	{
 		tmp = find_sol(head, step - 1);
-		/*if (tmp->sol != NULL)
-		{
-			i = 0;
-			while (find_sol(head, step + i))
-				i++;
-			while (i > 0)
-			{
-				printf("Deletion of sol n*%d\n", step + i - 1);
-				free(find_sol(head, step + --i));
-				find_sol(head, step + i)->sol = NULL;
-			}
-		}*/
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
 			return (NULL);
 		tmp->sol = solution;
@@ -89,11 +77,6 @@ t_sol	*find_sol(t_head *head, int sol)
 	t_sol *solution;
 	int i;
 
-/*	if (sol <= 0)
-	{
-		printf("Sol <= 0\n");
-		return (NULL);
-	}*/
 	solution = head->sol;
 	i = 1;
 	while (++i <= sol)
@@ -105,6 +88,5 @@ t_sol	*find_sol(t_head *head, int sol)
 		}
 		solution = solution->sol;
 	}
-//	printf("\t\t\tSol %d found !\n", sol);
 	return (solution);
 }

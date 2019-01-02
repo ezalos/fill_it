@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2018/12/30 22:25:23 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/02 19:46:52 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC_PATH5 = srcs/free/
 SRC_PATH6 = srcs/logistics/
 
 FOLD0 = ./fill_it_files/
-#FOLD1 = ./libft/
+FOLD1 = ./libft/
 
 SRCS =	$(SRCS0) $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6)
 
@@ -82,7 +82,7 @@ all :	$(NAME)
 $(NAME):
 			@$(CC) $(A_SRC) $(TIME_EXE) $(patsubst %, ./annex/libft/ft_%.c,$(TEMPORAIRE)) -o $(NAME)
 			@echo "$(GREEN)$(NAME) has been created $(END)"
-			@cd libft && $(MAKE) 
+#			@cd libft && $(MAKE)
 			@echo "$(GREEN) $(LIB) has been created $(END)"
 
 d :
@@ -105,11 +105,23 @@ git :
 		@git commit -am "Makefile automated push"
 		@git push
 
-gtest :	re
+testg :	re
 		./$(NAME) $(PIECE)
 
 test :	re
-		./$(NAME) ./annex/tests/good/unfit/5_0
+		./$(NAME) ./annex/tests/good/unfit/3_0
+
+testb :	re
+		./$(NAME) ./annex/tests/bad/64_O0
+
+testg6 :	re
+		./$(NAME) ./annex/tests/good/fit/6_0
+
+testg7 :	re
+		./$(NAME) ./annex/tests/good/fit/7_0
+
+testg12 :	re
+		./$(NAME) ./annex/tests/good/fit/12_0
 
 check1 :
 		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh
@@ -144,6 +156,10 @@ after :	ahead
 		@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS6)) $(SRC_PATH6)
 		@mv -f $(FOLD1) $(LIBFOLD)
 		@rm -rf libft fill_it_files
+
+malloc check :
+				grep -n -e "memalloc" -e "strdup" srcs/*/*
+#				grep -n "malloc" srcs/*/*
 
 showprt :
 		bash ./show/.show.sh

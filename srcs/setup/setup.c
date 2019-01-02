@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/27 02:05:25 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/02 19:46:06 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ char	**malloc_solution(t_head *head)
 t_head	*setup_head_sol_part(t_head *head)
 {
 	time_exe(__func__, cl(clock()));
+//	printf("%s\n", __func__);
 	int i;
 
 	if (!(head->solution = malloc_binary(head)))
