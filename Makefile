@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 07:02:40 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/09 08:05:10 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -219,11 +219,15 @@ malloc check :
 				grep -n -e "memalloc" -e "strdup" srcs/*/*
 #				grep -n "malloc" srcs/*/*
 
-showprt :
-		bash ./show/.show.sh
+show_ :
+		bash ./annex/show/.show.sh
 
-hideprt :
-		grep -n  printf ./*/*.c >> ./annex/show/.saves/.gres.txt
+grep_ :
+		grep -n -e printf -e time_exe $(A_SRC) >> ./annex/show/.gres.txt
+
+hide_ :
+		sed -i '' '/printf/d' $(A_SRC)
+		sed -i '' '/time/d' $(A_SRC)
 
 
 .PHONY : clean fclean re all d git check1

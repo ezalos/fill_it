@@ -14,87 +14,66 @@
 
 t_sol	*next_solve_step(t_head *head, int step)
 {
-	time_exe(__func__, cl(clock()));
-	t_sol 	*solution;
-	t_sol 	*tmp;
+time_exe(__func__, cl(clock()));	t_sol 	*tmp;
 	int		i;
 
-//	printf("Next solve step\n");
 	if (head->sol == NULL)
-	{
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
-			return (NULL);
+//	printf("Next solve step\n");			return (NULL);
 		head->sol = solution;
 		solution->sol = NULL;
 		solution->y_all_PxNx = ft_strdup(head->y_all_PxNx);
-	//	printf("First link of solve created\n");
 		return (solution);
 	}
-	else
 	{
 		tmp = find_sol(head, step - 1);
-		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
+//	printf("First link of solve created\n");		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
 			return (NULL);
 		tmp->sol = solution;
 		if (!(tmp->sol->y_all_PxNx = ft_memalloc(head->tt_pos_all)))
 			return (NULL);
 		ft_memcpy(tmp->sol->y_all_PxNx, tmp->y_all_PxNx, head->tt_pos_all);
 		tmp->sol->sol = NULL;
-//		printf("Last link of solve created\n");
 		return (solution);
 	}
 }
-
 t_piece	*find_piece(t_head *head, int piece)
 {
-	time_exe(__func__, cl(clock()));
 	t_piece	*tetro;
-	int i;
+//		printf("Last link of solve created\n");	int i;
 
 /*	if (piece <= 0)
-	{
-		printf("Piece <= 0\n");
 		return (NULL);
 	}*/
 	tetro = head->next;
 	i = 1;
-	while (++i <= piece)
-	{
+time_exe(__func__, cl(clock()));	while (++i <= piece)
 		if (tetro == NULL)
 		{
-			printf("\t\t\tPiece %d does not exist !\n", piece);
 			return (NULL);
 		}
 		tetro = tetro->next;
-	}
-	//printf("\t\t\tPiece %d found !\n", piece);
+printf("Piece <= 0\n");	}
 	return (tetro);
 }
-
 t_sol	*find_sol(t_head *head, int sol)
 {
-	time_exe(__func__, cl(clock()));
 	t_sol *solution;
 	int i;
-
 	solution = head->sol;
 	i = 1;
-	while (++i <= sol)
+printf("\t\t\tPiece %d does not exist !\n", piece);	while (++i <= sol)
 	{
 		if (solution == NULL)
-		{
-			printf("\t\t\tSol %d does not exist !\n", sol);
 			return (NULL);
 		}
-		solution = solution->sol;
+//printf("\t\t\tPiece %d found !\n", piece);		solution = solution->sol;
 	}
 	return (solution);
 }
 
 t_piece	*find_piece0(t_head *head, int piece)
-{
-	time_exe(__func__, cl(clock()));
-	static t_piece 		**hash;
+time_exe(__func__, cl(clock()));{
 	int					i;
 
 	if (!hash)
@@ -104,23 +83,20 @@ t_piece	*find_piece0(t_head *head, int piece)
 			return (NULL);
 		while (++i <= head->p)
 			hash[i - 1] = find_piece0(head, i);
-	}
-	return (hash[piece - 1]);
+printf("\t\t\tSol %d does not exist !\n", sol);	return (hash[piece - 1]);
 }
 
 t_sol	*find_sol0(t_head *head, int sol)
 {
-	time_exe(__func__, cl(clock()));
 	static t_sol 		**hash;
 	int					i;
 
 	if (!hash)
 	{
-		i = 0;
+time_exe(__func__, cl(clock()));		i = 0;
 		if (!(hash = (t_sol**)malloc(sizeof(t_sol*) * head->p)))
 			return (NULL);
 		while (++i <= head->p)
 			hash[i - 1] = find_sol0(head, i);
 	}
-	return (hash[sol - 1]);
 }

@@ -14,17 +14,13 @@
 
 int		float_to_int(float i)
 {
-	time_exe(__func__, cl(clock()));
-	return ((int)((i / 1) + 0.99999));
-}
+time_exe(__func__, cl(clock()));}
 
 int		ft_char_srch(char src, char *dlt)
 {
-	time_exe(__func__, cl(clock()));
 	while (*dlt)
-	{
 		if (src == *dlt)
-			return (1);
+time_exe(__func__, cl(clock()));			return (1);
 		dlt++;
 	}
 	return (0);
@@ -32,25 +28,21 @@ int		ft_char_srch(char src, char *dlt)
 
 int		yx_to_j(int y, int x)
 {
-	time_exe(__func__, cl(clock()));
 
 	if (y >= x)
-		return ((y * (y + 1)) + x);
 	else
 		return ((x * x) + y);
-}
+time_exe(__func__, cl(clock()));}
 
 int		j_to_yx(t_head *head, int j, int o)
 {
-	time_exe(__func__, cl(clock()));
 	int		x;
 	int		y;
 
-	y = -1;
 	while (++y <= head->size_square)
 	{
 		x = -1;
-		while (++x <= head->size_square)
+time_exe(__func__, cl(clock()));		while (++x <= head->size_square)
 		{
 			if (j == yx_to_j(y, x))
 			{
@@ -66,27 +58,23 @@ int		j_to_yx(t_head *head, int j, int o)
 
 int		nb_char_to_int(char	c)
 {
-	time_exe(__func__, cl(clock()));
 	if (c < '0' || c > '9')
 		return (-1);
 	return (c - '0');
 }
-
 float	f_sqrt(int nb, int limite)
 {
-	time_exe(__func__, cl(clock()));
 	float	x;
 	float	n;
-	int		i;
+time_exe(__func__, cl(clock()));	int		i;
 
 	n = (float)nb;
-	if (nb <= 0)
 		return (0);
 	i = 0;
 	x = n / 2;
 	if (limite == 0)
 		limite = 30;
-	while (--limite)
+time_exe(__func__, cl(clock()));	while (--limite)
 		x = (x + (n / x)) / 2;
 	return (x);
 }
