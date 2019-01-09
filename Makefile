@@ -6,11 +6,11 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 06:24:21 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/09 07:02:40 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fill_it.out
+NAME = fillit
 
 CC = gcc
 
@@ -126,6 +126,9 @@ test :	are
 
 testb :	are
 		./$(NAME) ./annex/tests/bad/64_O0
+
+testg4 :	are
+		./$(NAME) ./annex/tests/bad/4_0
 
 testg6 :	are
 		./$(NAME) ./annex/tests/good/fit/6_0

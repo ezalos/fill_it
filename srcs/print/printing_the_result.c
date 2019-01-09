@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/02 19:08:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 06:39:00 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	print_pieces(t_head *head, char **tab_result)
 		j = -1;
 		ft_putstr("\t\t\t");
 		while (++j < head->size_square)
+//			write(1, &(tab_result[i][j]), 1);
 			ft_putchar_color(tab_result[i][j]);
 		ft_putchar('\n');
 	}

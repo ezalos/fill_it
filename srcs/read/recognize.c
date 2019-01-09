@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/27 02:22:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 07:46:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static const char	*part10(char *s, int i, int div, int mod)
 		if (mod >= 1 && s[i + 5 - 1] == '#')
 		{
 			if (s[i + (5 * 2) - 1] == '#' && div < 2)
-				return ("Z110011120");//should be named Z101101120
+				return ("Z110011120");
 			if (mod >= 2 && s[i + 5 - 2] == '#')
-				return ("L310110212");
+				return ("O000100111");
 			if (s[i + (5 * 2)] == '#' && div < 2)
 				return ("T110011121");
 			if (mod <= 2 && s[i + 5 + 1] == '#')
@@ -86,9 +86,9 @@ static const char	*part0(char *s, int i, int div, int mod)
 			if (mod <= 1 && s[i + 2 + 5] == '#')
 				return ("Z000011112");
 			if (s[i + 1 + 5] == '#')
-				return ("O000100111");
-			if (mod <= 1 && s[i + 2 + (2 * 5)] == '#' && div < 2)
 				return ("L200011121");
+			if (mod <= 1 && s[i + 2 + (2 * 5)] == '#' && div < 2)
+				return ("L310110212");
 		}
 	}
 	return (part1(s, i, div, mod));
