@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 03:58:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 05:26:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ char	binary_string_and(char *s1, char *s2, size_t length)
 	time_exe(__func__, cl(clock()));
 	size_t i;
 
-/*	if (s1 == NULL && s2 == NULL)
-		return (0);
-	if (s1 == NULL || s2 == NULL)
-		return (1);*/
 	i = 0;
 	length = (length / 8) + 1;
 	while (i < length)
@@ -59,6 +55,24 @@ char	binary_string_and(char *s1, char *s2, size_t length)
 		i++;
 	}
 	return (0);
+}
+
+char	binary_string_and_start(char *s1, char *s2, size_t length, size_t start)
+{
+	time_exe(__func__, cl(clock()));
+	size_t	r_del;
+	size_t	a_del;
+	char	sa;
+	char	sb;
+
+	r_del = (start / 8);
+	sa = s1[r_del];
+	sb = s2[r_del];
+	a_del = (start % 8);
+	if (sa << a_del & sb << a_del)
+		return (1);
+	r_del++;
+	return (binary_string_and(s1 + r_del, s2 + r_del, length));
 }
 
 int	ft_iterative_power(int nb, int power)
@@ -129,8 +143,6 @@ void	write_binary(t_head *head)
 int		binary_size(int length)
 {
 	time_exe(__func__, cl(clock()));
-	if (length % 8 != 0)
-		return ((length / 8) + 1);
 	return ((length / 8) + 1);
 }
 

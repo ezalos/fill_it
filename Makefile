@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 05:02:28 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/09 06:24:21 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,14 +155,14 @@ check1 :
 		@sed -i '' "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
 		@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" ./annex/time/time_exe.h
 
-2push :	2bpush
+2push_ :	2bpush
 		@mkdir $(FOLD0) $(FOLD1)
 		@mv -f $(HEAD)/$(FT_H) $(FOLD0)
 		@mv -f $(A_SRC) $(FOLD0)
 		@mv -f $(LIBFOLD) ./
 		@rm -rf $(A_SRC_P) $(HEAD)
 
-2order :	2border
+2order_ :	2border
 			@mkdir $(A_SRC_P) $(HEAD)
 			@mv -f $(FOLD0)$(FT_H) $(HEAD)
 			@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS0)) $(SRC_PATH0)
@@ -175,10 +175,42 @@ check1 :
 			@mv -f $(FOLD1) $(LIBFOLD)
 			@rm -rf libft fill_it_files
 
-2if :
-		ifeq grep 'include "head.h"' $(FOLD0)$(SRCS0).c;
-		 echo coucou
-		endif
+IFORDER = $(shell ls | grep fill_it_files)
+IFPUSH = $(shell ls | grep srcs)
+
+order :
+ifeq ($(IFORDER), )
+	@echo “Non present”
+else
+	@sed -i '' "s~head.h~../../includes/head.h~g" $(patsubst %,$(FOLD0)%.c,$(SRCS))
+	@sed -i '' "s~../fill_it_files/head.h~../../includes/head.h~g" $(patsubst %, $(FOLD1)ft_%.c,$(TEMPORAIRE))
+	@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" ./annex/time/time_exe.h
+	@mkdir $(A_SRC_P) $(HEAD)
+	@mv -f $(FOLD0)$(FT_H) $(HEAD)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS0)) $(SRC_PATH0)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS1)) $(SRC_PATH1)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS2)) $(SRC_PATH2)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS3)) $(SRC_PATH3)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS4)) $(SRC_PATH4)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS5)) $(SRC_PATH5)
+	@mv -f $(patsubst %, $(FOLD0)%.c, $(SRCS6)) $(SRC_PATH6)
+	@mv -f $(FOLD1) $(LIBFOLD)
+	@rm -rf libft fill_it_files
+endif
+
+push :
+ifeq ($(IFPUSH), )
+	@echo “Non present”
+else
+	@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
+	@sed -i '' "s~../../includes/head.h~../fill_it_files/head.h~g" $(patsubst %, $(LIBFOLD)ft_%.c,$(TEMPORAIRE))
+	@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" ./annex/time/time_exe.h
+	@mkdir $(FOLD0) $(FOLD1)
+	@mv -f $(HEAD)/$(FT_H) $(FOLD0)
+	@mv -f $(A_SRC) $(FOLD0)
+	@mv -f $(LIBFOLD) ./
+	@rm -rf $(A_SRC_P) $(HEAD)
+endif
 
 malloc check :
 				grep -n -e "memalloc" -e "strdup" srcs/*/*
