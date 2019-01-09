@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 06:39:00 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:59:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 void	ft_putchar_color(char c)
 {
@@ -46,19 +46,19 @@ void	print_pieces(t_head *head, char **tab_result)
 
 	//printf("Print Pieces\n");
 	i = -1;
-	ft_putchar('\n');
-	ft_putchar('\n');
+//	ft_putchar('\n');
+//	ft_putchar('\n');
 	while (++i < head->size_square)
 	{
 		j = -1;
-		ft_putstr("\t\t\t");
+//		ft_putstr("\t\t\t");
 		while (++j < head->size_square)
-//			write(1, &(tab_result[i][j]), 1);
-			ft_putchar_color(tab_result[i][j]);
+			ft_putchar(tab_result[i][j]);
+//			ft_putchar_color(tab_result[i][j]);
 		ft_putchar('\n');
 	}
-	ft_putchar('\n');
-	ft_putchar('\n');
+//	ft_putchar('\n');
+//	ft_putchar('\n');
 	//printf("End of print color\n");
 }
 
@@ -118,7 +118,7 @@ void		show_pieces_binary(t_head *head, char **tab_result)
 		j_piece++;
 	}
 //	printf("Finish\n");
-	print_time(time_exe(__func__, cl(clock())));
+//	print_time(time_exe(__func__, cl(clock())));
 	print_pieces(head, tab_result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/27 02:04:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:26:05 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void		*ft_memalloc(size_t size);
 void		*ft_memset(void *str, int c, size_t n);
 char		*ft_strstr(const char *meule_de_foin, const char *aiguille);
 char		*ft_strdup(const char *src);
+char		*ft_strnstr(const char *meul, const char *aig, size_t len);
 
 //float_to_int.c
  int		nb_char_to_int(char	c);

@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 07:21:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:41:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 {

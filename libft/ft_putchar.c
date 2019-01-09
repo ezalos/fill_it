@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "../fill_it_files/head.h"
 
 void	ft_putchar(char c)
 {

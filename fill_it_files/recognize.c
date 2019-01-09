@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 07:46:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 14:53:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 static const char	*part10(char *s, int i, int div, int mod)
 {
@@ -19,7 +19,7 @@ static const char	*part10(char *s, int i, int div, int mod)
 			if (s[i + (5 * 2) - 1] == '#' && div < 2)
 				return ("Z110011120");
 			if (mod >= 2 && s[i + 5 - 2] == '#')
-				return ("O000100111");
+				return ("L310110212");
 			if (s[i + (5 * 2)] == '#' && div < 2)
 				return ("T110011121");
 			if (mod <= 2 && s[i + 5 + 1] == '#')
@@ -85,10 +85,10 @@ static const char	*part0(char *s, int i, int div, int mod)
 		{
 			if (mod <= 1 && s[i + 2 + 5] == '#')
 				return ("Z000011112");
-			if (s[i + 1 + 5] == '#')
+			if (s[i + 5] == '#')
+				return ("O000100111");
+			if (mod <= 2 && s[i + 1 + (2 * 5)] == '#')
 				return ("L200011121");
-			if (mod <= 1 && s[i + 2 + (2 * 5)] == '#' && div < 2)
-				return ("L310110212");
 		}
 	}
 	return (part1(s, i, div, mod));
@@ -100,15 +100,15 @@ const char			*recognize(char *s)
 	int		i;
 	int		div;
 	int		mod;
-	//const char	*tmp;
+//	const char	*tmp;
 
 	i = 0;
 	while (s[i] != '#')
 		i++;
 	div = i / 5;
 	mod = (i % 5);
-	//tmp = part0(s, i, div, mod);
-//	printf(_RED "RECOGNIZE: %d\n", i);
-	//return(tmp);
+//	tmp = part0(s, i, div, mod);
+//	printf(_RED "RECOGNIZE: %s\n", tmp);
+//	return(tmp);
 	return(part0(s, i, div, mod));
 }
