@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/02 17:02:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 03:58:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ char	**malloc_binary(t_head *head)
 	if (!(sol = (char**)malloc(sizeof(char*) * head->tt_pos_all)))
 		return (NULL); //need to protect if malloc has a pbm during allocation
 	i = -1;
-	line = binary_size(head->p + (head->size_square * head->size_square));
+	line = ((head->p + (head->size_square * head->size_square)) / 8) + 1;
 	while (++i < head->tt_pos_all)
 	{
 		if (!(sol[i] = (char*)malloc(sizeof(char) * line)))

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2018/12/27 02:29:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 04:10:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		create_tetro(const char *name, t_head **head, char p)
 	tetro->name = (char*)name;
 	tetro->next = NULL;
 	tetro->letter = p;
+//	printf("Piece %s create\n", tetro->name);
 	return (1);
 }
 
@@ -101,6 +102,7 @@ t_head	*read_check(char *fillit)
 //	printf("weird\n");
 	if (ft_check_input(fd, buf, &head))
 		return (head);
+//		printf("pbm\n");
 //	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
 	return (NULL);
 }

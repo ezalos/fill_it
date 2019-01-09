@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/02 19:28:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 05:00:34 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ void	print_advance(t_head *head, int deepness, int threshold)
 	i = 0;
 	if (head->p - deepness < threshold)
 		return ;
-//	while (++i < 10)
-//		printf("\n\n\n\n\n\n\n\n\n\n");
-	while (++i <= head->p)
+	while (++i < 10)
+		printf("\n\n\n\n\n\n\n\n\n\n");
+	i = 0;
+	while (++i <= head->p - threshold)
 		printf("%d %d/%d\n", i, find_sol(head, i)->current_path, find_sol(head, i)->nb_of_paths);
 }
 
@@ -105,7 +106,7 @@ int		solve_solution(t_head *head, int deepness)
 		sol_turn_mem(head, deepness);
 		while (++find_sol(head, deepness)->current_path < find_sol(head, deepness)->nb_of_paths)
 		{
-//			print_advance(head, deepness, -1);
+//			print_advance(head, deepness, 7);
 //			printf("%d %d/%d\n", deepness, find_sol(head, deepness)->current_path, find_sol(head, deepness)->nb_of_paths);
 //			print_soltion_link_debug(head, deepness, find_sol(head, deepness)->current_path);
 			if(!(deleter_of_binaries(head, deepness, find_sol(head, deepness)->current_path)))

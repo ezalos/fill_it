@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 03:42:59 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/09 05:02:28 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,6 +135,12 @@ testg7 :	are
 
 testg12 :	are
 		./$(NAME) ./annex/tests/good/fit/12_0
+
+testg9 :	are
+		./$(NAME) ./annex/tests/good/unfit/9_0
+
+testg8 :	are
+		./$(NAME) ./annex/tests/good/fit/8_0
 
 check1 :
 		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh

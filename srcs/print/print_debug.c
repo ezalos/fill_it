@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 23:00:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 04:01:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_putbinary_rev(char *str, int piece, int length)
 
 	i = 0;
 	stop = length;
-	length = binary_size(length);
+	length = (length / 8) + 1;
 	while (i < length)
 	{
 		j = 0;

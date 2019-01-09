@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/02 17:30:11 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/09 04:28:07 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	print_elements(t_time *tmp, double total, int tab)
 			printf("\t");
 				if ((int)(((tmp->t)/total) * 100) / 10 < 1)
 					printf(" ");
-			printf(_YELLOW "%d%%" _RESET, (int)(((tmp->t)* 100/total)));
+			printf(_YELLOW "%d%%" _RESET, (int)(((tmp->t)* 100/total) + 0.5));
 		}
 		else
 			printf("\t");
@@ -153,8 +153,13 @@ void	print_time(t_time *timee)
 			max_length = (ft_strlen(tmp->name) / 4);
 		tmp = tmp->next;
 	}
+	tmp = timee;
+	if (!(timee = (t_time*)malloc(sizeof(t_time))))
+		return ;
+	timee->t = 0;
+	timee->next = tmp;
 	sort_list(&timee);
-	print_elements(timee, total, max_length + 4);
+	print_elements(timee->next, total, max_length + 8);
 	print_total(total);
 }
 
