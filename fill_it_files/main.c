@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 /*void time_exe(const char* s, clock_t *t)
 {

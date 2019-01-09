@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 void	p_yx(t_piece *piece, int y, int x)//TO CHANGE
 {

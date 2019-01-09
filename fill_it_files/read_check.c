@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 int		create_tetro(const char *name, t_head **head, char p)
 {

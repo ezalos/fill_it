@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 void update_pieces(t_head *head)
 {

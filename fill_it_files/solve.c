@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/head.h"
+#include "head.h"
 
 int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 {
