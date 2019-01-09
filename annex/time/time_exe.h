@@ -13,7 +13,7 @@
 #ifndef TIME_EXE_H
 # define TIME_EXE_H
 
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 # include <time.h>
 # include <stdlib.h>
 # include <stdio.h>

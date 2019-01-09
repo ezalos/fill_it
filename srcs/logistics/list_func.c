@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 t_sol	*next_solve_step(t_head *head, int step)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 static const char	*part10(char *s, int i, int div, int mod)
 {

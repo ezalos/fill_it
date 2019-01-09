@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 void	write_solutions(t_head *head)
 {

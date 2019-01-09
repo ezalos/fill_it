@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../includes/head.h"
 
 int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
 {

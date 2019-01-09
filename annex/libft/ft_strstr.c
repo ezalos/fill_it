@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fill_it_files/head.h"
+#include "../../includes/head.h"
 
 char	*ft_strstr(const char *meule_de_foin, const char *aiguille)
 {
