@@ -14,25 +14,31 @@
 
 void	p_yx(t_piece *piece, int y, int x)//TO CHANGE
 {
-time_exe(__func__, cl(clock()));	piece->x_size = x;
+	time_exe(__func__, cl(clock()));
+	piece->y_size = y;
+	piece->x_size = x;
 }
 
 int		size_pieces(char s, int size)
 {
+	time_exe(__func__, cl(clock()));
 	if (s == 'O')
+		return ((size - 1) * (size - 1));
 	else if (s == 'I')
-time_exe(__func__, cl(clock()));		return ((size - 3) * size);
+		return ((size - 3) * size);
 	else
 		return ((size - 1) * (size - 2));
 }
 
 void	pieces_yx(t_piece *tmp)
 {
+	time_exe(__func__, cl(clock()));
 	if (tmp->name[0] == 'O')
 		p_yx(tmp, 2, 2);
+	else if (tmp->name[0] == 'I')
 	{
 		if (tmp->name[1] == '0')
-time_exe(__func__, cl(clock()));			p_yx(tmp, 4, 1);
+			p_yx(tmp, 4, 1);
 		else
 			p_yx(tmp, 1, 4);
 	}
@@ -54,13 +60,15 @@ time_exe(__func__, cl(clock()));			p_yx(tmp, 4, 1);
 
 int		coord_setup(t_piece *piece)
 {
+	time_exe(__func__, cl(clock()));
 	int		rot;
 	int		i;
 	int		x;
+	int		y;
 
 	i = -1;
 	while (++i <= 3)
-time_exe(__func__, cl(clock()));	{
+	{
 		if (!(piece->coord[i] = (t_coord*)malloc(sizeof(t_coord))))
 			return (0);
 	}

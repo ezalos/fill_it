@@ -14,7 +14,9 @@
 
 int		create_tetro(const char *name, t_head **head, char p)
 {
-time_exe(__func__, cl(clock()));
+	time_exe(__func__, cl(clock()));
+	t_piece *tetro;
+
 	if (name == NULL)
 		return (0);
 	if ((*head)->next == NULL)
@@ -35,22 +37,28 @@ time_exe(__func__, cl(clock()));
 	tetro->name = (char*)name;
 	tetro->next = NULL;
 	tetro->letter = p;
+//	printf("Piece %s create\n", tetro->name);
 	return (1);
+}
 
-//	printf("Piece %s create\n", tetro->name);int ft_check_input(int fd, char *buf, t_head **head)
+int ft_check_input(int fd, char *buf, t_head **head)
 {
+	time_exe(__func__, cl(clock()));
 	int 	i;
 	int		c_hash;
+	char	p;
 
 	while (read(fd, buf, 21) >= 20)
-time_exe(__func__, cl(clock()));	{
+	{
+//		printf("one turn \n");
 		i = 0;
 		c_hash = 0;
 //		write(1, buf, 21);
+		while (i < 21)
 		{
 			if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
 			{
-//		printf("one turn \n");				if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
+				if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
 					return (0); // ft_display_error(int error);
 				i++;
 			}
@@ -70,20 +78,31 @@ time_exe(__func__, cl(clock()));	{
 		if (!create_tetro(recognize(buf), head, (*head)->p++ + 'A'))
 			return (0);
 	}
+//	printf("OUT OF WHILE\n");
 	return (1);
 }
 
 t_head	*read_check(char *fillit)
+{
+	time_exe(__func__, cl(clock()));
 	char 	*buf;
 	t_head 	*head;
 	int 	fd;
 
-//	printf("OUT OF WHILE\n");	if (!(buf = (char *)malloc(sizeof(char) * 21)))
+	if (!(buf = (char *)malloc(sizeof(char) * 21)))
+		return (NULL);
+//	printf("mdr\n");
 	if (!(fd = open((const char*)fillit, O_RDONLY)))
 		return (NULL);
+//	printf("lol\n");
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 		return (NULL);
 	head->next = NULL;
-time_exe(__func__, cl(clock()));	head->p = 0;
+	head->p = 0;
+//	printf("weird\n");
+	if (ft_check_input(fd, buf, &head))
 		return (head);
+//		printf("pbm\n");
+//	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
 	return (NULL);
+}

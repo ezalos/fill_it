@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 08:05:10 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/09 10:43:17 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -228,6 +228,5 @@ grep_ :
 hide_ :
 		sed -i '' '/printf/d' $(A_SRC)
 		sed -i '' '/time/d' $(A_SRC)
-
 
 .PHONY : clean fclean re all d git check1
