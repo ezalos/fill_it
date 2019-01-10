@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/09 17:42:04 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/10 16:28:57 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -155,7 +155,7 @@ test8 :	re
 		./$(NAME) ./annex/tests/good/fit/8_0
 
 check :
-		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh
+		bash /Users/aboitier/work/projects/42FileChecker/42FileChecker.sh
 
 IFORDER = $(shell ls | grep fill_it_files)
 IFPUSH = $(shell ls | grep srcs)

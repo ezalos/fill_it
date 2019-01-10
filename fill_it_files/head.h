@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/09 17:26:05 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/10 22:39:30 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,14 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path);
 //un peu de tout ?
 int			yx_to_j(int y, int x);
 t_head		*read_check(char *fillit);
-const char	*recognize(char *s);
+const char	*recog(char *s);
 int			float_to_int(float i);
 float		f_sqrt(int nb, int limite);
 int			size_square(int p);
 void 		ft_bzero(void *s, int n);
 void		*ft_memalloc(size_t size);
-int			create_tetro(const char *name, t_head **head, char p);
+int			cre_tetro(const char *name, t_head **head, char p);
+int			check_two(char *buf, int i, int c_hash);
 t_piece		*ft_lstnew(const char *name, size_t name_size);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
 t_sol		*next_solve_step(t_head *head, int step);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 14:53:08 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/10 22:41:45 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static const char	*part0(char *s, int i, int div, int mod)
 	return (part1(s, i, div, mod));
 }
 
-const char			*recognize(char *s)
+const char			*recog(char *s)
 {
 	time_exe(__func__, cl(clock()));
 	int		i;
