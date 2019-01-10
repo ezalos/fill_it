@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 17:59:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:39:46 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	print_pieces(t_head *head, char **tab_result)
 	i = -1;
 //	ft_putchar('\n');
 //	ft_putchar('\n');
-	while (++i < head->size_square)
+	while (++i < head->sqsize)
 	{
 		j = -1;
 //		ft_putstr("\t\t\t");
-		while (++j < head->size_square)
+		while (++j < head->sqsize)
 			ft_putchar(tab_result[i][j]);
 //			ft_putchar_color(tab_result[i][j]);
 		ft_putchar('\n');
@@ -103,13 +103,13 @@ void		show_pieces_binary(t_head *head, char **tab_result)
 	while (line < head->tt_pos_all && j_piece < head->p)
 	{
 //		printf("BIG %d<%d && j_piece < head->p\n", line, head->tt_pos_all, j_piece, head->p);
-		while (find_sol(head, head->p)->y_all_PxNx[line] != 1)
+		while (find_sol(head, head->p)->y_all_pxnx[line] != 1)
 			line++;
 //		printf("\t%d\n", line);
 		i = 0;
 		while (++i <= 4)
 		{
-			block = pos_one_binary(head->solution[line], head->p + (head->size_square * head->size_square), i) - head->p;
+			block = pos_one_binary(head->solution[line], head->p + (head->sqsize * head->sqsize), i) - head->p;
 //			printf("\t\tBlock[%d]=%d\n", i, block);
 			tab_result[j_to_yx(head, block, 0)][j_to_yx(head, block, 1)] = j_piece + 'A';
 		}
@@ -136,7 +136,7 @@ void		show_pieces(t_head *head, char **tab_result)
 	while (line < head->tt_pos_all && j_piece < head->p)
 	{
 //		//printf("\tBig While\n");
-		while (find_sol(head, head->p)->y_all_PxNx[line] != 1)
+		while (find_sol(head, head->p)->y_all_pxnx[line] != 1)
 			line++;
 		//printf("\tSolution line %d found\n", line);
 		while (head->solution[line][j_piece] != 1)
@@ -144,13 +144,13 @@ void		show_pieces(t_head *head, char **tab_result)
 		//printf("\tPiece %d has been identified!\n", j_piece);
 		block = 0;
 //		quatre = 0;
-		while (block + 1 < (head->size_square * head->size_square)) //&& quatre < 4)
+		while (block + 1 < (head->sqsize * head->sqsize)) //&& quatre < 4)
 		{
 //			//printf("\t\tWhile block\n");
-			while (block + 1 < (head->size_square * head->size_square) && head->solution[line][head->p + block] != 1)
+			while (block + 1 < (head->sqsize * head->sqsize) && head->solution[line][head->p + block] != 1)
 				block++;
 			//printf("\t\tNow on block % d\n", block);
-			if (block + 1 < (head->size_square * head->size_square))
+			if (block + 1 < (head->sqsize * head->sqsize))
 			{
 				//printf("\t\t\tLetter %c | y:%d\tx:%d\t| j:%d\n",find_piece(head, j_piece + 1)->letter, j_to_yx(head, block, 0), j_to_yx(head, block, 1), block);
 				//printf("\t\t\t\tWrite pbm ?\n");
@@ -175,7 +175,7 @@ void	free_print_result(t_head *head, char ***tab_result)
 	int		i;
 
 	i = -1;
-	while (++i < head->size_square)
+	while (++i < head->sqsize)
 	{
 		free((*tab_result)[i]);
 		(*tab_result)[i] = NULL;
@@ -191,17 +191,17 @@ int		print_result(t_head *head)
 	int		i;
 
 //	//printf("Print Result\n");
-	if (!(tab_result = (char**)malloc((head->size_square) * sizeof(char*))))
+	if (!(tab_result = (char**)malloc((head->sqsize) * sizeof(char*))))
 		return (0);
 		i = -1;
-	while (++i < head->size_square)
+	while (++i < head->sqsize)
 	{
-		if (!(tab_result[i] = ft_memalloc((head->size_square + 1))))
+		if (!(tab_result[i] = ft_memalloc((head->sqsize + 1))))
 			return (0);
-		ft_memset(tab_result[i], 46, (size_t) head->size_square);
-		tab_result[i][head->size_square] = '\0';
+		ft_memset(tab_result[i], 46, (size_t) head->sqsize);
+		tab_result[i][head->sqsize] = '\0';
 	}
-	//printf("tab_result[%d][%d + 1] created !\n", head->size_square, head->size_square);
+	//printf("tab_result[%d][%d + 1] created !\n", head->sqsize, head->sqsize);
 	show_pieces_binary(head, tab_result);
 	free_print_result(head, &tab_result);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 16:46:48 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 05:42:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:42:03 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_sol	*next_solve_step(t_head *head, int step)
 			return (NULL);
 		head->sol = solution;
 		solution->sol = NULL;
-		solution->y_all_PxNx = ft_strdup(head->y_all_PxNx);
+		solution->y_all_pxnx = ft_strdup(head->y_all_pxnx);
 	//	printf("First link of solve created\n");
 		return (solution);
 	}
@@ -36,9 +36,9 @@ t_sol	*next_solve_step(t_head *head, int step)
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
 			return (NULL);
 		tmp->sol = solution;
-		if (!(tmp->sol->y_all_PxNx = ft_memalloc(head->tt_pos_all)))
+		if (!(tmp->sol->y_all_pxnx = ft_memalloc(head->tt_pos_all)))
 			return (NULL);
-		ft_memcpy(tmp->sol->y_all_PxNx, tmp->y_all_PxNx, head->tt_pos_all);
+		ft_memcpy(tmp->sol->y_all_pxnx, tmp->y_all_pxnx, head->tt_pos_all);
 		tmp->sol->sol = NULL;
 //		printf("Last link of solve created\n");
 		return (solution);

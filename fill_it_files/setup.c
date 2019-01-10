@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/02 19:46:06 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:30:49 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	write_solutions(t_head *head)
 	{
 		y = -1;
 		PnNx = -1;
-		while (++y <= head->size_square - piece->y_size)
+		while (++y <= head->sqsize - piece->y_size)
 		{
 			x = -1;
-			while (++x <= head->size_square - piece->x_size)
+			while (++x <= head->sqsize - piece->x_size)
 			{
 				head->solution[piece->tt_pos - piece->pc_pos + ++PnNx][current_piece] = 1;//need to write which piece is currently writen +1 & -1 as down
 				i = -1;
@@ -48,10 +48,10 @@ void	write_solutions(t_head *head)
 //we need to do it on last time for the last piece, it's just a copy/paste
 	y = -1;
 	PnNx = -1;
-	while (++y < head->size_square - piece->y_size + 1)
+	while (++y < head->sqsize - piece->y_size + 1)
 	{
 		x = -1;
-		while (++x < head->size_square - piece->x_size + 1)// <= || < ?
+		while (++x < head->sqsize - piece->x_size + 1)// <= || < ?
 		{
 			head->solution[piece->tt_pos - piece->pc_pos + ++PnNx][current_piece] = 1;//need to write which piece is currently writen +1 & -1 as down
 			i = -1;
@@ -78,7 +78,7 @@ void	setup_pieces(t_head *head)
 	{
 		//printf("WESH\n");
 		pieces_yx(find_piece(head, i));
-		find_piece(head, i)->pc_pos = size_pieces(find_piece(head, i)->name[0], head->size_square);
+		find_piece(head, i)->pc_pos = size_pieces(find_piece(head, i)->name[0], head->sqsize);
 //		piece_placement(tmp); not sure about the purpose of this function
 		if (i == 1)
 			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos;
@@ -104,7 +104,7 @@ char	**malloc_solution(t_head *head)
 	if (!(sol = (char**)malloc(sizeof(char*) * (head->tt_pos_all))))
 		return (NULL); //need to protect if malloc has a pbm during allocation
 	i = -1;
-	line = head->p + (head->size_square * head->size_square) + 1;
+	line = head->p + (head->sqsize * head->sqsize) + 1;
 	while (++i < head->tt_pos_all)
 	{
 		//printf("%d\n", i);
@@ -125,13 +125,13 @@ t_head	*setup_head_sol_part(t_head *head)
 
 	if (!(head->solution = malloc_binary(head)))
 		return (NULL);
-	if (!(head->y_all_PxNx = (char*)malloc(sizeof(char) * (head->tt_pos_all))))
+	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) * (head->tt_pos_all))))
 		return (NULL);
 	i = -1;
 	while (++i < head->tt_pos_all + 1)
-		head->y_all_PxNx[i] = 1;
+		head->y_all_pxnx[i] = 1;
 	//	head->sol->possible_solutions = 0;
-	head->the_choosen_configuration = 1;
+	head->config = 1;
 	write_binary(head);
 	i = 0;
 	while (i <= head->p)// one less might be better
@@ -144,8 +144,8 @@ t_head	*setup_(t_head *head)
 {
 	time_exe(__func__, cl(clock()));
 	//printf("Nb of pieces = %d\n", head->p);
-	head->size_square = (float_to_int(f_sqrt(head->p, 0) * 2));
-	//printf("size_square = %d\n", head->size_square);
+	head->sqsize = (float_to_int(f_sqrt(head->p, 0) * 2));
+	//printf("sqsize = %d\n", head->sqsize);
 	setup_pieces(head);
 	if (!(setup_head_sol_part(head)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 04:01:18 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:38:08 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	print_grid_j(t_head *head)
 
 	y = -1;
 	printf(_GREEN"~~~~~~~~~~~~~~~~~YX_TO_J~~~~~~~~~~~~~~~~~\n");
-	while (++y < head->size_square)
+	while (++y < head->sqsize)
 	{
 		x = -1;
-		while (++x < head->size_square)
+		while (++x < head->sqsize)
 			printf(_GREEN "%d\t", yx_to_j(y, x));
 		printf("\n" _RESET);
 	}
@@ -122,7 +122,7 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path)
 			{
 				j = -1;
 				//printf("%d|", i);
-				c = tmp->y_all_PxNx[i] + 48;
+				c = tmp->y_all_pxnx[i] + 48;
 				if (c == '0')
 					write(1, "\x1b[31m", 5);
 				else
@@ -131,9 +131,9 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path)
 				write(1, "\t", 1);
 				write(1, &c, 1);
 				write(1, "-->", 3);
-				ft_putbinary_rev(head->solution[i], head->p, head->p + (head->size_square * head->size_square) - 1);
+				ft_putbinary_rev(head->solution[i], head->p, head->p + (head->sqsize * head->sqsize) - 1);
 
-/*				while (++j < head->p + (head->size_square * head->size_square))
+/*				while (++j < head->p + (head->sqsize * head->sqsize))
 				{
 					c = (char)(head->solution[i][j] + 48);
 					write(1, &c, 1);
@@ -169,7 +169,7 @@ void		print_head_soltion_debug(t_head *head)
 	{
 		j = -1;
 		//printf("%d|", i);
-		c = head->y_all_PxNx[i] + 48;
+		c = head->y_all_pxnx[i] + 48;
 		if (c == '0')
 			write(1, "\x1b[34m", 5);
 		else
@@ -178,9 +178,9 @@ void		print_head_soltion_debug(t_head *head)
 		write(1, "\t", 1);
 		write(1, &c, 1);
 		write(1, "-->", 3);
-		ft_putbinary_rev(head->solution[i], head->p, head->p + (head->size_square * head->size_square) - 1);
+		ft_putbinary_rev(head->solution[i], head->p, head->p + (head->sqsize * head->sqsize) - 1);
 
-/*		while (++j < head->p + (head->size_square * head->size_square))
+/*		while (++j < head->p + (head->sqsize * head->sqsize))
 		{
 			c = (char)(head->solution[i][j] + 48);
 			write(1, &c, 1);
@@ -199,11 +199,11 @@ void		print_head_debug(t_head *head)
 {
 	time_exe(__func__, cl(clock()));
 	printf(_RED "\nSTRUCT HEAD\n");
-	printf("\tSize square:\t\t%d -> %d\t\t(%d)\n", head->size_square, head->size_square * head->size_square, head->size_square * head->size_square + head->p);
+	printf("\tSize square:\t\t%d -> %d\t\t(%d)\n", head->sqsize, head->sqsize * head->sqsize, head->sqsize * head->sqsize + head->p);
 	printf("\tNb of pieces:\t\t%d\n", head->p);
-	printf("\tSum of all PxNx:\t%d\n", head->tt_pos_all);
+	printf("\tSum of all pxnx:\t%d\n", head->tt_pos_all);
 	//printf("\tPossible soltions: %d\n", head->possible_solutions);
-	printf("\tThe choosen config:\t%d\n", head->the_choosen_configuration);
+	printf("\tThe choosen config:\t%d\n", head->config);
 	//printf("\t: %d\n", head->);
 	printf("\n\n\n");
 }

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/10 16:28:57 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/11 00:19:08 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ SRCS2 = setup setup_pieces
 SRCS3 =	solve binary
 SRCS4 = print_debug printing_the_result
 SRCS5 = free_all
-SRCS6 = float_to_int list_func
+SRCS6 = float_to_int list_func list_func2
 
 TIME_EXE = ./annex/time/time_exe.c
 

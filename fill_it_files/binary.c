@@ -6,54 +6,38 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 05:26:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:43:57 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-int		deleter_of_binaries(t_head *head, int deepness, int position_choice)
+int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 {
 	time_exe(__func__, cl(clock()));
-	int the_competitor;
-	int	position_review;
-	int	the_one_in_the_champion;
+	int	comp;
+	int	pos_rev;
+	int	champ;
 
-	position_review = 0;
-	the_one_in_the_champion = 0;
-	head->the_choosen_configuration = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
-	while (++head->the_choosen_configuration <= find_piece(head, deepness)->tt_pos)
-		if (find_sol(head, deepness)->y_all_PxNx[head->the_choosen_configuration] == 1)
+	pos_rev = 0;
+	champ = 0;
+	head->config = find_piece(head, depth)->tt_pos - find_piece(head, depth)->pc_pos - 1;
+	while (++head->config <= find_piece(head, depth)->tt_pos)
+		if (find_sol(head, depth)->y_all_pxnx[head->config] == 1)
 		{
 			time_exe(__func__, cl(clock()));
-			if (position_review < position_choice)
-				position_review++;
+			if (pos_rev < pos_choy)
+				pos_rev++;
 			else
 			{
-				the_competitor = -1;
-				while (++the_competitor < head->tt_pos_all)
-					if (the_competitor != head->the_choosen_configuration && binary_string_and(head->solution[head->the_choosen_configuration], head->solution[the_competitor], head->p + (head->size_square * head->size_square)))
-						find_sol(head, deepness)->y_all_PxNx[the_competitor] = 0;
+				comp = -1;
+				while (++comp < head->tt_pos_all)
+					if (comp != head->config && binstrand(head->solution[head->config], head->solution[comp], head->p + (head->sqsize * head->sqsize)))
+						find_sol(head, depth)->y_all_pxnx[comp] = 0;
 				time_exe(__func__, cl(clock()));
 				return (1);
 			}
 		}
-	return (0);
-}
-
-char	binary_string_and(char *s1, char *s2, size_t length)
-{
-	time_exe(__func__, cl(clock()));
-	size_t i;
-
-	i = 0;
-	length = (length / 8) + 1;
-	while (i < length)
-	{
-		if (s1[i] & s2[i])
-			return(1);
-		i++;
-	}
 	return (0);
 }
 
@@ -72,37 +56,7 @@ char	binary_string_and_start(char *s1, char *s2, size_t length, size_t start)
 	if (sa << a_del & sb << a_del)
 		return (1);
 	r_del++;
-	return (binary_string_and(s1 + r_del, s2 + r_del, length));
-}
-
-int	ft_iterative_power(int nb, int power)
-{
-	time_exe(__func__, cl(clock()));
-	int x;
-
-	x = 1;
-	if (power == 0)
-		return (1);
-	if (power < 0)
-		return (0);
-	while (power-- > 0)
-		x *= nb;
-	return (x);
-}
-
-void	binary_to_str(char *binary, int size, int binary_position)
-{
-	time_exe(__func__, cl(clock()));
-	int one;
-
-	one = 1;
-//	ft_putbinary_rev(binary, 4, size);
-//	printf("\n");
-//	one = one << (binary_position % 8);
-	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
-//	printf("\n%d\t[%d]\t[%d]\t\tone: %d\tbinary: %d\n", binary_position, binary_position / 8, binary_position % 8, one, binary[binary_size(binary_position)]);
-//	ft_putbinary_rev(binary, 4, size);
-//	printf("\n\n");
+	return (binstrand(s1 + r_del, s2 + r_del, length));
 }
 
 void	write_binary(t_head *head)
@@ -111,39 +65,31 @@ void	write_binary(t_head *head)
 	t_piece *piece;
 	int	i;
 	int current_piece;
-	int	PnNx;
+	int	pnnx;
 	int y;
 	int x;
 
 	current_piece = 0;
 	piece = head->next;
-	while (piece != NULL) //for each piece convert y and x of possibilty to j, and write 1 to the 4 coord of piece
+	while (piece != NULL)
 	{
 		y = -1;
-		PnNx = -1;
-		while (++y <= head->size_square - piece->y_size)
+		pnnx = -1;
+		while (++y <= head->sqsize - piece->y_size)
 		{
 			x = -1;
-			while (++x <= head->size_square - piece->x_size)
+			while (++x <= head->sqsize - piece->x_size)
 			{
-				binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + ++PnNx], head->p + (head->size_square * head->size_square), current_piece);//need to write which piece is currently writen +1 & -1 as down
+				binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + ++pnnx], head->p + (head->sqsize * head->sqsize), current_piece);
 				i = -1;
 				while (++i < 4)
-					binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + PnNx], head->p + (head->size_square * head->size_square),
+					binary_to_str(head->solution[piece->tt_pos - piece->pc_pos + pnnx], head->p + (head->sqsize * head->sqsize),
 					head->p + yx_to_j(piece->coord[i]->y + y, piece->coord[i]->x + x));
-  				//Maxwell idea to implement here
 			}
 		}
 		piece = piece->next;
 		current_piece++;
 	}
-//we need to do it on last time for the last piece, it's just a copy/paste
-}
-
-int		binary_size(int length)
-{
-	time_exe(__func__, cl(clock()));
-	return ((length / 8) + 1);
 }
 
 char	**malloc_binary(t_head *head)
@@ -158,7 +104,7 @@ char	**malloc_binary(t_head *head)
 	if (!(sol = (char**)malloc(sizeof(char*) * head->tt_pos_all)))
 		return (NULL); //need to protect if malloc has a pbm during allocation
 	i = -1;
-	line = ((head->p + (head->size_square * head->size_square)) / 8) + 1;
+	line = ((head->p + (head->sqsize * head->sqsize)) / 8) + 1;
 	while (++i < head->tt_pos_all)
 	{
 		if (!(sol[i] = (char*)malloc(sizeof(char) * line)))

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/10 22:39:30 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:42:15 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct	s_piece
 
 typedef struct	s_sol
 {
-	char		*y_all_PxNx;
+	char		*y_all_pxnx;
 //	char		*x_P_J;
 	int			current_path;
 	int			nb_of_paths;
@@ -78,12 +78,12 @@ typedef struct	s_sol
 typedef struct	s_head
 {
 	char				**solution;
-	int					size_square;
+	int					sqsize;
 	int					p; //number of pieces
-	char				*y_all_PxNx;
+	char				*y_all_pxnx;
 	int					tt_pos_all;
-	int					possible_solutions;//initialize to 0
-	int					the_choosen_configuration;//initialize to 0
+	int					pos_sol;//initialize to 0
+	int					config;//initialize to 0
 //	int					y;//initialize to 0
 	t_sol		*sol;
 	t_piece		*next;
@@ -109,7 +109,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
 t_sol		*next_solve_step(t_head *head, int step);
 t_piece		*find_piece(t_head *head, int piece);
 t_sol		*find_sol(t_head *head, int sol);
-
+char		binstrand(char *s1, char *s2, size_t length);
 //print tab_result
 int			print_result(t_head *head);
 

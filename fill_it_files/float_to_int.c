@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/26 16:44:07 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/11 00:41:15 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		j_to_yx(t_head *head, int j, int o)
 	int		y;
 
 	y = -1;
-	while (++y <= head->size_square)
+	while (++y <= head->sqsize)
 	{
 		x = -1;
-		while (++x <= head->size_square)
+		while (++x <= head->sqsize)
 		{
 			if (j == yx_to_j(y, x))
 			{
