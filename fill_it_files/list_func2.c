@@ -6,9 +6,10 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 23:09:05 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/11 00:33:32 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/11 19:05:39 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "head.h"
 
 int		ft_iterative_power(int nb, int power)
@@ -47,7 +48,7 @@ void	binary_to_str(char *binary, int size, int binary_position)
 	//  printf("\n\n");
 }
 
-char    binstrand(char *s1, char *s2, size_t length)
+char	binstrand(char *s1, char *s2, size_t length)
 {
 	time_exe(__func__, cl(clock()));
 	size_t i;
@@ -57,9 +58,8 @@ char    binstrand(char *s1, char *s2, size_t length)
 	while (i < length)
 	{
 		if (s1[i] & s2[i])
-			return(1);
+			return (1);
 		i++;
 	}
 	return (0);
 }
-
