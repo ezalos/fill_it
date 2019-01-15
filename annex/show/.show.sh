@@ -19,12 +19,18 @@ string[$i]="$(cut -d ':' -f3 <<< $line)"
 }
 done < .gres.txt
 
+#declare -i i=0
+#if [ wc -l $target -g $lno ]; then
+#	sed -e
+
+
 declare -i i=0
 while IFS=: read -r target lno str
 do	file[i]="$target"
 	line_nb[i]="$lno"
 	str="${str//\\/\\\\}"
 	string[i++]="$str"
-	sed -i '' "$lno i\\$str" >> $target
-	i += 1
+	sed -i '' "$lno i\\
+	$str" $target
+#	((i++))
 done < .gres.txt
