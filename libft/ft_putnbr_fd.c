@@ -1,34 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:11:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 13:48:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 17:29:00 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/09 14:14:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static void	recur(int n, int fd)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (!*needle)
-		return ((char*)haystack);
-	while (len > 0 && *haystack)
+	if (n != 0)
 	{
-		j = 0;
-		while (haystack[j] == needle[j] && haystack[j] && needle[j] && j < len)
-			j++;
-		if (!needle[j])
-			return ((char*)haystack);
-		len--;
-		haystack++;
+		recur(n / 10, fd);
+		ft_putchar_fd((n % 10) + '0', fd);
 	}
-	return (NULL);
+}
+
+void		ft_putnbr_fd(int n, int fd)
+{
+	int		neg;
+
+	neg = 1;
+	if (n >= 0)
+		neg = 0;
+	if (n == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return ;
+	}
+	if (neg == 1)
+	{
+		if (n == -2147483648)
+		{
+			ft_putstr_fd("-2147483648", fd);
+			return ;
+		}
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	recur(n, fd);
 }

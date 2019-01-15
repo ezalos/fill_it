@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_patoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:11:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 13:48:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/11 14:33:18 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/11 14:33:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int		ft_patoi(const char *str)
 {
-	size_t	i;
-	size_t	j;
+	long long	nb;
+	int			num;
+	int			neg;
 
-	i = 0;
-	if (!*needle)
-		return ((char*)haystack);
-	while (len > 0 && *haystack)
+	neg = 1;
+	num = 0;
+	nb = 0;
+	if (str == NULL || *str == '\0')
+		return (0);
+	while (ft_char_srch(*str, "\t\n\r\v\f \0"))
+		str++;
+	if (*str == '-')
 	{
-		j = 0;
-		while (haystack[j] == needle[j] && haystack[j] && needle[j] && j < len)
-			j++;
-		if (!needle[j])
-			return ((char*)haystack);
-		len--;
-		haystack++;
+		neg = -neg;
+		str++;
 	}
-	return (NULL);
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		nb = (nb * 10) + (*(str++) - '0');
+	nb *= neg;
+	num = (int)nb;
+	return (num);
 }

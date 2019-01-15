@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_fsqrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:11:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 13:48:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/07 15:14:46 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/07 15:15:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+float	ft_fsqrt(int nb, int limite)
 {
-	size_t	i;
-	size_t	j;
+	float	x;
+	float	n;
+	int		i;
 
+	n = (float)nb;
+	if (nb <= 0)
+		return (0);
 	i = 0;
-	if (!*needle)
-		return ((char*)haystack);
-	while (len > 0 && *haystack)
-	{
-		j = 0;
-		while (haystack[j] == needle[j] && haystack[j] && needle[j] && j < len)
-			j++;
-		if (!needle[j])
-			return ((char*)haystack);
-		len--;
-		haystack++;
-	}
-	return (NULL);
+	x = n / 2;
+	if (limite == 0)
+		limite = 30;
+	while (--limite)
+		x = (x + (n / x)) / 2;
+	return (x);
 }

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_find_lsth.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:11:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 13:48:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/12/04 14:37:06 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/12/04 14:43:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+t_list	*ft_find_lsth(t_list *lst, size_t umpteenth)
 {
+	t_list	*tmp;
 	size_t	i;
-	size_t	j;
 
-	i = 0;
-	if (!*needle)
-		return ((char*)haystack);
-	while (len > 0 && *haystack)
+	tmp = lst->next;
+	if (umpteenth == 0)
 	{
-		j = 0;
-		while (haystack[j] == needle[j] && haystack[j] && needle[j] && j < len)
-			j++;
-		if (!needle[j])
-			return ((char*)haystack);
-		len--;
-		haystack++;
+		while (tmp->next)
+			tmp = tmp->next;
+		return (tmp);
 	}
-	return (NULL);
+	i = 0;
+	while (i <= umpteenth)
+	{
+		if (!tmp->next)
+			return (NULL);
+		tmp = tmp->next;
+		i++;
+	}
+	return (tmp);
 }

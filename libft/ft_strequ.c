@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 17:11:08 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 13:48:16 by ldevelle         ###   ########.fr       */
+/*   Created: 2018/11/12 11:42:07 by ldevelle          #+#    #+#             */
+/*   Updated: 2018/12/11 14:12:08 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	if (!*needle)
-		return ((char*)haystack);
-	while (len > 0 && *haystack)
+	if (s1 == NULL && s2 == NULL)
+		return (1);
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	while (*s1 == *s2)
 	{
-		j = 0;
-		while (haystack[j] == needle[j] && haystack[j] && needle[j] && j < len)
-			j++;
-		if (!needle[j])
-			return ((char*)haystack);
-		len--;
-		haystack++;
+		if (*s1 == *s2 && *s1 == '\0')
+			return (1);
+		s1++;
+		s2++;
 	}
-	return (NULL);
+	return (0);
 }

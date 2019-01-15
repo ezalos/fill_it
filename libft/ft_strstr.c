@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 17:10:54 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 03:15:09 by ldevelle         ###   ########.fr       */
+/*   Updated: 2018/11/20 19:35:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fill_it_files/head.h"
+#include "libft.h"
 
 char	*ft_strstr(const char *meule_de_foin, const char *aiguille)
 {
