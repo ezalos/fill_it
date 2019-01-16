@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 17:59:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:58:13 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int		main(int ac, char **av)
 	int		check;
 
 	if (ac != 2)
+	{
+		ft_putendl("usage: ./fillit ./path/file");
 		return (0);
+	}
 	time_exe(__func__, cl(clock()));
 	if (!(head = read_check(av[1])))
 	{

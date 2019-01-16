@@ -6,17 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/11 00:41:15 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:00:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
-
-int		float_to_int(float i)
-{
-	time_exe(__func__, cl(clock()));
-	return ((int)((i / 1) + 0.99999));
-}
 
 int		ft_char_srch(char src, char *dlt)
 {
@@ -70,23 +64,4 @@ int		nb_char_to_int(char	c)
 	if (c < '0' || c > '9')
 		return (-1);
 	return (c - '0');
-}
-
-float	f_sqrt(int nb, int limite)
-{
-	time_exe(__func__, cl(clock()));
-	float	x;
-	float	n;
-	int		i;
-
-	n = (float)nb;
-	if (nb <= 0)
-		return (0);
-	i = 0;
-	x = n / 2;
-	if (limite == 0)
-		limite = 30;
-	while (--limite)
-		x = (x + (n / x)) / 2;
-	return (x);
 }

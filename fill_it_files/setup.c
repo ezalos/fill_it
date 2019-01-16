@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/11 00:30:49 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:00:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ t_head	*setup_(t_head *head)
 {
 	time_exe(__func__, cl(clock()));
 	//printf("Nb of pieces = %d\n", head->p);
-	head->sqsize = (float_to_int(f_sqrt(head->p, 0) * 2));
+	head->sqsize = (ft_round_upper(ft_fsqrt(head->p, 0) * 2));
 	//printf("sqsize = %d\n", head->sqsize);
 	setup_pieces(head);
 	if (!(setup_head_sol_part(head)))

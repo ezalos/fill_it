@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/11 00:42:15 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:59:37 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "../libft/libft.h"
 
 //COLORS IN PRINTF
 # define COLOR
@@ -98,36 +99,18 @@ int			yx_to_j(int y, int x);
 t_head		*read_check(char *fillit);
 const char	*recog(char *s);
 int			float_to_int(float i);
-float		f_sqrt(int nb, int limite);
 int			size_square(int p);
-void 		ft_bzero(void *s, int n);
 void		*ft_memalloc(size_t size);
 int			cre_tetro(const char *name, t_head **head, char p);
 int			check_two(char *buf, int i, int c_hash);
-t_piece		*ft_lstnew(const char *name, size_t name_size);
-void		*ft_memcpy(void *dest, const void *src, size_t n);
 t_sol		*next_solve_step(t_head *head, int step);
 t_piece		*find_piece(t_head *head, int piece);
 t_sol		*find_sol(t_head *head, int sol);
 char		binstrand(char *s1, char *s2, size_t length);
-//print tab_result
 int			print_result(t_head *head);
-
-//libft
-size_t		ft_strlen(const char *s);
-void		ft_putnbr(int n);
-void		ft_putchar(char c);
-void		ft_putstr(char const *s);
-void		*ft_memcpy(void *dest, const void *src, size_t n);
-void		*ft_memalloc(size_t size);
-void		*ft_memset(void *str, int c, size_t n);
-char		*ft_strstr(const char *meule_de_foin, const char *aiguille);
-char		*ft_strdup(const char *src);
-char		*ft_strnstr(const char *meul, const char *aig, size_t len);
 
 //float_to_int.c
  int		nb_char_to_int(char	c);
- int		ft_char_srch(char src, char *dlt);
  int		j_to_yx(t_head *head, int j, int o);
 
 // setup.pieces

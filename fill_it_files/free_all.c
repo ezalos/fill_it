@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/11 00:40:37 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:00:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void update_pieces(t_head *head)
 void free_linked_sol(t_sol **sol)
 {
 //	printf("free_linkedsol\n");
-	if (*sol)
+	if (sol && *sol)
 	{
 		free_linked_sol(&((*sol)->sol));
 		(*sol)->sol = NULL;
@@ -60,7 +60,26 @@ void free_solsol(t_head *head)
 	head->sol = NULL;
 }
 
+void	free_head(t_head **head)
+{
+	
+}
 
+int		free_error_int(t_head **head, char **buf)
+{
+	ft_putendl("error\n");
+	if (head && *head)
+		free_head(head);
+	if (buf && *buf)
+		ft_strdel(buf);
+	return (-1);
+}
+
+void	*free_error_ptr(t_head **head, char **buf)
+{
+	ft_putendl("error\n");
+	return (NULL);
+}
 
 t_head	*restart_and_grow(t_head *head)
 {

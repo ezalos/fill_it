@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/10 22:39:41 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:57:52 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 		i = 0;
 		c_hash = 0;
 		c_hash = check_two(buf, i, c_hash);
-		if (!cre_tetro(recog(buf), head, (*head)->p++ + 'A') || c_hash != 4)
+		if (c_hash != 4 || !cre_tetro(recog(buf), head, (*head)->p++ + 'A'))
 			return (0);
 		if (ret != 0)
 			dest = ret;
@@ -94,17 +94,27 @@ t_head	*read_check(char *fillit)
 	t_head	*head;
 	int		fd;
 
+	head = NULL;
+	buf = NULL;
+	if (0 > (fd = open((const char*)fillit, O_RDONLY)))
+	{
+		ft_putendl("usage: ./fillit ./path/file");
+		return (NULL);
+	}
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
+	{
+		ft_putendl("error\n");
 		return (NULL);
-	if (!(fd = open((const char*)fillit, O_RDONLY)))
-		return (NULL);
+	}
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
+	{
+		ft_putendl("error\n");
 		return (NULL);
+	}
 	head->next = NULL;
 	head->p = 0;
 	if (ft_check_input(fd, buf, &head))
 		return (head);
-	ft_putstr("error\n");
-//	printf(_YELLOW "FT_READ RETURN 0\n" _RESET);
+	ft_putendl("error");
 	return (NULL);
 }

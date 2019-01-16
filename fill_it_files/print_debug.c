@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/11 00:38:08 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:49:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ void		print_piece_debug(t_piece	*piece)
 	printf("\t\t\tLetter:\t%c\t\t[%d;%d]->%d\n", piece->letter, piece->coord[1]->y, piece->coord[1]->x, piece->coord[1]->j);
 	printf("\t\t\tY_size:\t%d\t\t[%d;%d]->%d\n", piece->y_size, piece->coord[2]->y, piece->coord[2]->x, piece->coord[2]->j);
 	printf("\t\t\tX_size:\t%d\t\t[%d;%d]->%d\n", piece->x_size, piece->coord[3]->y, piece->coord[3]->x, piece->coord[3]->j);
-	//printf("\t\t\ti:\t%d\n", piece->i);
 	printf("\t\t_____\n");
 	printf("\t\tNb of placement:\t\t%d\n", piece->pc_pos);
 	printf("\t\tSum until now of placements:\t%d\n", piece->tt_pos);
 	printf(_RESET "---------\n\n");
-	//printf("\t:\t%d\n", piece->);
 }
 
 void		print_pieces_debug(t_head *head)
@@ -121,7 +119,6 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path)
 			while (++i < head->tt_pos_all)
 			{
 				j = -1;
-				//printf("%d|", i);
 				c = tmp->y_all_pxnx[i] + 48;
 				if (c == '0')
 					write(1, "\x1b[31m", 5);
@@ -132,17 +129,8 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path)
 				write(1, &c, 1);
 				write(1, "-->", 3);
 				ft_putbinary_rev(head->solution[i], head->p, head->p + (head->sqsize * head->sqsize) - 1);
-
-/*				while (++j < head->p + (head->sqsize * head->sqsize))
-				{
-					c = (char)(head->solution[i][j] + 48);
-					write(1, &c, 1);
-					if (j == head->p - 1)
-						write(1, " ", 1);
-				}*/
 				write(1, "\n", 1);
 			}
-		//	write(1, "\n", 1);
 		}
 		write(1, "\x1b[32m", 5);
 		ft_putstr("\tStep:\t");
@@ -168,7 +156,6 @@ void		print_head_soltion_debug(t_head *head)
 	while (++i < head->tt_pos_all)
 	{
 		j = -1;
-		//printf("%d|", i);
 		c = head->y_all_pxnx[i] + 48;
 		if (c == '0')
 			write(1, "\x1b[34m", 5);
@@ -179,20 +166,9 @@ void		print_head_soltion_debug(t_head *head)
 		write(1, &c, 1);
 		write(1, "-->", 3);
 		ft_putbinary_rev(head->solution[i], head->p, head->p + (head->sqsize * head->sqsize) - 1);
-
-/*		while (++j < head->p + (head->sqsize * head->sqsize))
-		{
-			c = (char)(head->solution[i][j] + 48);
-			write(1, &c, 1);
-			if (j == head->p - 1)
-				write(1, " ", 1);
-		}*/
 		write(1, "\n", 1);
 	}
 	write(1, "\n", 1);
-	//write(1, "\n", 1);
-
-		//printf("%d\t: %s\n", i, head->solution[i]);
 }
 
 void		print_head_debug(t_head *head)
@@ -202,9 +178,7 @@ void		print_head_debug(t_head *head)
 	printf("\tSize square:\t\t%d -> %d\t\t(%d)\n", head->sqsize, head->sqsize * head->sqsize, head->sqsize * head->sqsize + head->p);
 	printf("\tNb of pieces:\t\t%d\n", head->p);
 	printf("\tSum of all pxnx:\t%d\n", head->tt_pos_all);
-	//printf("\tPossible soltions: %d\n", head->possible_solutions);
 	printf("\tThe choosen config:\t%d\n", head->config);
-	//printf("\t: %d\n", head->);
 	printf("\n\n\n");
 }
 
@@ -214,6 +188,6 @@ void	print_debug(t_head *head)
 	printf(_GREEN "\n####################### <PRINT DEBUG> #######################\n" _RESET);
 	print_head_debug(head);
 	print_pieces_debug(head);
-	print_head_soltion_debug(head);//think to add the little string
+	print_head_soltion_debug(head);
 	printf(_GREEN "####################### <\\PRINT DEBUG> ######################\n\n" _RESET);
 }
