@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/16 17:26:42 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/16 17:51:28 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,10 +146,10 @@ testv :	re
 test3 :	are
 		./$(NAME) ./.annex/tests/good/unfit/3_0
 
-test64 :	re
+test64 :re
 		./$(NAME) ./.annex/tests/bad/64_O0
 
-test4 :	are
+test4 :	re
 		./$(NAME) ./.annex/tests/bad/4_0
 
 test6 :	re
@@ -158,10 +158,10 @@ test6 :	re
 test7 :	re
 		./$(NAME) ./.annex/tests/good/fit/7_0
 
-test12 :	are
+test12 :re
 		./$(NAME) ./.annex/tests/good/fit/12_0
 
-test9 :	are
+test9 :	re
 		./$(NAME) ./.annex/tests/good/unfit/9_0
 
 test8 :	re
