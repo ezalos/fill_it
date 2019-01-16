@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/16 17:51:28 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/16 22:30:57 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ A_SRC =	$(addsuffix .c, $(addprefix $(SRC_PATH0), $(SRCS0))\
 						$(addprefix $(SRC_PATH5), $(SRCS5))\
 						$(addprefix $(SRC_PATH6), $(SRCS6)))
 
+#remove TEMPORAIRE
 TEMPORAIRE = intlen memalloc memcpy memset putchar putnbr putstr strcmp strdup strlen strstr strnstr
 
 PIECE = ./.annex/tests/good/fit/6_0
@@ -213,6 +214,15 @@ malloc_check :
 
 show_ :
 		bash ./.annex/show/.show.sh
+
+# to put time_exe in *.c. Note that it will be configured to work when project is using the topush_ file structure.
+ontion :
+	bash .annex/time/input_tim.sh
+
+# to remove time_exe from *.c.
+# Attention a nos wildcards. Il y en a une autre ligne 212. 
+# offtion :
+	sed -i '' '/time_exe/d' fill_it_files/*.c
 
 grep_ :
 		grep -n -e printf -e time_exe $(A_SRC) >> ./.annex/show/.gres.txt
