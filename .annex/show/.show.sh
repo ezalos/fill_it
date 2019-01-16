@@ -3,7 +3,7 @@
 #grep -n  printf ../*.c >> .gres.txt			= to input all lines numbered with printf from previous dir files into .gres.txt;
 #cut -d ':' -f1 .gres.txt | sort -u				= to get each file listed only once;
 #sed 's/.*printf.*//' <file> 					= to transform lines containing printf to blank lines;
-#sed '/printf/d' <file>							= to remove lines containing printf;
+#sed -i '' '/printf/d' <file>					= to remove lines containing printf;
 #diff -a --suppress-common-lines -y a.txt b.txt	= compare two files, input non-identical lines
 
 
@@ -32,5 +32,5 @@ do	file[i]="$target"
 	string[i++]="$str"
 	sed -i '' "$lno i\\
 	$str" $target
-#	((i++))
+	i=$[$i + 1]
 done < .gres.txt
