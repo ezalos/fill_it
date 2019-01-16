@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_func2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 23:09:05 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/11 19:05:39 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:44:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,7 @@ int		binary_size(int length)
 void	binary_to_str(char *binary, int size, int binary_position)
 {
 	time_exe(__func__, cl(clock()));
-	int one;
-
-	one = 1;
-	//	ft_putbinary_rev(binary, 4, size);
-	//	printf("\n");
-	//	one = one << (binary_position % 8);
 	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
-	//  printf("\n%d\t[%d]\t[%d]\t\tone: %d\tbinary: %d\n", binary_position, binary_position / 8, binary_position % 8, one, binary[binary_size(binary_position)]);
-	//  ft_putbinary_rev(binary, 4, size);
-	//  printf("\n\n");
 }
 
 char	binstrand(char *s1, char *s2, size_t length)

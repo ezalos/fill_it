@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/11 00:33:21 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/16 17:01:46 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
 
 	position_review = 0;
 	the_one_in_the_champion = 0;
-//	if (deepness > head->p)
-//		return (1);
 	head->config = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
 	while (++head->config <= find_piece(head, deepness)->tt_pos)
 		if (find_sol(head, deepness)->y_all_pxnx[head->config] == 1)
@@ -78,28 +76,9 @@ void	sol_turn_mem(t_head *head, int deepness)
 	find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);
 }
 
-void	print_advance(t_head *head, int deepness, int threshold)
-{
-	time_exe(__func__, cl(clock()));
-	int		i;
-
-	i = 0;
-	if (head->p - deepness < threshold)
-		return ;
-	while (++i < 10)
-		printf("\n\n\n\n\n\n\n\n\n\n");
-	i = 0;
-	while (++i <= head->p - threshold)
-		printf("%d %d/%d\n", i, find_sol(head, i)->current_path, find_sol(head, i)->nb_of_paths);
-}
-
 int		solve_solution(t_head *head, int deepness)
 {
 	time_exe(__func__, cl(clock()));
-//	int	position_choice;
-
-//	position_choice = -1;
-//	printf("\n\ndeepness %d\n", deepness);
 	if (deepness <= head->p)
 	{
 		find_sol(head, deepness)->current_path = -1;
@@ -107,21 +86,15 @@ int		solve_solution(t_head *head, int deepness)
 		while (++find_sol(head, deepness)->current_path < find_sol(head, deepness)->nb_of_paths)
 		{
 //			print_advance(head, deepness, 7);
-//			printf("%d %d/%d\n", deepness, find_sol(head, deepness)->current_path, find_sol(head, deepness)->nb_of_paths);
-
-//		if (deepness >= 3)
 //			print_soltion_link_debug(head, deepness, find_sol(head, deepness)->current_path);
 			if(!(deleter_of_binaries(head, deepness, find_sol(head, deepness)->current_path)))
 				return(0);
-//			printf("deleter done\n");
-//			print_soltion_link_debug(head, deepness, find_sol(head, deepness)->current_path);
-//			printf("ALMOST DONE %d/%d\n", deepness, head->p);
-			if (solve_solution(head, deepness + 1))//NEED TO QUIT WHEN ALL IS SOLVED
+			if (solve_solution(head, deepness + 1))
 				return (1);
 			sol_turn_mem(head, deepness);
 
 		}
-		return (0); //NO SOLUTION
+		return (0);
 	}
-	return (1); //SOLVED
+	return (1);
 }

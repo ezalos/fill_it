@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/16 14:57:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:09:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int		cre_tetro(const char *name, t_head **head, char p)
 	while (tetro->next != NULL)
 		tetro = tetro->next;
 	if (!(tetro->next = (t_piece*)malloc(sizeof(t_piece))))
+	{
+		free_linked_pieces(&(*head)->next);
 		return (0);
+	}
 	tetro = tetro->next;
 	tetro->name = (char*)name;
 	tetro->next = NULL;
@@ -94,27 +97,28 @@ t_head	*read_check(char *fillit)
 	t_head	*head;
 	int		fd;
 
-	head = NULL;
-	buf = NULL;
 	if (0 > (fd = open((const char*)fillit, O_RDONLY)))
 	{
-		ft_putendl("usage: ./fillit ./path/file");
+		ft_putstr("usage: ./fillit ./path/file\n");
 		return (NULL);
 	}
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
 	{
-		ft_putendl("error\n");
+		ft_putstr("error\n");
 		return (NULL);
 	}
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 	{
-		ft_putendl("error\n");
+		ft_putstr("error\n");
+		ft_strdel(&buf);
 		return (NULL);
 	}
 	head->next = NULL;
 	head->p = 0;
 	if (ft_check_input(fd, buf, &head))
 		return (head);
-	ft_putendl("error");
+	ft_putstr("error\n");
+	ft_strdel(&buf);
+	free(head);
 	return (NULL);
 }
