@@ -6,44 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 17:01:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:57:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
-
-int		deleter_of_competitors(t_head *head, int deepness, int position_choice)
-{
-	time_exe(__func__, cl(clock()));
-	int the_competitor;
-	int	position_review;
-	int	the_one_in_the_champion;
-
-	position_review = 0;
-	the_one_in_the_champion = 0;
-	head->config = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
-	while (++head->config <= find_piece(head, deepness)->tt_pos)
-		if (find_sol(head, deepness)->y_all_pxnx[head->config] == 1)
-		{
-			if (position_review < position_choice)
-				position_review++;
-			else
-			{
-				while (the_one_in_the_champion < head->p + (head->sqsize * head->sqsize))
-				{
-					while (head->solution[head->config][the_one_in_the_champion] != 1 && the_one_in_the_champion < head->p + (head->sqsize * head->sqsize))
-						the_one_in_the_champion++;
-					the_competitor = find_piece(head, deepness)->tt_pos - find_piece(head, deepness)->pc_pos - 1;
-					while (++the_competitor < head->tt_pos_all)
-						if (head->solution[the_competitor][the_one_in_the_champion] == 1 && the_competitor != head->config)
-							find_sol(head, deepness)->y_all_pxnx[the_competitor] = 0;
-					the_one_in_the_champion++;
-				}
-				return (1);
-			}
-		}
-	return (0);
-}
 
 int		how_many_paths(t_head *head, int deepness)
 {
