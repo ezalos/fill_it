@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2018/12/25 21:44:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:48:52 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ int		coord_setup(t_piece *piece)
 	while (++i <= 3)
 	{
 		if (!(piece->coord[i] = (t_coord*)malloc(sizeof(t_coord))))
+		{
+			while (i >= 0)
+			{
+				free(piece->coord[i]);
+				piece->coord[i--] = NULL;
+			}
 			return (0);
+		}
 	}
 
 	i = -1;

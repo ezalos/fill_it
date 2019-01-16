@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 14:49:02 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:58:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,21 @@ void		print_head_soltion_debug(t_head *head)
 		write(1, "\n", 1);
 	}
 	write(1, "\n", 1);
+}
+
+void	print_advance(t_head *head, int deepness, int threshold)
+{
+	time_exe(__func__, cl(clock()));
+	int		i;
+
+	i = 0;
+	if (head->p - deepness < threshold)
+		return ;
+	while (++i < 10)
+		printf("\n\n\n\n\n\n\n\n\n\n");
+	i = 0;
+	while (++i <= head->p - threshold)
+		printf("%d %d/%d\n", i, find_sol(head, i)->current_path, find_sol(head, i)->nb_of_paths);
 }
 
 void		print_head_debug(t_head *head)

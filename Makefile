@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/16 14:16:52 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/16 17:26:42 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,7 @@ clean :
 	@rm -f $(OBJS)
 
 fclean :
-	@$(MAKE) clean -C $(FOLD1)
+	@$(MAKE) fclean -C $(FOLD1)
 	@echo "$(GREEN) $(LIB) has been fcleaned $(END)"
 	@$(MAKE) clean
 	@echo "$(RED) Project has been removed $(END)"

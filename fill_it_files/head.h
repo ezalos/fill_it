@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/16 13:59:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:59:10 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct	s_head
 //print_debug.c
 void		print_debug(t_head *head);
 void		print_soltion_link_debug(t_head *head, int step, int current_path);
+void		print_advance(t_head *head, int deepness, int threshold);
 
 //un peu de tout ?
 int			yx_to_j(int y, int x);
@@ -121,12 +122,16 @@ int			print_result(t_head *head);
 
 // free
 t_head	*restart_and_grow(t_head *head);
-void	free_solsol(t_head *head);
-void	free_linked_sol(t_sol **sol);
+void	*free_solsol(t_head *head);
+void	*free_linked_sol(t_sol **sol);
 void	update_pieces(t_head *head);
+void	*free_head(t_head **head);
+void 	*free_linked_pieces(t_piece **next);
+void	*free_tab_str(char ***ptr_on_tab, int lines);
+void	*free_solsols(t_head *head);
 
  //setup.c
-void	setup_pieces(t_head *head);
+void	*setup_pieces(t_head *head);
 char	**malloc_solution(t_head *head);
 t_head	*setup_(t_head *head);
 t_head	*setup_head_sol_part(t_head *head);
