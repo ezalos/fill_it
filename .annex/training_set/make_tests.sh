@@ -7,7 +7,7 @@ i=0
 
 #the number after -lt in the first while indicates the number of tests you want to generate
 
-while [[ n -lt 1000 ]]; do
+while [[ n -lt 10 ]]; do
 	nb_pieces=$[ ( RANDOM % 26 )  + 1 ]
 	i=0
 	while [[ $i -lt $nb_pieces ]]; do
