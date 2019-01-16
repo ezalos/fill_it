@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/16 22:30:57 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/16 22:33:00 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -221,7 +221,7 @@ ontion :
 
 # to remove time_exe from *.c.
 # Attention a nos wildcards. Il y en a une autre ligne 212. 
-# offtion :
+offtion :
 	sed -i '' '/time_exe/d' fill_it_files/*.c
 
 grep_ :
