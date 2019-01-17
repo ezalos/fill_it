@@ -6,15 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 14:05:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:14:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 int		main(int ac, char **av)
-{ 
-	time_exe(__func__, clock()); 
+{
 	t_head	*head;
 	int		check;
 

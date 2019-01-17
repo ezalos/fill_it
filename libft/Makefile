@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 12:29:02 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 15:01:10 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SRCS5 = bzero isalnum isalpha isascii isdigit islower\
 SRCS6 = putchar putendl putnbr putstr putstr_rnull putstr_r0
 SRCS7 = char_srch count_lst del factorial fibonacci find_lsth fsqrt intlen\
 		lstcutone nprime power puttab_nb round_upper round nmatch match\
-		pstrnstr patoi nb_char_to_int
+		pstrnstr patoi nb_char_to_int puttab
 
 A_SRC =	$(addsuffix .c, $(addprefix $(SRC_PATH1)ft_, $(SRCS1))\
 						$(addprefix $(SRC_PATH2)ft_, $(SRCS2))\

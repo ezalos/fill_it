@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:52:19 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 14:38:13 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:06:09 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	sort_list(t_time **timee)
 
 void	print_elements(t_time *tmp, double total, int tab)
 {
-	printf("\t________________________________________________________\n");
+	printf("\t____________________________________________________________________\n");
 	while (tmp)
 	{
 		if (total != 0)
@@ -113,7 +113,7 @@ void	print_elements(t_time *tmp, double total, int tab)
 		printf(_GREEN "\t%dn" _RESET, tmp->nb_call);
 		ft_puttab_nb(ft_intlen(tmp->nb_call), tab);
 		printf(_CYAN "Rt:\t%f s/n\n" _RESET, (double)(tmp->t/tmp->nb_call));
-		printf("\t________________________________________________________\n");
+		printf("\t____________________________________________________________________\n");
 		tmp = tmp->next;
 	}
 }

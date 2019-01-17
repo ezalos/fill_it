@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:35:37 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 14:38:42 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:41:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putchar_color(char c)
 {
-	time_exe(__func__, clock());
 	int l;
 
 	l = (int)c - 65;
@@ -38,20 +37,34 @@ void	ft_putchar_color(char c)
 	write(1, "\x1b[0m", 5);
 }
 
+void	ft_put(const char *s, int separation)
+{
+	int n;
+	int tab;
+	int length;
+
+	n = 4;
+	tab = 0;
+	length = ft_strlen(s);
+	while (tab + length < separation * n)
+	{
+		write(1, " ", 1);
+		tab++;
+	}
+}
+
 void	print_pieces_color(t_head *head, char **tab_result)
 {
-	time_exe(__func__, clock());
 	int i;
 	int j;
 
-	print_time(time_exe(__func__, clock()));
 	i = -1;
 	ft_putchar('\n');
 	ft_putchar('\n');
 	while (++i < head->sqsize)
 	{
 		j = -1;
-		ft_putstr("\t\t\t");
+		ft_put(tab_result[i], 9);
 		while (++j < head->sqsize)
 			ft_putchar_color(tab_result[i][j]);
 		ft_putchar('\n');

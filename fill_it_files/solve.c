@@ -6,15 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 14:06:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:15:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int		comp;
 	int		pos_rev;
 	int		champ;
@@ -43,8 +42,7 @@ int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 }
 
 int		how_many_paths(t_head *head, int deepness)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int path;
 
 	path = 0;
@@ -65,8 +63,7 @@ int		how_many_paths(t_head *head, int deepness)
 }
 
 void	sol_turn_mem(t_head *head, int deepness)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (deepness == 1)
 		ft_memcpy(find_sol(head, deepness)->y_all_pxnx,
 		head->y_all_pxnx, head->tt_pos_all);
@@ -84,8 +81,7 @@ void	sol_turn_mem(t_head *head, int deepness)
 */
 
 int		solve_solution(t_head *head, int deepness)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (deepness <= head->p)
 	{
 		find_sol(head, deepness)->current_path = -1;

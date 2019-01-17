@@ -6,15 +6,14 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 14:05:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:15:06 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 int		cre_tetro(const char *name, t_head **head, char p)
-{ 
-	time_exe(__func__, clock()); 
+{
 	t_piece *tetro;
 
 	if (name == NULL)
@@ -42,8 +41,7 @@ int		cre_tetro(const char *name, t_head **head, char p)
 }
 
 int		check_two(char *buf, int i, int c_hash)
-{ 
-	time_exe(__func__, clock()); 
+{
 	while (i < 21)
 	{
 		if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
@@ -66,8 +64,7 @@ int		check_two(char *buf, int i, int c_hash)
 }
 
 int		ft_check_input(int fd, char *buf, t_head **head)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int		i;
 	int		ret;
 	int		c_hash;
@@ -90,8 +87,7 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 }
 
 t_head	*read_check(char *fillit)
-{ 
-	time_exe(__func__, clock()); 
+{
 	char	*buf;
 	t_head	*head;
 	int		fd;

@@ -6,15 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 12:39:30 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:14:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 void	*free_head(t_head **head)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (head && *head)
 	{
 		if ((*head)->next)
@@ -29,8 +28,7 @@ void	*free_head(t_head **head)
 }
 
 void	*free_tab_str(char ***ptr_on_tab, int lines)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (ptr_on_tab && *ptr_on_tab)
 	{
 		while (0 <= --lines)
@@ -42,8 +40,7 @@ void	*free_tab_str(char ***ptr_on_tab, int lines)
 }
 
 t_head	*restart_and_grow(t_head *head)
-{ 
-	time_exe(__func__, clock()); 
+{
 	free_solsol(head);
 	head->sqsize++;
 	update_pieces(head);

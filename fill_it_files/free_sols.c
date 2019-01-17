@@ -6,15 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 12:39:14 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:14:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 void	*free_linked_sol(t_sol **sol)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (sol && *sol)
 	{
 		free_linked_sol(&((*sol)->sol));
@@ -26,8 +25,7 @@ void	*free_linked_sol(t_sol **sol)
 }
 
 void	*free_linked_sols(t_sol **sol)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (sol && *sol)
 	{
 		free_linked_sols(&((*sol)->sol));
@@ -41,8 +39,7 @@ void	*free_linked_sols(t_sol **sol)
 }
 
 void	*free_solsol(t_head *head)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int y;
 
 	y = -1;
@@ -67,8 +64,7 @@ void	*free_solsol(t_head *head)
 }
 
 void	*free_solsols(t_head *head)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int y;
 
 	y = -1;

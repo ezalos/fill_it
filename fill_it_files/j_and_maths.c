@@ -6,15 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:30:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 12:32:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:14:40 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
 int		yx_to_j(int y, int x)
-{ 
-	time_exe(__func__, clock()); 
+{
 	if (y >= x)
 		return ((y * (y + 1)) + x);
 	else
@@ -22,8 +21,7 @@ int		yx_to_j(int y, int x)
 }
 
 int		j_to_yx(t_head *head, int j, int o)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int		x;
 	int		y;
 
@@ -46,8 +44,7 @@ int		j_to_yx(t_head *head, int j, int o)
 }
 
 int		ft_iterative_power(int nb, int power)
-{ 
-	time_exe(__func__, clock()); 
+{
 	int x;
 
 	x = 1;

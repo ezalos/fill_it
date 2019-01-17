@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 14:17:48 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 15:40:03 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,7 +145,7 @@ teste : 	re
 testv :	re
 		$(VALGRIND) ./$(NAME) $(PIECE)
 
-test3 :	are
+test3 :	re
 		./$(NAME) ./.annex/tests/good/unfit/3_0
 
 test64 :re
@@ -217,12 +217,15 @@ show_ :
 		bash ./.annex/show/.show.sh
 
 # to put time_exe in *.c. Note that it will be configured to work when project is using the topush_ file structure.
-ontion :
+onption :
 	bash .annex/time/input_tim.sh
 
+#\n\tprint_time(time_exe(__func__, clock()));\n\ti = -1;
+#
+#
 # to remove time_exe from *.c.
 # Attention a nos wildcards. Il y en a une autre ligne 212.
-offtion :
+offption :
 	sed -i '' '/time_exe/d' fill_it_files/*.c
 
 grep_ :

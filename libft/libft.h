@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 12:28:36 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:00:52 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int					ft_nb_char_to_int(char	c);
 int					ft_nmatch(char *s1, char *s2);
 int					*ft_nprime(int limite);
 int					ft_power(int nb, int power);
+void				ft_puttab(const char *s, int separation);
 void				ft_puttab_nb(int length, int separation);
 int					ft_round_upper(float i);
 int					ft_round(float i);

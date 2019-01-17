@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_pieces.c                                      :+:      :+:    :+:   */
+/*   ft_puttab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 12:38:23 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:14:21 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/17 15:00:23 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/17 15:19:12 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "libft.h"
 
-void	*free_linked_pieces(t_piece **next)
+void	ft_puttab(const char *s, int separation)
 {
-	int i;
+	int n;
+	int tab;
+	int length;
 
-	if (next && *next)
+	n = 4;
+	tab = 0;
+	length = ft_strlen(s);
+	while (tab + length < separation * n)
 	{
-		free_linked_pieces(&((*next)->next));
-		(*next)->next = NULL;
-		i = 0;
-		while (i < 4)
-		{
-			free((*next)->coord[i++]);
-			(*next)->coord[i] = NULL;
-		}
-		free((*next)->next);
-		(*next)->next = NULL;
+		write(1 ," ", 1);
+		tab++;
 	}
-	return (NULL);
 }
