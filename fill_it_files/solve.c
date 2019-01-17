@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:15:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 17:58:00 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int		solve_solution(t_head *head, int deepness)
 		while (++find_sol(head, deepness)->current_path
 		< find_sol(head, deepness)->nb_of_paths)
 		{
+			//print_soltion_link_debug(head, deepness, find_sol(head, deepness)->current_path);
 			if (!(deleter_of_binaries(head, deepness,
 				find_sol(head, deepness)->current_path)))
 				return (0);

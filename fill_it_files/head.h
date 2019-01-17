@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 17:26:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 18:02:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-# define OFFPTION
+# define OFFPTION //# define ONPTION
 
 # ifdef ONPTION
 #  include "../.annex/time/time_exe.h"

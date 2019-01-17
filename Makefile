@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 16:57:10 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 18:47:03 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,6 +174,12 @@ test8 :	re
 check :
 		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
 
+test : 	all
+		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
+		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
+		@cat ./.annex/tests/last_test
+		@rm -rf ./.annex/tests/random_generated/*
+
 IFORDER = $(shell ls | grep fill_it_files)
 IFPUSH = $(shell ls | grep srcs)
 
@@ -196,6 +202,9 @@ else
 	@mv -f $(FOLD1) $(LIBFOLD)
 	@rm -rf libft fill_it_files
 endif
+
+echo :
+		@echo $(prout)
 
 push :
 ifeq ($(IFPUSH), )
