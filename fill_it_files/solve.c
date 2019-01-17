@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 21:41:55 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/17 23:24:51 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,6 @@ void	sol_turn_mem(t_head *head, int deepness)
 		find_sol(head, deepness - 1)->y_all_pxnx, head->tt_pos_all);
 	find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);
 }
-
-/*
-**print_advance(head, deepness, 7);
-**
-** 			find_sol(head, deepness)->current_path);
-*/
 
 int		solve_solution(t_head *head, int deepness)
 {
