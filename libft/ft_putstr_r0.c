@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_r0.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 14:05:37 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/17 11:42:04 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/17 11:53:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "libft.h"
 
-int		main(int ac, char **av)
+int		ft_putstr_r0(char const *s)
 {
-	t_head	*head;
-	int		check;
-
-	if (ac != 2)
-	{
-		ft_putendl("usage: ./fillit ./path/file");
+	if (s == NULL)
 		return (0);
-	}
-	if (!(head = read_check(av[1])))
-		return (0);
-	if (!(setup_(head)))
-		return (0);
-	while (check != 1)
-	{
-		check = solve_solution(head, 1);
-		if (check == 1)
-			print_result(head);
-		else
-		{
-			if (!(restart_and_grow(head)))
-				return (0);
-		}
-	}
-	free_head(&head);
+	while (*s)
+		write(1, s++, 1);
 	return (0);
 }

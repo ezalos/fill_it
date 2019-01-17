@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/16 22:33:00 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/17 12:47:45 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,14 @@ SRCS =	$(SRCS0) $(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6)
 
 SRCS0 = main
 SRCS1 = read_check recognize
-SRCS2 = setup setup_pieces
-SRCS3 =	solve binary
-SRCS4 = print_debug printing_the_result
-SRCS5 = free_all
-SRCS6 = float_to_int list_func list_func2
+SRCS2 = setup_struct setup_pieces setup_binary
+SRCS3 =	solve
+SRCS4 = printing_the_result print_r_in_color
+SRCS5 = free_all free_pieces free_sols
+SRCS6 = binary_str find_struct j_and_maths
 
 TIME_EXE = ./.annex/time/time_exe.c
+PRINT_DEBUG = ./.annex/printing/print_debug.c
 
 SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
 OBJS = $(patsubst %, ft_%.o,$(SRCS))
@@ -220,7 +221,7 @@ ontion :
 	bash .annex/time/input_tim.sh
 
 # to remove time_exe from *.c.
-# Attention a nos wildcards. Il y en a une autre ligne 212. 
+# Attention a nos wildcards. Il y en a une autre ligne 212.
 offtion :
 	sed -i '' '/time_exe/d' fill_it_files/*.c
 

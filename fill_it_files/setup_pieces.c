@@ -6,22 +6,38 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 16:48:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:06:42 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-void	p_yx(t_piece *piece, int y, int x)//TO CHANGE
+void	update_pieces(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
+	int i;
+
+	i = 0;
+	while (++i <= head->p)
+	{
+		find_piece(head, i)->pc_pos =
+		size_pieces(find_piece(head, i)->name[0], head->sqsize);
+		if (i == 1)
+			find_piece(head, i)->tt_pos = find_piece(head, i)->pc_pos;
+		else
+			find_piece(head, i)->tt_pos =
+			find_piece(head, i)->pc_pos + find_piece(head, i - 1)->tt_pos;
+		head->tt_pos_all = find_piece(head, i)->tt_pos;
+	}
+}
+
+void	p_yx(t_piece *piece, int y, int x)
+{
 	piece->y_size = y;
 	piece->x_size = x;
 }
 
 int		size_pieces(char s, int size)
 {
-	time_exe(__func__, cl(clock()));
 	if (s == 'O')
 		return ((size - 1) * (size - 1));
 	else if (s == 'I')
@@ -32,7 +48,6 @@ int		size_pieces(char s, int size)
 
 void	pieces_yx(t_piece *tmp)
 {
-	time_exe(__func__, cl(clock()));
 	if (tmp->name[0] == 'O')
 		p_yx(tmp, 2, 2);
 	else if (tmp->name[0] == 'I')
@@ -60,11 +75,7 @@ void	pieces_yx(t_piece *tmp)
 
 int		coord_setup(t_piece *piece)
 {
-	time_exe(__func__, cl(clock()));
-	int		rot;
 	int		i;
-	int		x;
-	int		y;
 
 	i = -1;
 	while (++i <= 3)
@@ -79,12 +90,11 @@ int		coord_setup(t_piece *piece)
 			return (0);
 		}
 	}
-
 	i = -1;
 	while (++i <= 3)
 	{
-		piece->coord[i]->y = nb_char_to_int(piece->name[2 + (i * 2)]);
-		piece->coord[i]->x = nb_char_to_int(piece->name[2 + (i * 2) + 1]);
+		piece->coord[i]->y = ft_nb_char_to_int(piece->name[2 + (i * 2)]);
+		piece->coord[i]->x = ft_nb_char_to_int(piece->name[2 + (i * 2) + 1]);
 		piece->coord[i]->j = yx_to_j(piece->coord[i]->y, piece->coord[i]->x);
 	}
 	return (1);

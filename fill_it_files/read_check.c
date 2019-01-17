@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/16 16:09:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:05:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		cre_tetro(const char *name, t_head **head, char p)
 {
-	time_exe(__func__, cl(clock()));
 	t_piece *tetro;
 
 	if (name == NULL)
@@ -25,7 +24,6 @@ int		cre_tetro(const char *name, t_head **head, char p)
 			return (0);
 		(*head)->next->name = (char*)name;
 		(*head)->next->next = NULL;
-		(*head)->next->letter = p;
 		return (1);
 	}
 	tetro = (*head)->next;
@@ -39,7 +37,6 @@ int		cre_tetro(const char *name, t_head **head, char p)
 	tetro = tetro->next;
 	tetro->name = (char*)name;
 	tetro->next = NULL;
-	tetro->letter = p;
 	return (1);
 }
 
@@ -68,7 +65,6 @@ int		check_two(char *buf, int i, int c_hash)
 
 int		ft_check_input(int fd, char *buf, t_head **head)
 {
-	time_exe(__func__, cl(clock()));
 	int		i;
 	int		ret;
 	int		c_hash;
@@ -92,33 +88,24 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 
 t_head	*read_check(char *fillit)
 {
-	time_exe(__func__, cl(clock()));
 	char	*buf;
 	t_head	*head;
 	int		fd;
 
 	if (0 > (fd = open((const char*)fillit, O_RDONLY)))
-	{
-		ft_putstr("usage: ./fillit ./path/file\n");
-		return (NULL);
-	}
+		return (ft_putstr_rnull("usage: ./fillit ./path/file\n"));
 	if (!(buf = (char *)malloc(sizeof(char) * 21)))
-	{
-		ft_putstr("error\n");
-		return (NULL);
-	}
+		return (ft_putstr_rnull("error\n"));
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 	{
-		ft_putstr("error\n");
 		ft_strdel(&buf);
-		return (NULL);
+		return (ft_putstr_rnull("error\n"));
 	}
 	head->next = NULL;
 	head->p = 0;
 	if (ft_check_input(fd, buf, &head))
 		return (head);
-	ft_putstr("error\n");
 	ft_strdel(&buf);
 	free(head);
-	return (NULL);
+	return (ft_putstr_rnull("error\n"));
 }

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 16:14:34 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:05:48 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static const char	*part10(char *s, int i, int div, int mod)
 {
-		if (mod >= 1 && s[i + 5 - 1] == '#')
-		{
-			if (s[i + (5 * 2) - 1] == '#' && div < 2)
-				return ("Z110011120");
-			if (mod >= 2 && s[i + 5 - 2] == '#')
-				return ("L310110212");
-			if (s[i + (5 * 2)] == '#' && div < 2)
-				return ("T110011121");
-			if (mod <= 2 && s[i + 5 + 1] == '#')
-				return ("T210011112");
-			if (mod <= 2 && s[i + 1] == '#')
-				return ("S010011102");
-		}
+	if (mod >= 1 && s[i + 5 - 1] == '#')
+	{
+		if (s[i + (5 * 2) - 1] == '#' && div < 2)
+			return ("Z110011120");
+		if (mod >= 2 && s[i + 5 - 2] == '#')
+			return ("L310110212");
+		if (s[i + (5 * 2)] == '#' && div < 2)
+			return ("T110011121");
+		if (mod <= 2 && s[i + 5 + 1] == '#')
+			return ("T210011112");
+		if (mod <= 2 && s[i + 1] == '#')
+			return ("S010011102");
+	}
 	return (NULL);
 }
 
@@ -89,7 +89,6 @@ static const char	*part0(char *s, int i, int div, int mod)
 
 const char			*recog(char *s)
 {
-	time_exe(__func__, cl(clock()));
 	int		i;
 	int		div;
 	int		mod;
@@ -99,5 +98,5 @@ const char			*recog(char *s)
 		i++;
 	div = i / 5;
 	mod = (i % 5);
-	return(part0(s, i, div, mod));
+	return (part0(s, i, div, mod));
 }

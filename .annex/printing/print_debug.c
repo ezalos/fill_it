@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 16:58:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 11:39:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	print_grid_j(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
 	int y;
 	int x;
 
@@ -32,9 +31,8 @@ void	print_grid_j(t_head *head)
 
 void		print_piece_debug(t_piece	*piece)
 {
-	time_exe(__func__, cl(clock()));
 	printf(_RESET"Tetro n*%d" _YELLOW"\tname:\t%s\t\t[%d;%d]->%d\n", piece->i, (char*)piece->name, piece->coord[0]->y, piece->coord[0]->x, piece->coord[0]->j);
-	printf("\t\t\tLetter:\t%c\t\t[%d;%d]->%d\n", piece->letter, piece->coord[1]->y, piece->coord[1]->x, piece->coord[1]->j);
+	printf("\t\t\tLetter:\t%c\t\t[%d;%d]->%d\n", piece->i - 1 + 'A', piece->coord[1]->y, piece->coord[1]->x, piece->coord[1]->j);
 	printf("\t\t\tY_size:\t%d\t\t[%d;%d]->%d\n", piece->y_size, piece->coord[2]->y, piece->coord[2]->x, piece->coord[2]->j);
 	printf("\t\t\tX_size:\t%d\t\t[%d;%d]->%d\n", piece->x_size, piece->coord[3]->y, piece->coord[3]->x, piece->coord[3]->j);
 	printf("\t\t_____\n");
@@ -45,7 +43,6 @@ void		print_piece_debug(t_piece	*piece)
 
 void		print_pieces_debug(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
 	t_piece *tmp;
 
 	tmp = head->next;
@@ -64,7 +61,6 @@ void		print_pieces_debug(t_head *head)
 
 void	ft_putbinary_rev(char *str, int piece, int length)
 {
-	time_exe(__func__, cl(clock()));
 	size_t	i;
 	int		nb;
 	int		stop;
@@ -96,7 +92,6 @@ void	ft_putbinary_rev(char *str, int piece, int length)
 
 void		print_soltion_link_debug(t_head *head, int step, int current_path)
 {
-	time_exe(__func__, cl(clock()));
 	t_sol	*tmp;
 	int		i;
 	int		j;
@@ -146,7 +141,6 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path)
 
 void		print_head_soltion_debug(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
 	int		i;
 	int		j;
 	char	c;
@@ -173,7 +167,6 @@ void		print_head_soltion_debug(t_head *head)
 
 void	print_advance(t_head *head, int deepness, int threshold)
 {
-	time_exe(__func__, cl(clock()));
 	int		i;
 
 	i = 0;
@@ -188,7 +181,6 @@ void	print_advance(t_head *head, int deepness, int threshold)
 
 void		print_head_debug(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
 	printf(_RED "\nSTRUCT HEAD\n");
 	printf("\tSize square:\t\t%d -> %d\t\t(%d)\n", head->sqsize, head->sqsize * head->sqsize, head->sqsize * head->sqsize + head->p);
 	printf("\tNb of pieces:\t\t%d\n", head->p);
@@ -199,7 +191,6 @@ void		print_head_debug(t_head *head)
 
 void	print_debug(t_head *head)
 {
-	time_exe(__func__, cl(clock()));
 	printf(_GREEN "\n####################### <PRINT DEBUG> #######################\n" _RESET);
 	print_head_debug(head);
 	print_pieces_debug(head);

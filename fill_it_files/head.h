@@ -6,44 +6,31 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/16 16:59:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:04:31 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEAD_H
 # define HEAD_H
 
+/************************/
+/*						*/
+/*		INCLUDES		*/
+/*						*/
+/************************/
+
 # include <stdio.h>
 # include <string.h>
-# include <time.h>
-//# include "time_exe.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-//COLORS IN PRINTF
-# define COLOR
-
-# ifndef COLOR
-#  define _RED     ""
-#  define _GREEN   ""
-#  define _YELLOW  ""
-#  define _BLUE    ""
-#  define _MAGENTA ""
-#  define _CYAN    ""
-#  define _RESET   ""
-# endif
-
-# ifdef COLOR
-#  define _RED     "\x1b[31m"
-#  define _GREEN   "\x1b[32m"
-#  define _YELLOW  "\x1b[33m"
-#  define _BLUE    "\x1b[34m"
-#  define _MAGENTA "\x1b[35m"
-#  define _CYAN    "\x1b[36m"
-#  define _RESET   "\x1b[0m"
-# endif
+/************************/
+/*						*/
+/*		STRUCTS			*/
+/*						*/
+/************************/
 
 typedef struct	s_coord
 {
@@ -55,106 +42,159 @@ typedef struct	s_coord
 typedef struct	s_piece
 {
 	char		*name;
-	char		letter;
-	int			y_size; //piece dimension
+	int			y_size;
 	int			x_size;
-	int			pc_pos; //number of placement possible for this piece
-	int			tt_pos; //total sum of pc_pos until this struct, actual one included //initialize to 0
-	int			i; //initialize to 0
-	t_coord		*coord[4]; //need to be a tab of 4:1
+	int			pc_pos;
+	int			tt_pos;
+	int			i;
+	t_coord		*coord[4];
 	struct s_piece		*next;
-//	struct s_piece		*prev;
-	struct s_head		*head;
 }				t_piece;
 
 typedef struct	s_sol
 {
 	char		*y_all_pxnx;
-//	char		*x_P_J;
 	int			current_path;
 	int			nb_of_paths;
-	struct s_sol		*sol; //string of pointers to next possible solution from this one.
+	struct s_sol		*sol;
 }				t_sol;
 
 typedef struct	s_head
 {
 	char				**solution;
 	int					sqsize;
-	int					p; //number of pieces
+	int					p;
 	char				*y_all_pxnx;
 	int					tt_pos_all;
-	int					pos_sol;//initialize to 0
-	int					config;//initialize to 0
-//	int					y;//initialize to 0
+	int					pos_sol;
+	int					config;
 	t_sol		*sol;
 	t_piece		*next;
 }				t_head;
 
-//print_debug.c
+/****************************************************************************/
+/****************************************************************************/
+/*																			*/
+/*								----------									*/
+/*								PROTOTYPES									*/
+/*								----------									*/
+/*																			*/
+/****************************************************************************/
+/****************************************************************************/
+
+/************/
+/*	FREE	*/
+/************/
+void	*free_head(t_head **head);
+void	*free_tab_str(char ***ptr_on_tab, int lines);
+t_head	*restart_and_grow(t_head *head);
+
+void	*free_linked_pieces(t_piece **next);
+
+void	*free_linked_sol(t_sol **sol);
+void	*free_linked_sols(t_sol **sol);
+void	*free_solsol(t_head *head);
+void	*free_solsols(t_head *head);
+
+/************/
+/* LOGISTIC	*/
+/************/
+int		binary_size(int length);
+void	binary_to_str(char *binary, int size, int binary_position);
+char	binstrand(char *s1, char *s2, size_t length);
+char	binary_string_and_start(char *s1, char *s2, size_t length, size_t start);
+
+t_piece	*find_piece(t_head *head, int piece);
+t_sol	*find_sol(t_head *head, int sol);
+t_piece	*find_piece_hash(t_head *head, int piece);
+t_sol	*find_sol_hash(t_head *head, int sol);
+
+int		yx_to_j(int y, int x);
+int		j_to_yx(t_head *head, int j, int o);
+int		ft_iterative_power(int nb, int power);
+
+/************/
+/*	PRINT	*/
+/************/
+void	ft_putchar_color(char c);
+void	print_pieces_color(t_head *head, char **tab_result);
+
+void	print_pieces(t_head *head, char **tab_result);
+int		pos_one_binary(char *str, size_t length, size_t umpteenth);
+void	show_pieces_binary(t_head *head, char **tab_result);
+int		print_result(t_head *head);
+
+/************/
+/*	READ	*/
+/************/
+int		cre_tetro(const char *name, t_head **head, char p);
+int		check_two(char *buf, int i, int c_hash);
+int		ft_check_input(int fd, char *buf, t_head **head);
+t_head	*read_check(char *fillit);
+
+static const char	*part10(char *s, int i, int div, int mod);
+static const char	*part1(char *s, int i, int div, int mod);
+static const char	*part0(char *s, int i, int div, int mod);
+const char			*recog(char *s);
+
+/************/
+/*	SETUP	*/
+/************/
+void	while_in_write_binary(t_head *head, t_piece *piece, int *box);
+void	write_binary(t_head *head);
+char	**malloc_binary(t_head *head);
+
+void	update_pieces(t_head *head);
+void	p_yx(t_piece *piece, int y, int x);
+int		size_pieces(char s, int size);
+void	pieces_yx(t_piece *tmp);
+int		coord_setup(t_piece *piece);
+
+t_sol	*next_solve_step(t_head *head, int step);
+void	*setup_pieces(t_head *head);
+t_head	*setup_head_sol_part(t_head *head);
+t_head	*setup_(t_head *head);
+
+/************/
+/*	SOLVE	*/
+/************/
+int		deleter_of_binaries(t_head *head, int depth, int pos_choy);
+int		how_many_paths(t_head *head, int deepness);
+void	sol_turn_mem(t_head *head, int deepness);
+int		solve_solution(t_head *head, int deepness);
+
+/************************/
+/*						*/
+/*		OPTIONS			*/
+/*						*/
+/************************/
+
+# define OFFPTION
+
+# ifdef OFFPTION
+#  define OPTION	0
+#  define _RED     ""
+#  define _GREEN   ""
+#  define _YELLOW  ""
+#  define _BLUE    ""
+#  define _MAGENTA ""
+#  define _CYAN    ""
+#  define _RESET   ""
+# endif
+
+# ifdef ONPTION
+#  include "time_exe.h"
+#  define OPTION	1
+#  define _RED     "\x1b[31m"
+#  define _GREEN   "\x1b[32m"
+#  define _YELLOW  "\x1b[33m"
+#  define _BLUE    "\x1b[34m"
+#  define _MAGENTA "\x1b[35m"
+#  define _CYAN    "\x1b[36m"
+#  define _RESET   "\x1b[0m"
 void		print_debug(t_head *head);
 void		print_soltion_link_debug(t_head *head, int step, int current_path);
 void		print_advance(t_head *head, int deepness, int threshold);
-
-//un peu de tout ?
-int			yx_to_j(int y, int x);
-t_head		*read_check(char *fillit);
-const char	*recog(char *s);
-int			float_to_int(float i);
-int			size_square(int p);
-void		*ft_memalloc(size_t size);
-int			cre_tetro(const char *name, t_head **head, char p);
-int			check_two(char *buf, int i, int c_hash);
-t_sol		*next_solve_step(t_head *head, int step);
-t_piece		*find_piece(t_head *head, int piece);
-t_sol		*find_sol(t_head *head, int sol);
-char		binstrand(char *s1, char *s2, size_t length);
-int			print_result(t_head *head);
-
-//float_to_int.c
- int		nb_char_to_int(char	c);
- int		j_to_yx(t_head *head, int j, int o);
-
-// setup.pieces
- int		coord_setup(t_piece *piece);
- void	pieces_yx(t_piece *tmp);
- int	size_pieces(char s, int size);
- void	p_yx(t_piece *piece, int y, int x);
-
-// free
-t_head	*restart_and_grow(t_head *head);
-void	*free_solsol(t_head *head);
-void	*free_linked_sol(t_sol **sol);
-void	update_pieces(t_head *head);
-void	*free_head(t_head **head);
-void 	*free_linked_pieces(t_piece **next);
-void	*free_tab_str(char ***ptr_on_tab, int lines);
-void	*free_solsols(t_head *head);
-
- //setup.c
-void	*setup_pieces(t_head *head);
-char	**malloc_solution(t_head *head);
-t_head	*setup_(t_head *head);
-t_head	*setup_head_sol_part(t_head *head);
-
-//binary
-void	ft_putbinary_rev(char *str, int piece, int length);
-int		deleter_of_binaries(t_head *head, int deepness, int position_choice);
-char	binary_string_and(char *s1, char *s2, size_t length);
-int		ft_iterative_power(int nb, int power);
-void	binary_to_str(char *binary, int size, int binary_position);
-void	write_binary(t_head *head);
-int		binary_size(int length);
-char	**malloc_binary(t_head *head);
-
-//solve.c
-int		solve_solution(t_head *head, int deepness);
-int		how_many_paths(t_head *head, int deepness);//need to be values that only live in the function
-int		deleter_of_competitors(t_head *head, int deepness, int position_choice);
-void	write_solutions(t_head *head);
-
-//time_exe
-struct	s_time	*time_exe(const char* s, long double t);
-long double			cl(clock_t t);
-void			print_time(struct s_time *time);
+# endif
 
 #endif

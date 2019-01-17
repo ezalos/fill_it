@@ -1,47 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_func2.c                                       :+:      :+:    :+:   */
+/*   binary_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/10 23:09:05 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/16 16:44:23 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/17 12:31:50 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/17 12:45:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-int		ft_iterative_power(int nb, int power)
-{
-	time_exe(__func__, cl(clock()));
-	int x;
-
-	x = 1;
-	if (power == 0)
-		return (1);
-	if (power < 0)
-		return (0);
-	while (power-- > 0)
-		x *= nb;
-	return (x);
-}
-
 int		binary_size(int length)
 {
-	time_exe(__func__, cl(clock()));
 	return ((length / 8) + 1);
 }
 
 void	binary_to_str(char *binary, int size, int binary_position)
 {
-	time_exe(__func__, cl(clock()));
 	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
 }
 
 char	binstrand(char *s1, char *s2, size_t length)
 {
-	time_exe(__func__, cl(clock()));
 	size_t i;
 
 	i = 0;
@@ -53,4 +35,21 @@ char	binstrand(char *s1, char *s2, size_t length)
 		i++;
 	}
 	return (0);
+}
+
+char	binary_string_and_start(char *s1, char *s2, size_t length, size_t start)
+{
+	size_t	r_del;
+	size_t	a_del;
+	char	sa;
+	char	sb;
+
+	r_del = (start / 8);
+	sa = s1[r_del];
+	sb = s2[r_del];
+	a_del = (start % 8);
+	if (sa << a_del & sb << a_del)
+		return (1);
+	r_del++;
+	return (binstrand(s1 + r_del, s2 + r_del, length));
 }

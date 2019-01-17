@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float_to_int.c                                     :+:      :+:    :+:   */
+/*   j_and_maths.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 21:41:09 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/16 14:00:59 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/17 12:30:44 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/17 12:32:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-int		ft_char_srch(char src, char *dlt)
-{
-	time_exe(__func__, cl(clock()));
-	while (*dlt)
-	{
-		if (src == *dlt)
-			return (1);
-		dlt++;
-	}
-	return (0);
-}
-
 int		yx_to_j(int y, int x)
 {
-	time_exe(__func__, cl(clock()));
-
 	if (y >= x)
 		return ((y * (y + 1)) + x);
 	else
@@ -36,7 +22,6 @@ int		yx_to_j(int y, int x)
 
 int		j_to_yx(t_head *head, int j, int o)
 {
-	time_exe(__func__, cl(clock()));
 	int		x;
 	int		y;
 
@@ -58,10 +43,16 @@ int		j_to_yx(t_head *head, int j, int o)
 	return (-1);
 }
 
-int		nb_char_to_int(char	c)
+int		ft_iterative_power(int nb, int power)
 {
-	time_exe(__func__, cl(clock()));
-	if (c < '0' || c > '9')
-		return (-1);
-	return (c - '0');
+	int x;
+
+	x = 1;
+	if (power == 0)
+		return (1);
+	if (power < 0)
+		return (0);
+	while (power-- > 0)
+		x *= nb;
+	return (x);
 }
