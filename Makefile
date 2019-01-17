@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 18:47:03 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 22:10:40 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -230,17 +230,19 @@ show_ :
 # to put time_exe in *.c. Note that it will be configured to work when project is using the topush_ file structure.
 onption :
 	bash .annex/time/input_tim.sh
+	mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
+	bash .annex/show/show_debug.sh
+		
 
-#\n\tprint_time(time_exe(__func__, clock()));\n\ti = -1;
-#sed "60i\\
-#	print_time(time_exe(__func__, clock()));" fill_it_files/print_r_in_color.c > fill_it_files/print_r_in_color.c
-#
-#	perl -0777 -pe 's {\)\n\ti = -1\{} {$&\n\tprint_time(time_exe(__func__, clock()));\n\ti = -1}g' fill_it_files/print_r_in_color.c >> fill_it_files/print_r_in_color.c
-#	@sed -i '' "s~\\n\\ti = -1~\\n\\tprint_time(time_exe(__func__, clock()));\\n\\ti = -1~g" fill_it_files/print_r_in_color.c
 # to remove time_exe from *.c.
 # Attention a nos wildcards. Il y en a une autre ligne 212.
 offption :
-	sed -i '' '/time_exe/d' fill_it_files/*.c
+	@sed -i '' '/time_exe/d' fill_it_files/*.c
+	@sed -i '' '/print_debug/d' fill_it_files/setup_struct.c
+	@sed -i '' 's/print_pieces_color/print_pieces/' fill_it_files/printing_the_result.c
+	@sed -i '' '/print_soltion_link/d' fill_it_files/solve.c
+	@sed -i '' '/print_time/d' .annex/printing/print_r_in_color.c 
+	@mv -f .annex/printing/print_r_in_color.c .annex/printing/print_r_in_color.c.old
 
 grep_ :
 		grep -n -e printf -e time_exe $(A_SRC) >> ./.annex/show/.gres.txt
