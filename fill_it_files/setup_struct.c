@@ -13,7 +13,8 @@
 #include "head.h"
 
 t_sol	*next_solve_step(t_head *head, int step)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_sol				*solution;
 	t_sol				*tmp;
 	int					i;
@@ -42,7 +43,8 @@ t_sol	*next_solve_step(t_head *head, int step)
 }
 
 void	*setup_pieces(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_piece		*tmp;
 	int			i;
 
@@ -66,7 +68,8 @@ void	*setup_pieces(t_head *head)
 }
 
 t_head	*setup_head_sol_part(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	int i;
 
 	if (!(head->solution = malloc_binary(head)))
@@ -86,7 +89,8 @@ t_head	*setup_head_sol_part(t_head *head)
 }
 
 t_head	*setup_(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	head->sqsize = (ft_round_upper(ft_fsqrt(head->p, 0) * 2));
 	if (!(setup_pieces(head)))
 		return (NULL);

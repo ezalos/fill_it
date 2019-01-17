@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 14:04:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:16:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int		solve_solution(t_head *head, int deepness);
 /*						*/
 /************************/
 
-# define OFFPTION
+# define ONPTION
 
 # ifdef OFFPTION
 #  define OPTION	0
@@ -183,7 +183,7 @@ int		solve_solution(t_head *head, int deepness);
 # endif
 
 # ifdef ONPTION
-#  include "time_exe.h"
+#  include "../.annex/time/time_exe.h"
 #  define OPTION	1
 #  define _RED     "\x1b[31m"
 #  define _GREEN   "\x1b[32m"
@@ -195,6 +195,9 @@ int		solve_solution(t_head *head, int deepness);
 void		print_debug(t_head *head);
 void		print_soltion_link_debug(t_head *head, int step, int current_path);
 void		print_advance(t_head *head, int deepness, int threshold);
+void		print_debug(t_head *head);
+void		print_advance(t_head *head, int deepness, int threshold);
+
 # endif
 
 #endif

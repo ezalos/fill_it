@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 12:47:45 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 14:17:48 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ all :	$(NAME)
 $(NAME):
 			@$(MAKE) -C $(FOLD1)
 			@echo "$(GREEN) $(LIB) has been created $(END)"
-			@$(CC) $(SRCPUSH) $(TIME_EXE) $(FOLD1)$(LIB) -o $(NAME)
+			@$(CC) $(SRCPUSH) $(TIME_EXE) $(PRINT_DEBUG) $(FOLD1)$(LIB) -o $(NAME)
 			@echo "$(GREEN)$(NAME) has been created $(END)"
 
 d :

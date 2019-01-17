@@ -13,7 +13,8 @@
 #include "head.h"
 
 void	*free_head(t_head **head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (head && *head)
 	{
 		if ((*head)->next)
@@ -28,7 +29,8 @@ void	*free_head(t_head **head)
 }
 
 void	*free_tab_str(char ***ptr_on_tab, int lines)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (ptr_on_tab && *ptr_on_tab)
 	{
 		while (0 <= --lines)
@@ -40,7 +42,8 @@ void	*free_tab_str(char ***ptr_on_tab, int lines)
 }
 
 t_head	*restart_and_grow(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	free_solsol(head);
 	head->sqsize++;
 	update_pieces(head);

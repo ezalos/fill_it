@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:50:32 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 11:39:56 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 14:18:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../../fill_it_files/head.h"
 
 void	print_grid_j(t_head *head)
 {

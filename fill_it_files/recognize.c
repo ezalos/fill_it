@@ -13,7 +13,8 @@
 #include "head.h"
 
 static const char	*part10(char *s, int i, int div, int mod)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (mod >= 1 && s[i + 5 - 1] == '#')
 	{
 		if (s[i + (5 * 2) - 1] == '#' && div < 2)
@@ -31,7 +32,8 @@ static const char	*part10(char *s, int i, int div, int mod)
 }
 
 static const char	*part1(char *s, int i, int div, int mod)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (s[i + 5] == '#' && div < 3)
 	{
 		if (mod <= 2 && s[i + 5 + 1] == '#')
@@ -60,7 +62,8 @@ static const char	*part1(char *s, int i, int div, int mod)
 }
 
 static const char	*part0(char *s, int i, int div, int mod)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (mod <= 2 && s[i + 1] == '#')
 	{
 		if (mod <= 1 && s[i + 2] == '#')
@@ -88,7 +91,8 @@ static const char	*part0(char *s, int i, int div, int mod)
 }
 
 const char			*recog(char *s)
-{
+{ 
+	time_exe(__func__, clock()); 
 	int		i;
 	int		div;
 	int		mod;

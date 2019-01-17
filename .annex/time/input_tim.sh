@@ -6,7 +6,7 @@ declare -i i=0
 while IFS=: read -r line
 do
 {
-	perl -0777 -pe 's {\)\n\{} {$& \n\ttime_exe(__func__, cl(clock());}g' $line >> temp.c
+	perl -0777 -pe 's {\)\n\{} {$& \n\ttime_exe(__func__, clock());}g' $line >> temp.c
 	rm $line
 	cat temp.c >> $line
 	rm temp.c

@@ -13,7 +13,8 @@
 #include "head.h"
 
 int		main(int ac, char **av)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_head	*head;
 	int		check;
 

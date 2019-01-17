@@ -13,7 +13,8 @@
 #include "head.h"
 
 void	*free_linked_sol(t_sol **sol)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (sol && *sol)
 	{
 		free_linked_sol(&((*sol)->sol));
@@ -25,7 +26,8 @@ void	*free_linked_sol(t_sol **sol)
 }
 
 void	*free_linked_sols(t_sol **sol)
-{
+{ 
+	time_exe(__func__, clock()); 
 	if (sol && *sol)
 	{
 		free_linked_sols(&((*sol)->sol));
@@ -39,7 +41,8 @@ void	*free_linked_sols(t_sol **sol)
 }
 
 void	*free_solsol(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	int y;
 
 	y = -1;
@@ -64,7 +67,8 @@ void	*free_solsol(t_head *head)
 }
 
 void	*free_solsols(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	int y;
 
 	y = -1;

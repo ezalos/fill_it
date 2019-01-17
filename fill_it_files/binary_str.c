@@ -13,17 +13,20 @@
 #include "head.h"
 
 int		binary_size(int length)
-{
+{ 
+	time_exe(__func__, clock()); 
 	return ((length / 8) + 1);
 }
 
 void	binary_to_str(char *binary, int size, int binary_position)
-{
+{ 
+	time_exe(__func__, clock()); 
 	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
 }
 
 char	binstrand(char *s1, char *s2, size_t length)
-{
+{ 
+	time_exe(__func__, clock()); 
 	size_t i;
 
 	i = 0;
@@ -38,7 +41,8 @@ char	binstrand(char *s1, char *s2, size_t length)
 }
 
 char	binary_string_and_start(char *s1, char *s2, size_t length, size_t start)
-{
+{ 
+	time_exe(__func__, clock()); 
 	size_t	r_del;
 	size_t	a_del;
 	char	sa;

@@ -13,7 +13,8 @@
 #include "head.h"
 
 void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
-{
+{ 
+	time_exe(__func__, clock()); 
 	binary_to_str(head->solution
 		[piece->tt_pos - piece->pc_pos + ++box[1]],
 		head->p + (head->sqsize * head->sqsize), box[0]);
@@ -36,7 +37,8 @@ void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 */
 
 void	write_binary(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_piece	*piece;
 	int		box[6];
 
@@ -58,7 +60,8 @@ void	write_binary(t_head *head)
 }
 
 char	**malloc_binary(t_head *head)
-{
+{ 
+	time_exe(__func__, clock()); 
 	char	**sol;
 	int		i;
 	int		line;

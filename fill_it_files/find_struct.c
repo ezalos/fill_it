@@ -13,7 +13,8 @@
 #include "head.h"
 
 t_piece	*find_piece(t_head *head, int piece)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_piece				*tetro;
 	int					i;
 
@@ -29,7 +30,8 @@ t_piece	*find_piece(t_head *head, int piece)
 }
 
 t_sol	*find_sol(t_head *head, int sol)
-{
+{ 
+	time_exe(__func__, clock()); 
 	t_sol				*solution;
 	int					i;
 
@@ -45,7 +47,8 @@ t_sol	*find_sol(t_head *head, int sol)
 }
 
 t_piece	*find_piece_hash(t_head *head, int piece)
-{
+{ 
+	time_exe(__func__, clock()); 
 	static t_piece		**hash;
 	int					i;
 
@@ -61,7 +64,8 @@ t_piece	*find_piece_hash(t_head *head, int piece)
 }
 
 t_sol	*find_sol_hash(t_head *head, int sol)
-{
+{ 
+	time_exe(__func__, clock()); 
 	static t_sol		**hash;
 	int					i;
 
