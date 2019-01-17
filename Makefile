@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 22:10:40 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/17 23:04:59 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,8 @@ SRCS6 = binary_str find_struct j_and_maths
 TIME_EXE = 	./.annex/time/time_exe.c
 PRINT = 	./.annex/printing/print_debug.c \
 			./.annex/printing/print_r_in_color.c
+
+SRC_OPTN = $(TIME_EXE) $(PRINT)
 
 SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
 OBJS = $(patsubst %, ft_%.o,$(SRCS))
@@ -231,6 +233,9 @@ show_ :
 onption :
 	bash .annex/time/input_tim.sh
 	mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
+	mv -f .annex/time/time_exe.h.old .annex/time/time_exe.h
+	mv -f .annex/time/time_exe.c.old .annex/time/time_exe.c
+	mv -f .annex/printing/print_debug.c.old .annex/printing/print_debug.c
 	bash .annex/show/show_debug.sh
 		
 
@@ -243,6 +248,10 @@ offption :
 	@sed -i '' '/print_soltion_link/d' fill_it_files/solve.c
 	@sed -i '' '/print_time/d' .annex/printing/print_r_in_color.c 
 	@mv -f .annex/printing/print_r_in_color.c .annex/printing/print_r_in_color.c.old
+	@mv -f .annex/time/time_exe.h .annex/time/time_exe.h.old
+	@mv -f .annex/time/time_exe.c .annex/time/time_exe.c.old
+	@mv -f .annex/printing/print_debug.c .annex/printing/print_debug.c.old
+	@sed -i '' 's/# define ONPTION/# define OFFPTION/' fill_it_files/head.h
 
 grep_ :
 		grep -n -e printf -e time_exe $(A_SRC) >> ./.annex/show/.gres.txt
