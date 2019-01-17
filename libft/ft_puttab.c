@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 15:00:23 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:19:12 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:59:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_puttab(const char *s, int separation)
 	length = ft_strlen(s);
 	while (tab + length < separation * n)
 	{
-		write(1 ," ", 1);
+		write(1, " ", 1);
 		tab++;
 	}
 }

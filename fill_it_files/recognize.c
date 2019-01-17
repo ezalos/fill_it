@@ -6,13 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:15:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 17:05:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 
-static const char	*part10(char *s, int i, int div, int mod)
+const char	*part10(char *s, int i, int div, int mod)
 {
 	if (mod >= 1 && s[i + 5 - 1] == '#')
 	{
@@ -30,7 +30,7 @@ static const char	*part10(char *s, int i, int div, int mod)
 	return (NULL);
 }
 
-static const char	*part1(char *s, int i, int div, int mod)
+const char	*part1(char *s, int i, int div, int mod)
 {
 	if (s[i + 5] == '#' && div < 3)
 	{
@@ -59,7 +59,7 @@ static const char	*part1(char *s, int i, int div, int mod)
 	return (NULL);
 }
 
-static const char	*part0(char *s, int i, int div, int mod)
+const char	*part0(char *s, int i, int div, int mod)
 {
 	if (mod <= 2 && s[i + 1] == '#')
 	{
@@ -87,7 +87,7 @@ static const char	*part0(char *s, int i, int div, int mod)
 	return (part1(s, i, div, mod));
 }
 
-const char			*recog(char *s)
+const char	*recog(char *s)
 {
 	int		i;
 	int		div;

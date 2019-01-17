@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:14:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 16:58:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ void	show_pieces_binary(t_head *head, char **tab_result)
 		}
 		j_piece++;
 	}
-	if (!OPTION)
-		print_pieces(head, tab_result);
-	else
-		print_pieces_color(head, tab_result);
+	print_pieces(head, tab_result);
 }
 
 int		print_result(t_head *head)

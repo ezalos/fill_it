@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 15:40:03 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/17 16:57:10 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,13 @@ SRCS0 = main
 SRCS1 = read_check recognize
 SRCS2 = setup_struct setup_pieces setup_binary
 SRCS3 =	solve
-SRCS4 = printing_the_result print_r_in_color
+SRCS4 = printing_the_result
 SRCS5 = free_all free_pieces free_sols
 SRCS6 = binary_str find_struct j_and_maths
 
-TIME_EXE = ./.annex/time/time_exe.c
-PRINT_DEBUG = ./.annex/printing/print_debug.c
+TIME_EXE = 	./.annex/time/time_exe.c
+PRINT = 	./.annex/printing/print_debug.c \
+			./.annex/printing/print_r_in_color.c
 
 SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
 OBJS = $(patsubst %, ft_%.o,$(SRCS))
@@ -87,7 +88,7 @@ all :	$(NAME)
 $(NAME):
 			@$(MAKE) -C $(FOLD1)
 			@echo "$(GREEN) $(LIB) has been created $(END)"
-			@$(CC) $(SRCPUSH) $(TIME_EXE) $(PRINT_DEBUG) $(FOLD1)$(LIB) -o $(NAME)
+			@$(CC) $(SRCPUSH) $(FOLD1)$(LIB) -o $(NAME)
 			@echo "$(GREEN)$(NAME) has been created $(END)"
 
 d :
@@ -139,6 +140,7 @@ teste : 	re
 			./$(NAME) ./.annex/tests/bad/err4
 			./$(NAME) ./.annex/tests/bad/err5
 			./$(NAME) ./.annex/tests/bad/err6
+			./$(NAME)
 			./$(NAME) ./.annex/test lol
 			./$(NAME) ./.annex
 
@@ -221,8 +223,11 @@ onption :
 	bash .annex/time/input_tim.sh
 
 #\n\tprint_time(time_exe(__func__, clock()));\n\ti = -1;
+#sed "60i\\
+#	print_time(time_exe(__func__, clock()));" fill_it_files/print_r_in_color.c > fill_it_files/print_r_in_color.c
 #
-#
+#	perl -0777 -pe 's {\)\n\ti = -1\{} {$&\n\tprint_time(time_exe(__func__, clock()));\n\ti = -1}g' fill_it_files/print_r_in_color.c >> fill_it_files/print_r_in_color.c
+#	@sed -i '' "s~\\n\\ti = -1~\\n\\tprint_time(time_exe(__func__, clock()));\\n\\ti = -1~g" fill_it_files/print_r_in_color.c
 # to remove time_exe from *.c.
 # Attention a nos wildcards. Il y en a une autre ligne 212.
 offption :

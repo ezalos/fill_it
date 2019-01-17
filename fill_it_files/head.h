@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 15:43:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 17:07:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@
 **						**
 **************************
 */
-typedef struct	s_coord
+typedef struct			s_coord
 {
 	int					y;
 	int					x;
 	int					j;
-}				t_coord;
+}						t_coord;
 
-typedef struct	s_piece
+typedef struct			s_piece
 {
 	char				*name;
 	int					y_size;
@@ -77,17 +77,17 @@ typedef struct	s_piece
 	int					i;
 	t_coord				*coord[4];
 	struct s_piece		*next;
-}				t_piece;
+}						t_piece;
 
-typedef struct	s_sol
+typedef struct			s_sol
 {
 	char				*y_all_pxnx;
 	int					current_path;
 	int					nb_of_paths;
 	struct s_sol		*sol;
-}				t_sol;
+}						t_sol;
 
-typedef struct	s_head
+typedef struct			s_head
 {
 	char				**solution;
 	int					sqsize;
@@ -98,7 +98,7 @@ typedef struct	s_head
 	int					config;
 	t_sol				*sol;
 	t_piece				*next;
-}				t_head;
+}						t_head;
 
 /*
 **************************
@@ -122,6 +122,11 @@ void		print_soltion_link_debug(t_head *head, int step, int current_path);
 void		print_advance(t_head *head, int deepness, int threshold);
 void		print_debug(t_head *head);
 void		print_advance(t_head *head, int deepness, int threshold);
+
+void		ft_putchar_color(char c);
+void		ft_put(const char *s, int separation);
+void		print_pieces_color(t_head *head, char **tab_result);
+
 # endif
 
 # ifdef OFFPTION
@@ -152,93 +157,90 @@ void		print_advance(t_head *head, int deepness, int threshold);
 **	FREE	**
 **************
 */
-void	*free_head(t_head **head);
-void	*free_tab_str(char ***ptr_on_tab, int lines);
-t_head	*restart_and_grow(t_head *head);
+void		*free_head(t_head **head);
+void		*free_tab_str(char ***ptr_on_tab, int lines);
+t_head		*restart_and_grow(t_head *head);
 
-void	*free_linked_pieces(t_piece **next);
+void		*free_linked_pieces(t_piece **next);
 
-void	*free_linked_sol(t_sol **sol);
-void	*free_linked_sols(t_sol **sol);
-void	*free_solsol(t_head *head);
-void	*free_solsols(t_head *head);
+void		*free_linked_sol(t_sol **sol);
+void		*free_linked_sols(t_sol **sol);
+void		*free_solsol(t_head *head);
+void		*free_solsols(t_head *head);
 
 /*
 **************
 ** LOGISTIC **
 **************
 */
-int		binary_size(int length);
-void	binary_to_str(char *binary, int size, int binary_position);
-char	binstrand(char *s1, char *s2, size_t length);
-char	binary_string_and_start(char *s1, char *s2,
-		size_t length, size_t start);
+int			binary_size(int length);
+void		binary_to_str(char *binary, int size, int binary_position);
+char		binstrand(char *s1, char *s2, size_t length);
+char		binary_string_and_start(char *s1, char *s2,
+size_t length, size_t start);
 
-t_piece	*find_piece(t_head *head, int piece);
-t_sol	*find_sol(t_head *head, int sol);
-t_piece	*find_piece_hash(t_head *head, int piece);
-t_sol	*find_sol_hash(t_head *head, int sol);
+t_piece		*find_piece(t_head *head, int piece);
+t_sol		*find_sol(t_head *head, int sol);
+t_piece		*find_piece_hash(t_head *head, int piece);
+t_sol		*find_sol_hash(t_head *head, int sol);
 
-int		yx_to_j(int y, int x);
-int		j_to_yx(t_head *head, int j, int o);
-int		ft_iterative_power(int nb, int power);
+int			yx_to_j(int y, int x);
+int			j_to_yx(t_head *head, int j, int o);
+int			ft_iterative_power(int nb, int power);
 
 /*
 **************
 **	PRINT	**
 **************
 */
-void	ft_putchar_color(char c);
-void	print_pieces_color(t_head *head, char **tab_result);
-
-void	print_pieces(t_head *head, char **tab_result);
-int		pos_one_binary(char *str, size_t length, size_t umpteenth);
-void	show_pieces_binary(t_head *head, char **tab_result);
-int		print_result(t_head *head);
+void		print_pieces(t_head *head, char **tab_result);
+int			pos_one_binary(char *str, size_t length, size_t umpteenth);
+void		show_pieces_binary(t_head *head, char **tab_result);
+int			print_result(t_head *head);
 
 /*
 **************
 **	READ	**
 **************
 */
-int		cre_tetro(const char *name, t_head **head, char p);
-int		check_two(char *buf, int i, int c_hash);
-int		ft_check_input(int fd, char *buf, t_head **head);
-t_head	*read_check(char *fillit);
+int			cre_tetro(const char *name, t_head **head, char p);
+int			check_two(char *buf, int i, int c_hash);
+int			ft_check_input(int fd, char *buf, t_head **head);
+t_head		*read_check(char *fillit);
 
-static const char	*part10(char *s, int i, int div, int mod);
-static const char	*part1(char *s, int i, int div, int mod);
-static const char	*part0(char *s, int i, int div, int mod);
-const char			*recog(char *s);
+const char	*part10(char *s, int i, int div, int mod);
+const char	*part1(char *s, int i, int div, int mod);
+const char	*part0(char *s, int i, int div, int mod);
+const char	*recog(char *s);
 
 /*
 **************
 **	SETUP	**
 **************
 */
-void	while_in_write_binary(t_head *head, t_piece *piece, int *box);
-void	write_binary(t_head *head);
-char	**malloc_binary(t_head *head);
+void		while_in_write_binary(t_head *head, t_piece *piece, int *box);
+void		write_binary(t_head *head);
+char		**malloc_binary(t_head *head);
 
-void	update_pieces(t_head *head);
-void	p_yx(t_piece *piece, int y, int x);
-int		size_pieces(char s, int size);
-void	pieces_yx(t_piece *tmp);
-int		coord_setup(t_piece *piece);
+void		update_pieces(t_head *head);
+void		p_yx(t_piece *piece, int y, int x);
+int			size_pieces(char s, int size);
+void		pieces_yx(t_piece *tmp);
+int			coord_setup(t_piece *piece);
 
-t_sol	*next_solve_step(t_head *head, int step);
-void	*setup_pieces(t_head *head);
-t_head	*setup_head_sol_part(t_head *head);
-t_head	*setup_(t_head *head);
+t_sol		*next_solve_step(t_head *head, int step);
+void		*setup_pieces(t_head *head);
+t_head		*setup_head_sol_part(t_head *head);
+t_head		*setup_(t_head *head);
 
 /*
 **************
 **	SOLVE	**
 **************
 */
-int		deleter_of_binaries(t_head *head, int depth, int pos_choy);
-int		how_many_paths(t_head *head, int deepness);
-void	sol_turn_mem(t_head *head, int deepness);
-int		solve_solution(t_head *head, int deepness);
+int			deleter_of_binaries(t_head *head, int depth, int pos_choy);
+int			how_many_paths(t_head *head, int deepness);
+void		sol_turn_mem(t_head *head, int deepness);
+int			solve_solution(t_head *head, int deepness);
 
 #endif
