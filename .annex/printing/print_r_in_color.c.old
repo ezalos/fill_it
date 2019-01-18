@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:35:37 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 16:48:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/17 23:29:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./../../fill_it_files/head.h"
 
 void	ft_putchar_color(char c)
 {

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 23:04:59 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/18 01:57:31 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,13 +85,19 @@ GREEN   = '\x1b[32m'
 RED     = '\x1b[31m'
 END     = '\x1b[0m'
 
+NORD := $(wildcard ./fill_it_files/main.c)
+NOPT := $(wildcard ./.annex/time/time_exe.c.old)
+ifeq ("$(NOPT)","")
+SRCPUSH += $(SRC_OPTN)
+endif
+
 all :	$(NAME)
 
 $(NAME):
-			@$(MAKE) -C $(FOLD1)
-			@echo "$(GREEN) $(LIB) has been created $(END)"
-			@$(CC) $(SRCPUSH) $(FOLD1)$(LIB) -o $(NAME)
-			@echo "$(GREEN)$(NAME) has been created $(END)"
+	@$(MAKE) -C $(FOLD1)
+	@echo "$(GREEN) $(LIB) has been created $(END)"
+	@$(CC) $(SRCPUSH) $(FOLD1)$(LIB) -o $(NAME)
+	echo "$(GREEN)$(NAME) has been created $(END)"
 
 d :
 			@$(CC) -c $(DFLAGS) $(patsubst %,%.c,$(A_SRC))
@@ -205,9 +211,6 @@ else
 	@rm -rf libft fill_it_files
 endif
 
-echo :
-		@echo $(prout)
-
 push :
 ifeq ($(IFPUSH), )
 	@echo “Non present”
@@ -237,7 +240,7 @@ onption :
 	mv -f .annex/time/time_exe.c.old .annex/time/time_exe.c
 	mv -f .annex/printing/print_debug.c.old .annex/printing/print_debug.c
 	bash .annex/show/show_debug.sh
-		
+
 
 # to remove time_exe from *.c.
 # Attention a nos wildcards. Il y en a une autre ligne 212.
@@ -246,7 +249,7 @@ offption :
 	@sed -i '' '/print_debug/d' fill_it_files/setup_struct.c
 	@sed -i '' 's/print_pieces_color/print_pieces/' fill_it_files/printing_the_result.c
 	@sed -i '' '/print_soltion_link/d' fill_it_files/solve.c
-	@sed -i '' '/print_time/d' .annex/printing/print_r_in_color.c 
+	@sed -i '' '/print_time/d' .annex/printing/print_r_in_color.c
 	@mv -f .annex/printing/print_r_in_color.c .annex/printing/print_r_in_color.c.old
 	@mv -f .annex/time/time_exe.h .annex/time/time_exe.h.old
 	@mv -f .annex/time/time_exe.c .annex/time/time_exe.c.old
