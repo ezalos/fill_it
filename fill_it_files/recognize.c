@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 17:05:20 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:43 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 const char	*part10(char *s, int i, int div, int mod)
 {

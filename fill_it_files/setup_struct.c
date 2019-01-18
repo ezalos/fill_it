@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 21:11:21 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 t_sol	*next_solve_step(t_head *head, int step)
 {

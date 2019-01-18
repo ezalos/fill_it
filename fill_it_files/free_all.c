@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:14:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:14 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 void	*free_head(t_head **head)
 {

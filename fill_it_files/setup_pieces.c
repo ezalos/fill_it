@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:15:40 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 void	update_pieces(t_head *head)
 {

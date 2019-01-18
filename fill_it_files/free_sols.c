@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:14:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:23 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 void	*free_linked_sol(t_sol **sol)
 {

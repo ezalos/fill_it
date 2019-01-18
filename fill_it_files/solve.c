@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 23:24:51 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:18:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 {

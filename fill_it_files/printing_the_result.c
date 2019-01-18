@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 22:52:00 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 void	print_pieces(t_head *head, char **tab_result)
 {

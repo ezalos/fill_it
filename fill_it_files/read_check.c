@@ -6,11 +6,11 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 15:15:06 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 int		cre_tetro(const char *name, t_head **head, char p)
 {

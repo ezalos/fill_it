@@ -6,11 +6,11 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:15:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/18 05:17:47 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "./head.h"
 
 void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 {

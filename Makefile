@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/18 04:37:05 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/18 05:19:48 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,9 +115,6 @@ A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
 NA_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
 endif
 
-
-
-
 NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
 ##################
 ##	  W/_OPT	##
@@ -125,8 +122,10 @@ NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
 ifeq ("$(NOPT)","")
 TIME_EXE 	= 	./.annex/time/time_exe.c
 TIME_EXE_H	= 	./.annex/time/time_exe.h
-PRINT		= 	./.annex/printing/print_debug.c \
-				./.annex/printing/print_r_in_color.c
+PRINT_DBG	=	./.annex/printing/print_debug.c
+PRINT_R		=	./.annex/printing/print_r_in_color.c
+PRINT		= 	$(PRINT_DBG) $(PRINT_R)
+
 A_SRC += $(TIME_EXE) $(PRINT)
 
 ##################
@@ -135,8 +134,10 @@ A_SRC += $(TIME_EXE) $(PRINT)
 else
 TIME_EXE	= 	./.annex/time/time_exe.c.old
 TIME_EXE_H	= 	./.annex/time/time_exe.h.old
-PRINT 		= 	./.annex/printing/print_debug.c.old \
-				./.annex/printing/print_r_in_color.c.old
+PRINT_DBG	=	./.annex/printing/print_debug.c.old
+PRINT_R		=	./.annex/printing/print_r_in_color.c.old
+PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
+
 endif
 
 SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
@@ -191,13 +192,11 @@ $(NAME):
 
 clean :
 		@$(MAKE) clean -C $(LIB_PATH)
-		@echo "$(GREEN) $(LIB) has been cleaned $(END)"
 		@echo "$(RED) Objects have been removed $(END)"
 		@rm -f $(OBJS)
 
 fclean :
 		@$(MAKE) fclean -C $(LIB_PATH)
-		@echo "$(GREEN) $(LIB) has been fcleaned $(END)"
 		@$(MAKE) clean
 		@echo "$(RED) Project has been removed $(END)"
 		@rm -f $(NAME)
@@ -206,7 +205,6 @@ re :
 		@$(MAKE) re -C $(LIB_PATH)
 		@$(MAKE) fclean
 		@$(MAKE)
-		@echo "$(GREEN) $(LIB) has been recreated $(END)"
 
 git :
 		@git add -A
@@ -239,25 +237,44 @@ testv :	re
 testp :	re
 		./$(NAME) $(PIECE)
 
-testa : 	all
+check :
+		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
+
+##############################################################################
+##############################################################################
+##																			##
+##									-----									##
+##									BONUS									##
+##									-----									##
+##																			##
+##############################################################################
+##############################################################################
+
+##########################
+##						##
+##		AUTO-TEST		##
+##						##
+##########################
+
+testa : all
 		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
 		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
 		@cat ./.annex/tests/last_test
 		@rm -rf ./.annex/tests/random_generated/*
 
-check :
-		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
-
 ##########################
 ##						##
-##		 OPTIONS		##
+##		ARCHITECT		##
 ##						##
 ##########################
 
 order :
 ifneq ($(IFORDER), )
+		@$(MAKE) offption
 		@sed -i '' "s~head.h~../../includes/head.h~g" $(A_SRC)
 		@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" $(TIME_EXE_H)
+		@sed -i '' "s~../libft/libft.h~../.annex/libft/libft.h~g" $(HEAD)
+		@sed -i '' "s~fill_it_files/head.h~includes/head.h~g" $(PRINT)
 		@mkdir $(A_SRC_P) $(NHEAD_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
 		@mv -f $(LIB_PATH) $(NLIB_PATH)
@@ -273,8 +290,11 @@ endif
 
 push :
 ifneq ($(IFPUSH), )
+		@$(MAKE) offption
 		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
 		@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" $(TIME_EXE_H)
+		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
+		@sed -i '' "s~includes/head.h~fill_it_files/head.h~g" $(PRINT)
 		@mkdir $(NALL_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
 		@mv -f $(A_SRC) $(NALL_PATH)
@@ -287,15 +307,21 @@ malloc_check :
 #		grep -n "malloc" srcs/*/*
 
 
+##########################
+##						##
+##	   ON/OFF PTION		##
+##						##
+##########################
+
 # to put time_exe in *.c. Note that it will be configured to work when project is using the topush_ file structure.
 onption :
 ifneq ("$(NOPT)","")
-	bash .annex/time/input_tim.sh
-	mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
-	mv -f .annex/time/time_exe.h.old .annex/time/time_exe.h
-	mv -f .annex/time/time_exe.c.old .annex/time/time_exe.c
-	mv -f .annex/printing/print_debug.c.old .annex/printing/print_debug.c
-	bash .annex/show/show_debug.sh
+	@bash .annex/time/input_tim.sh
+	@mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
+	@mv -f .annex/time/time_exe.h.old .annex/time/time_exe.h
+	@mv -f .annex/time/time_exe.c.old .annex/time/time_exe.c
+	@mv -f .annex/printing/print_debug.c.old .annex/printing/print_debug.c
+	@bash .annex/show/show_debug.sh
 endif
 
 # to remove time_exe from *.c.
@@ -311,8 +337,14 @@ ifeq ("$(NOPT)","")
 	@mv -f .annex/time/time_exe.h .annex/time/time_exe.h.old
 	@mv -f .annex/time/time_exe.c .annex/time/time_exe.c.old
 	@mv -f .annex/printing/print_debug.c .annex/printing/print_debug.c.old
-	@sed -i '' 's/# define ONPTION/# define OFFPTION/' fill_it_files/head.h
+	@sed -i '' 's/define ONPTION/define OFFPTION/' fill_it_files/head.h
 endif
+
+##########################
+##						##
+##		  SHOW			##
+##						##
+##########################
 
 show_ :
 			bash ./.annex/show/.show.sh
@@ -322,5 +354,11 @@ grep_ :
 hide_ :
 		sed -i '' '/printf/d' $(A_SRC)
 		sed -i '' '/time/d' $(A_SRC)
+
+##########################
+##						##
+##		 .PHONY			##
+##						##
+##########################
 
 .PHONY : clean fclean re all d git check

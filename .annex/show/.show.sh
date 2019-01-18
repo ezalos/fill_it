@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    .show.sh                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/18 04:57:33 by ldevelle          #+#    #+#              #
+#    Updated: 2019/01/18 04:57:35 by ldevelle         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 #!/bin/bash
 
 #grep -n  printf ../*.c >> .gres.txt			= to input all lines numbered with printf from previous dir files into .gres.txt;
