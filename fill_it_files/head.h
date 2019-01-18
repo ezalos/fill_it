@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/17 22:41:42 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/18 02:04:18 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 **	Please, only use the commands "make offption" & "make onption"
 **	to pass from one code to the other.
 **
-**	Tank you
+**	Thank you
 */
 
 /*
