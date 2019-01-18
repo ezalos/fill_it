@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/18 03:51:33 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/18 04:37:05 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,6 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 ##############################################################################
 ##############################################################################
 
-NPLL		:= $(wildcard ./srcs/main/main.c)
-NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
 IFORDER		= $(shell ls | grep fill_it_files)
 IFPUSH		= $(shell ls | grep srcs)
 
@@ -53,13 +51,14 @@ SRCS4		= printing_the_result
 SRCS5		= free_all free_pieces free_sols
 SRCS6		= binary_str find_struct j_and_maths
 
-SRC_PATH0 	= $(SRC_PATH)/main
-SRC_PATH1 	= $(SRC_PATH)/read
-SRC_PATH2 	= $(SRC_PATH)/setup
-SRC_PATH3 	= $(SRC_PATH)/solve
-SRC_PATH4 	= $(SRC_PATH)/print
-SRC_PATH5 	= $(SRC_PATH)/free
-SRC_PATH6 	= $(SRC_PATH)/logistics
+MSRC_PATH	= ./srcs
+SRC_PATH0 	= $(MSRC_PATH)/main
+SRC_PATH1 	= $(MSRC_PATH)/read
+SRC_PATH2 	= $(MSRC_PATH)/setup
+SRC_PATH3 	= $(MSRC_PATH)/solve
+SRC_PATH4 	= $(MSRC_PATH)/print
+SRC_PATH5 	= $(MSRC_PATH)/free
+SRC_PATH6 	= $(MSRC_PATH)/logistics
 A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
  				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
 
@@ -68,11 +67,11 @@ A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
 ##	   ARCHITECTURE		##
 ##						##
 ##########################
-
+NPUH		:= $(wildcard ./srcs/main/main.c)
 ##################
-##	   PULL		##
+##	   PUSH		##
 ##################
-ifeq ("$(NPLL)","")
+ifeq ("$(NPUH)","")
 
 SRC_PATH	= ./fill_it_files
 NSRC_PATH  	= srcs
@@ -90,6 +89,7 @@ LIB_PATH	= ./libft
 NLIB_PATH	= ./.annex/libft
 HEAD_PATH	= $(SRC_PATH)
 NHEAD_PATH	= ./includes
+NALL_PATH	= ./fill_it_files
 
 ##################
 ##	  ORDER		##
@@ -102,7 +102,7 @@ HEAD_PATH	= ./includes
 NHEAD_PATH	= ./fill_it_files
 NALL_PATH	= ./fill_it_files
 
-SRC_PATH  	= srcs
+SRC_PATH  	= ./srcs
 NSRC_PATH	= ./fill_it_files
 
 A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
@@ -116,16 +116,27 @@ NA_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
 endif
 
 
-TIME_EXE = 	./.annex/time/time_exe.c
-PRINT = 	./.annex/printing/print_debug.c \
-			./.annex/printing/print_r_in_color.c
 
+
+NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
 ##################
 ##	  W/_OPT	##
 ##################
 ifeq ("$(NOPT)","")
-
+TIME_EXE 	= 	./.annex/time/time_exe.c
+TIME_EXE_H	= 	./.annex/time/time_exe.h
+PRINT		= 	./.annex/printing/print_debug.c \
+				./.annex/printing/print_r_in_color.c
 A_SRC += $(TIME_EXE) $(PRINT)
+
+##################
+##	  NO_OPT	##
+##################
+else
+TIME_EXE	= 	./.annex/time/time_exe.c.old
+TIME_EXE_H	= 	./.annex/time/time_exe.h.old
+PRINT 		= 	./.annex/printing/print_debug.c.old \
+				./.annex/printing/print_r_in_color.c.old
 endif
 
 SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
@@ -246,29 +257,29 @@ check :
 order :
 ifneq ($(IFORDER), )
 		@sed -i '' "s~head.h~../../includes/head.h~g" $(A_SRC)
-		@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" ./.annex/time/time_exe.h
-		@mkdir $(A_SRC_P) $(NALL_PATH)
-		@mv -f $(SRC_PATH) $(NHEAD_PATH)
+		@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" $(TIME_EXE_H)
+		@mkdir $(A_SRC_P) $(NHEAD_PATH)
+		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
 		@mv -f $(LIB_PATH) $(NLIB_PATH)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS0)) $(SRC_PATH0)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS1)) $(SRC_PATH1)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS2)) $(SRC_PATH2)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS3)) $(SRC_PATH3)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS4)) $(SRC_PATH4)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS5)) $(SRC_PATH5)
-		@mv -f $(patsubst %, $(NALL_PATH)%.c, $(SRCS6)) $(SRC_PATH6)
-		#@rm -rf libft fill_it_files
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS0)) $(SRC_PATH0)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS1)) $(SRC_PATH1)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS2)) $(SRC_PATH2)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS3)) $(SRC_PATH3)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS4)) $(SRC_PATH4)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS5)) $(SRC_PATH5)
+		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS6)) $(SRC_PATH6)
+		@rm -rf libft fill_it_files
 endif
 
 push :
 ifneq ($(IFPUSH), )
 		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
-		@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" ./.annex/time/time_exe.h
+		@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" $(TIME_EXE_H)
 		@mkdir $(NALL_PATH)
-		@mv -f $(HEAD_PATH)/$(HEAD) $(NALL_PATH)
+		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
 		@mv -f $(A_SRC) $(NALL_PATH)
-		@mv -f $(NLIB_PATH) ./
-		#@rm -rf $(A_SRC_P) $(HEAD)
+		@mv -f $(LIB_PATH) ./
+		@rm -rf $(SRC_PATH) $(HEAD_PATH)
 endif
 
 malloc_check :
