@@ -6,9 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:30:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/18 05:17:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/20 20:33:58 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+******************************************
+**                                  	**
+**  set of functions used to calculate	**
+**	coordinates using x and y, also		**
+**	contains power function    	 	 	**
+**                                  	**
+******************************************
+*/
 
 #include "./head.h"
 

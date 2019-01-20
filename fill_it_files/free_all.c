@@ -6,9 +6,21 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/18 05:17:14 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/20 20:26:55 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+*************************************************
+**												**
+**  set of functions used to free,   			**
+**  in case we previously allocated				**
+**	memory for pieces until we found a			**
+**	wrong input or if we need to expand			**
+**	our solution table             				**
+**                                 				**
+**************************************************
+*/
 
 #include "./head.h"
 

@@ -6,9 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:32:22 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/18 05:17:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/20 20:27:04 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+**************************************
+**                                  **
+**  set of tool functions used by   **
+**  our binary solver to access		**
+**  data contained in our structs	**
+**                                  **
+**************************************
+*/
 
 #include "./head.h"
 
