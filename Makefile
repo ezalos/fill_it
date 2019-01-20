@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/18 05:25:00 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/20 23:44:42 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-CFLAGS = $(DFLAGS)
+#CFLAGS = $(DFLAGS)
 
 ##############################################################################
 ##############################################################################
@@ -361,4 +361,4 @@ hide_ :
 ##						##
 ##########################
 
-.PHONY : clean fclean re all d git check
+.PHONY : clean fclean re all d git check show_ grep_ hide_ malloc_check onption offption push order testa testv teste testp
