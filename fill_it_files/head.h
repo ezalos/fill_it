@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/21 13:48:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:53:39 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ int						size_pieces(char s, int size);
 void					pieces_yx(t_piece *tmp);
 int						coord_setup(t_piece *piece);
 
+void					init_head(t_head *head);
 t_sol					*next_solve_step(t_head *head, int step);
 void					*setup_pieces(t_head *head);
 t_head					*setup_head_sol_part(t_head *head);

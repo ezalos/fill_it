@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 17:19:11 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:04:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,19 @@
 */
 
 #include "./head.h"
+
+void	init_head(t_head *head)
+{
+	head->solution = NULL;
+	head->y_all_pxnx = NULL;
+	head->p = 0;
+	head->sqsize = 0;
+	head->tt_pos_all = 0;
+	head->pos_sol = 0;
+	head->config = 0;
+	head->next = NULL;
+	head->sol = NULL;
+}
 
 t_sol	*next_solve_step(t_head *head, int step)
 {

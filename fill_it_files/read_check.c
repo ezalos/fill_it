@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/21 14:07:37 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 19:50:29 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,7 @@ t_head	*read_check(char *fillit)
 		ft_strdel(&buf);
 		return (ft_putstr_rnull("error\n"));
 	}
-	head->next = NULL;
-	head->p = 0;
+	init_head(head);
 	if (ft_check_input(fd, buf, &head))
 		return (head);
 	ft_strdel(&buf);

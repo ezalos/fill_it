@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 19:40:58 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 20:03:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*free_solsols(t_head *head)
 	y = -1;
 	if (head->solution)
 	{
-		while (++y < head->sqsize)
+		while (++y < head->tt_pos_all)
 		{
 			free(head->solution[y]);
 			head->solution[y] = NULL;
