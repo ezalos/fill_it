@@ -6,13 +6,13 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/18 04:57:40 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/18 04:57:42 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 00:39:12 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/bash
 
-sed -i '' '98G' fill_it_files/setup_struct.c
-sed -i '' '98a\
+sed -i '' '118G' fill_it_files/setup_struct.c
+sed -i '' '118a\
 	print_debug(head);' fill_it_files/setup_struct.c
 awk '/print_pieces/{c++;if(c==2){sub("print_pieces","print_pieces_color");c=0}}1' fill_it_files/printing_the_result.c > temp.c
 rm fill_it_files/printing_the_result.c
