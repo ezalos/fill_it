@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 14:47:59 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:19:11 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_sol	*next_solve_step(t_head *head, int step)
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
 			return (NULL);
 		tmp->sol = solution;
-		if (!(tmp->sol->y_all_pxnx = ft_memalloc(head->tt_pos_all)))
+		if (!(tmp->sol->y_all_pxnx = ft_memalloc((size_t)head->tt_pos_all)))
 			return (NULL);
-		ft_memcpy(tmp->sol->y_all_pxnx, tmp->y_all_pxnx, head->tt_pos_all);
+		ft_memcpy(tmp->sol->y_all_pxnx, tmp->y_all_pxnx,(size_t)head->tt_pos_all);
 		tmp->sol->sol = NULL;
 		return (solution);
 	}
@@ -79,7 +79,7 @@ t_head	*setup_head_sol_part(t_head *head)
 
 	if (!(head->solution = malloc_binary(head)))
 		return (NULL);
-	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) * (head->tt_pos_all))))
+	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) * ((size_t)head->tt_pos_all))))
 		return (free_tab_str(&head->solution, head->tt_pos_all));
 	i = -1;
 	while (++i < head->tt_pos_all + 1)

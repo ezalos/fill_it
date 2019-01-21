@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 14:46:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:07:35 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int		main(int ac, char **av)
 				return (0);
 		}
 	}
-	free_head(&head);
 	return (0);
 }

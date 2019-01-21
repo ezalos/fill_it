@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:32:22 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 20:27:04 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:27:57 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_piece	*find_piece_hash(t_head *head, int piece)
 	if (!hash)
 	{
 		i = 0;
-		if (!(hash = (t_piece**)malloc(sizeof(t_piece*) * head->p)))
+		if (!(hash = (t_piece**)malloc(sizeof(t_piece*) * (size_t)head->p)))
 			return (NULL);
 		while (++i <= head->p)
 			hash[i - 1] = find_piece_hash(head, i);
@@ -78,7 +78,7 @@ t_sol	*find_sol_hash(t_head *head, int sol)
 	if (!hash)
 	{
 		i = 0;
-		if (!(hash = (t_sol**)malloc(sizeof(t_sol*) * head->p)))
+		if (!(hash = (t_sol**)malloc(sizeof(t_sol*) * (size_t)head->p)))
 			return (NULL);
 		while (++i <= head->p)
 			hash[i - 1] = find_sol_hash(head, i);

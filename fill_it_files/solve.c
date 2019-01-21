@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 21:14:53 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:21:46 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 				while (++comp < head->tt_pos_all)
 					if (comp != head->config && binstrand(
 						head->solution[head->config], head->solution[comp],
-						head->p + (head->sqsize * head->sqsize)))
+			(size_t)head->p + ((size_t)head->sqsize * (size_t)head->sqsize)))
 						find_sol(head, depth)->y_all_pxnx[comp] = 0;
 				return (1);
 			}
@@ -74,10 +74,10 @@ void	sol_turn_mem(t_head *head, int deepness)
 {
 	if (deepness == 1)
 		ft_memcpy(find_sol(head, deepness)->y_all_pxnx,
-		head->y_all_pxnx, head->tt_pos_all);
+		head->y_all_pxnx, (size_t)head->tt_pos_all);
 	else
 		ft_memcpy(find_sol(head, deepness)->y_all_pxnx,
-		find_sol(head, deepness - 1)->y_all_pxnx, head->tt_pos_all);
+		find_sol(head, deepness - 1)->y_all_pxnx, (size_t)head->tt_pos_all);
 	find_sol(head, deepness)->nb_of_paths = how_many_paths(head, deepness);
 }
 

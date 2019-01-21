@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 20:26:55 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:11:45 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	*free_tab_str(char ***ptr_on_tab, int lines)
 
 t_head	*restart_and_grow(t_head *head)
 {
-	free_solsol(head);
+	free_solsols(head);
 	head->sqsize++;
 	update_pieces(head);
 	if (!(setup_head_sol_part(head)))

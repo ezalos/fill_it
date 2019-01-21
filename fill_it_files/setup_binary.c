@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 14:48:30 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:15:27 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ char	**malloc_binary(t_head *head)
 	int		line;
 	int		u;
 
-	if (!(sol = (char**)malloc(sizeof(char*) * head->tt_pos_all)))
+	if (!(sol = (char**)malloc(sizeof(char*) * (size_t)head->tt_pos_all)))
 		return (NULL);
 	i = -1;
 	line = ((head->p + (head->sqsize * head->sqsize)) / 8) + 1;
 	while (++i < head->tt_pos_all)
 	{
-		if (!(sol[i] = (char*)malloc(sizeof(char) * line)))
+		if (!(sol[i] = (char*)malloc(sizeof(char) * (size_t)line)))
 			return (free_tab_str(&sol, i));
 		u = -1;
 		while (++u < line)

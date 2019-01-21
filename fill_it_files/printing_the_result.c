@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 14:49:44 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:07:15 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		pos_one_binary(char *str, size_t length, size_t umpteenth)
 	while (++i <= (int)(length / 8))
 		if (str[i] != 0)
 		{
-			nb = str[i];
+			nb = (unsigned char)str[i];
 			j = 0;
 			while (nb)
 			{
@@ -65,10 +65,10 @@ int		pos_one_binary(char *str, size_t length, size_t umpteenth)
 
 void	show_pieces_binary(t_head *head, char **tab_result)
 {
-	int	line;
-	int	j_piece;
-	int block;
-	int i;
+	int		line;
+	int		j_piece;
+	int 	block;
+	size_t 	i;
 
 	line = -1;
 	j_piece = 0;
@@ -79,10 +79,10 @@ void	show_pieces_binary(t_head *head, char **tab_result)
 		i = 0;
 		while (++i <= 4)
 		{
-			block = pos_one_binary(head->solution[line], head->p +
-				(head->sqsize * head->sqsize), i) - head->p;
+			block = pos_one_binary(head->solution[line], (size_t)head->p +
+				((size_t)head->sqsize * (size_t)head->sqsize), i) - head->p;
 			tab_result[j_to_yx(head, block, 0)][j_to_yx(head, block, 1)] =
-			j_piece + 'A';
+			(char)j_piece + 'A';
 		}
 		j_piece++;
 	}
@@ -94,12 +94,12 @@ int		print_result(t_head *head)
 	char	**tab_result;
 	int		i;
 
-	if (!(tab_result = (char**)malloc((head->sqsize) * sizeof(char*))))
+	if (!(tab_result = (char**)malloc(((size_t)head->sqsize) * sizeof(char*))))
 		return (0);
 	i = -1;
 	while (++i < head->sqsize)
 	{
-		if (!(tab_result[i] = ft_memalloc((head->sqsize + 1))))
+		if (!(tab_result[i] = ft_memalloc(((size_t)head->sqsize + 1))))
 		{
 			free_tab_str(&tab_result, i);
 			return (0);
@@ -109,5 +109,6 @@ int		print_result(t_head *head)
 	}
 	show_pieces_binary(head, tab_result);
 	free_tab_str(&tab_result, head->sqsize);
+	free_head(&head);
 	return (1);
 }
