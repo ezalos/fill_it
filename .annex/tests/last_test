@@ -1,0 +1,250 @@
+./fillit ./.annex/tests/random_generated/test0
+A..B..D.
+AAABBBDD
+C..E..ID
+CCCEEEI.
+GGGF.HII
+LGFFHHHM
+LLJFKKKM
+LJJJ.KMM
+ 
+./fillit ./.annex/tests/random_generated/test1
+.ABC..D.
+AABCCDDD
+A.BCEEEE
+G.BFFFJ.
+GGII.FJJ
+MG.IIKJ.
+MM.KKK.L
+MHHHHLLL
+ 
+./fillit ./.annex/tests/random_generated/test2
+A.BBBC..
+AAABDCCC
+EEEDDF..
+..E.DFFF
+GGGGHIII
+MMMHHHIJ
+KKMLLJJJ
+KK..LL..
+ 
+./fillit ./.annex/tests/random_generated/test3
+AA.BBBCC
+DAAB.E.C
+DDDEEEHC
+FGGG..HH
+FFFGIMH.
+JJIIIMM.
+JLL...M.
+JLLKKKK.
+ 
+./fillit ./.annex/tests/random_generated/test4
+.A.BCCC.
+AABB.DC.
+EAMBDDG.
+EMMMD.GG
+EEFFFFLG
+.HJ.KKLL
+HHJKKI.L
+.HJJ.III
+ 
+./fillit ./.annex/tests/random_generated/test5
+AAABBCC.
+ADD.BFC.
+.EDDBFC.
+EEHHGFF.
+.EHGGG.I
+JJHLLIII
+J.KKLMMM
+JKK.L.M.
+ 
+./fillit ./.annex/tests/random_generated/test6
+A.BC...D
+A.BCCCDD
+AABEGGGD
+LLBEGMMM
+L.EE..IM
+LFFFFHII
+JJKKKHI.
+.JJK.HH.
+ 
+./fillit ./.annex/tests/random_generated/test7
+AAAAB.D.
+CCCEBBD.
+CFGEEBDD
+FFG.E.MM
+FGGHHHHM
+IIIIJJJM
+KK.LLJ..
+KKLL....
+ 
+./fillit ./.annex/tests/random_generated/test8
+.A.B..C.
+.ABBBCCC
+AADDE.FF
+G.DJEEFK
+GGDJJEFK
+GMMJLLLK
+MMH.LI.K
+.HHHIII.
+ 
+./fillit ./.annex/tests/random_generated/test9
+AABBBCHH
+AD.BKCCH
+ADDKKKCH
+..DEEEE.
+FFFGGGII
+FJ..G.IL
+.JJMMMIL
+.J.M..LL
+ 
+./fillit ./.annex/tests/random_generated/test10
+AAAB....
+A..BBBDD
+CCC..DD.
+C.FFFHI.
+JJJFHHII
+JMMMHGGI
+EMKKKGLL
+EEE.KGLL
+ 
+./fillit ./.annex/tests/random_generated/test11
+A..B.CD.
+AABBCCD.
+.A.BC.DD
+EEEFFFM.
+.GEIFKMM
+GGIIJKKM
+GHIJJKLL
+HHHJ.LL.
+ 
+./fillit ./.annex/tests/random_generated/test12
+AA.BCCDD
+EAABC.D.
+EEFBCGD.
+EFFB.GG.
+IIF..GKK
+IHHH..K.
+IHJJJ.KM
+LLLLJMMM
+ 
+./fillit ./.annex/tests/random_generated/test13
+AA.BCC.G
+AABBBC.G
+DEEE.C.G
+DDDEFFFG
+.H.JJJF.
+IHHHLJM.
+IKKKLLM.
+IIK.L.MM
+ 
+./fillit ./.annex/tests/random_generated/test14
+.AB...C.
+.ABBBCCC
+AADDEEEG
+.FFDEGGG
+FFIDHHHH
+MJIIIKKL
+MJJ..K.L
+MMJ..KLL
+ 
+./fillit ./.annex/tests/random_generated/test15
+.AB..CD.
+.ABBBCDD
+AA..CCDG
+EEE.L.GG
+MEHHLL.G
+MMHKLJJJ
+M.HKKJII
+FFFFKII.
+ 
+./fillit ./.annex/tests/random_generated/test16
+..AB.CEE
+AAABCCCE
+DDDBF.GE
+D..BF.G.
+HHHKFGG.
+LHKKFI..
+LLJKIIIM
+LJJJ.MMM
+ 
+./fillit ./.annex/tests/random_generated/test17
+..A.BC.F
+AAABBC.F
+DDD.BCCF
+DEEE.GIF
+.EKKKGIL
+.MMMKGIL
+HHMJJGIL
+HH..JJ.L
+ 
+./fillit ./.annex/tests/random_generated/test18
+.ABBCC.D
+.ABB.C.D
+AAEEFCDD
+GGEFFH..
+GGEFHH..
+III.HKKK
+ILLLJMMK
+.LJJJ.MM
+ 
+./fillit ./.annex/tests/random_generated/test19
+.ABCCCC.
+AABDDDDF
+AEBBGGFF
+LEEGGHF.
+LEKKIHHH
+LJKIIIM.
+LJK...MM
+.JJ....M
+ 
+./fillit ./.annex/tests/random_generated/test20
+AA.BC..E
+ABBBCCEE
+AD...C.E
+GDDDFF.H
+GGGIFFHH
+.LLI.KMH
+JLLIKKM.
+JJJIKMM.
+ 
+./fillit ./.annex/tests/random_generated/test21
+ABBBBC..
+AA.CCC..
+FADDDEEE
+FFDGG.JE
+FHL.GGJJ
+HHLIIIJ.
+MHLL.IKK
+MMM..KK.
+ 
+./fillit ./.annex/tests/random_generated/test22
+AAAABBDD
+CCCEEBD.
+CF..EBDG
+FF..EGGG
+FHHHHIJJ
+.LLMMI.J
+LLK.MIIJ
+.KKKM...
+ 
+./fillit ./.annex/tests/random_generated/test23
+AAAB.CDD
+.AEBCCDD
+FFEBC...
+FEEBGGGG
+FHHHI.MM
+LL.HIIIM
+LJJKKK.M
+L.JJ.K..
+ 
+./fillit ./.annex/tests/random_generated/test24
+A.B.CCD.
+AAB.CFD.
+A.BBCFDD
+EE.HFFGG
+KEEHH.GG
+KKLLHI.M
+KJJLIIMM
+JJ.L.I.M
+ 

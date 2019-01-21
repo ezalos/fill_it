@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 17:01:10 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 18:21:08 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ SRC_DIR6	= write
 SRC_DIR7	= mine
 
 SRC_PATH	= ./
-MSRC_PATH	= ./srcs
+MSRC_PATH	= srcs
 SRC_PATH1	= $(MSRC_PATH)/$(SRC_DIR1)
 SRC_PATH2	= $(MSRC_PATH)/$(SRC_DIR2)
 SRC_PATH3	= $(MSRC_PATH)/$(SRC_DIR3)
@@ -93,9 +93,8 @@ ifneq ("$(IFORDER)","")
 SRC_DIR		= ./
 NSRC_DIR  	= $(MSRC_PATH)
 
-A_SRC 		= $(patsubst %,$(SRC_PATH)ft_%.c,$(SRCS))
-NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/ft_, $(SRCS0))\
-								$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
+A_SRC 		= $(patsubst %,ft_%.c,$(SRCS))
+NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
 								$(addprefix $(SRC_PATH2)/ft_, $(SRCS2))\
 								$(addprefix $(SRC_PATH3)/ft_, $(SRCS3))\
 								$(addprefix $(SRC_PATH4)/ft_, $(SRCS4))\
@@ -105,6 +104,7 @@ NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/ft_, $(SRCS0))\
 
 HEAD_DIR	= $(SRC_PATH)
 NHEAD_DIR	= ./includes
+FT_HE		= $(FT_H)
 
 OBJS = $(A_SRC:%.c=$(DIR_OBJ)%.o)
 endif
@@ -115,10 +115,9 @@ IFPUSH		= $(shell ls | grep includes)
 ifneq ("$(IFPUSH)","")
 
 SRC_DIR  	= $(MSRC_PATH)
-NSRC_DIR	= ./
+NSRC_DIR	=
 
-A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/ft_, $(SRCS0))\
-								$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
+A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
 								$(addprefix $(SRC_PATH2)/ft_, $(SRCS2))\
 								$(addprefix $(SRC_PATH3)/ft_, $(SRCS3))\
 								$(addprefix $(SRC_PATH4)/ft_, $(SRCS4))\
@@ -129,17 +128,10 @@ NA_SRC 		= $(patsubst %,$(SRC_PATH)ft_%.c,$(SRCS))
 
 HEAD_DIR	= ./includes
 NHEAD_DIR	= $(NSRC_PATH)
+FT_HE		= $(HEAD_DIR)
+
+OBJS = $(NA_SRC:%.c=$(DIR_OBJ)%.o)
 endif
-
-
-
-
-OBJ_PATH = $(SRCS:srcs/=objs/)
-
-
-PATH_OBJ = $(addprefix $(DIR_OBJ)/ft_, $(OBJS))
-
-OBJS_ORDER = $(OBJS)
 
 ##########################
 ##						##
@@ -201,19 +193,26 @@ endef
 
 all :	$(NAME)
 
-$(NAME):	$(IFPUSH) $(OBJS) $(FT_H)
+$(NAME):	$(OBJS) $(FT_HE)
 			@$(call run_and_test, ar -rcs $(NAME) $(OBJS))
 
+ifneq ("$(IFORDER)","")
 $(DIR_OBJ)%.o:%.c
 			@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) -o $@ -c $<)
+else
+$(OBJS):
+		@$(CC) $(CFLAGS) -I$(HEAD_DIR) -c $(A_SRC)
+		@mv -f $(NA_SRC:%.c=%.o) $(DIR_OBJ)
+		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
+endif
 
-$(IFPUSH) :	push
-
-clean : push
-	@$(call run_and_test, rm -f $(OBJS) libft.h.gch)
+clean :
+	@rm -f $(OBJS) libft.h.gch
+	@echo "\$(YELLOW)lib_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 
 fclean : clean
-	@$(call run_and_test, rm -f $(NAME))
+	@rm -f $(NAME)
+	@echo "\$(YELLOW)$(NAME) \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 
 re : fclean all
 
@@ -227,9 +226,8 @@ re : fclean all
 ##############################################################################
 ##############################################################################
 
-order :
+order : fclean
 ifneq ($(IFORDER), )
-	@$(MAKE) fclean
 	@mkdir	$(MSRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
 			$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(SRC_PATH7) $(NHEAD_DIR)
 	@mv -f $(HEAD_DIR)$(FT_H) $(NHEAD_DIR)
@@ -240,15 +238,14 @@ ifneq ($(IFORDER), )
 	@mv -f $(patsubst %, ft_%.c, $(SRCS5)) $(SRC_PATH5)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS6)) $(SRC_PATH6)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS7)) $(SRC_PATH7)
-	@echo \$(CYAN) $(NAME) \$(MAGENTA) Now in order mode \$(END)
+	@echo \$(GREEN) $(NAME) \$(END) Now in \$(MAGENTA)$@ mode \$(END)
 endif
 
-push :
+push : fclean
 ifneq ($(IFPUSH), )
-		@$(MAKE) afclean
 		@mv -f $(A_SRC) $(HEAD_DIR)/$(FT_H) $(SRC_PATH)
 		@rm -rf $(MSRC_PATH) $(HEAD_DIR)
-		@echo \$(CYAN) $(NAME) \$(MAGENTA) Now in push mode \$(END)
+		@echo \$(GREEN) $(NAME) \$(END) Now in \$(MAGENTA)$@ mode \$(END)
 endif
 
 git :

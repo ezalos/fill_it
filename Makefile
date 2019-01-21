@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 17:26:59 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 18:21:37 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -218,25 +218,20 @@ all :	$(NAME)
 
 $(NAME):
 		@$(MAKE) -C $(LIB_PATH)
-		@echo "$(GREEN) $(LIB) has been created $(END)"
 		@$(call run_and_test, $(CC) $(CFLAGS) $(A_SRC) $(LIB) -o $(NAME))
-		@echo "$(GREEN) $(NAME) has been created $(END)"
 
 clean :
 		@$(MAKE) clean -C $(LIB_PATH)
-		@echo "$(RED) Objects have been removed $(END)"
+		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(OBJS)
 
-fclean :
+fclean : clean
 		@$(MAKE) fclean -C $(LIB_PATH)
-		@$(MAKE) clean
-		@echo "$(RED) Project has been removed $(END)"
+		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(NAME)
 
-re :
-		@$(MAKE) re -C $(LIB_PATH)
-		@$(MAKE) fclean
-		@$(MAKE)
+re :	fclean all
+		@$(MAKE) -C $(LIB_PATH)
 
 git :
 		@git add -A
@@ -250,7 +245,7 @@ git :
 ##						##
 ##########################
 
-teste : re
+teste : all
 		./$(NAME) ./.annex/tests/bad/err0
 		./$(NAME) ./.annex/tests/bad/err1
 		./$(NAME) ./.annex/tests/bad/err2
@@ -262,11 +257,11 @@ teste : re
 		./$(NAME) ./.annex/test lol
 		./$(NAME) ./.annex
 
-testv :	re
+testv :	all
 		$(VALGRIND) ./$(NAME) $(PIECE)
 
 
-testp :	re
+testp :	all
 		./$(NAME) $(PIECE)
 
 check :
