@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 20:27:33 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:47:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_sol	*next_solve_step(t_head *head, int step)
 {
 	t_sol				*solution;
 	t_sol				*tmp;
-	int					i;
 
 	if (head->sol == NULL)
 	{
@@ -53,7 +52,6 @@ t_sol	*next_solve_step(t_head *head, int step)
 
 void	*setup_pieces(t_head *head)
 {
-	t_piece		*tmp;
 	int			i;
 
 	i = 0;

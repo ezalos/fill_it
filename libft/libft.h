@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 11:15:02 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 15:00:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:10:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void				ft_putstr(char const *s);
 void				*ft_putstr_rnull(char const *s);
 int					ft_putstr_r0(char const *s);
 
-int					ft_char_srch(char src, char *dlt);
+int					ft_char_srch(const char src, const char *dlt);
 size_t				ft_count_lst(t_list *lst, size_t i);
 void				ft_del(void *content, size_t size);
 int					ft_factorial(int nb);

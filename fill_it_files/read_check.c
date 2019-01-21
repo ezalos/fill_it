@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/20 21:04:20 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:07:37 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #include "./head.h"
 
-int		cre_tetro(const char *name, t_head **head, char p)
+int		cre_tetro(const char *name, t_head **head)
 {
 	t_piece *tetro;
 
@@ -80,13 +80,14 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 	int		dest;
 
 	dest = 0;
-	while ((ret = read(fd, buf, 21)) >= 20)
+	while ((ret = (int)read(fd, buf, 21)) >= 20)
 	{
 		i = 0;
 		c_hash = 0;
 		c_hash = check_two(buf, i, c_hash);
-		if (c_hash != 4 || !cre_tetro(recog(buf), head, (*head)->p++ + 'A'))
+		if (c_hash != 4 || !cre_tetro(recog(buf), head))
 			return (0);
+		(*head)->p++;
 		if (ret != 0)
 			dest = ret;
 	}

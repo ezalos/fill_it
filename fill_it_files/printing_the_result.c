@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 21:03:34 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:49:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		pos_one_binary(char *str, size_t length, size_t umpteenth)
 	unsigned char	nb;
 
 	i = -1;
-	while (++i <= length / 8)
+	while (++i <= (int)(length / 8))
 		if (str[i] != 0)
 		{
 			nb = str[i];

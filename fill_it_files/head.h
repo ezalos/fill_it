@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/18 04:53:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:48:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,7 @@ void					*free_solsols(t_head *head);
 **************
 */
 int						binary_size(int length);
-void					binary_to_str(char *binary, int size,
-		int binary_position);
+void					binary_to_str(char *binary,	int binary_position);
 char					binstrand(char *s1, char *s2, size_t length);
 char					binary_string_and_start(char *s1, char *s2,
 size_t length, size_t start);
@@ -220,7 +219,7 @@ int						print_result(t_head *head);
 **	READ	**
 **************
 */
-int						cre_tetro(const char *name, t_head **head, char p);
+int						cre_tetro(const char *name, t_head **head);
 int						check_two(char *buf, int i, int c_hash);
 int						ft_check_input(int fd, char *buf, t_head **head);
 t_head					*read_check(char *fillit);

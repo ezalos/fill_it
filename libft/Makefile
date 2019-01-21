@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/17 15:01:10 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 13:54:47 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,15 +83,38 @@ SRC_PUSH = $(patsubst %,ft_%.c,$(SRCS))
 
 OBJS_ORDER = $(OBJS)
 
+COM_COLOR   = \033[0;34m
+OBJ_COLOR   = \033[0;36m
+OK_COLOR    = \033[0;32m
+ERROR_COLOR = \033[0;31m
+WARN_COLOR  = \033[0;33m
+NO_COLOR    = \033[m
+
+#@$(call run_and_test, ar -rc $(NAME) $(D_OBJS_P) $(D_OBJS_L))
+
+define run_and_test
+printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
+	$(1) 2> $@.log; \
+	RESULT=$$?; \
+	if [ $$RESULT -ne 0 ]; then \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(ERROR_COLOR)$(ERROR_STRING)$(NO_COLOR)\n"   ; \
+	elif [ -s $@.log ]; then \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(WARN_COLOR)$(WARN_STRING)$(NO_COLOR)\n"   ; \
+	else  \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $(@F)" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"   ; \
+	fi; \
+	cat $@.log; \
+	rm -f $@.log; \
+	exit $$RESULT
+endef
+
 all :	$(NAME)
 
 $(NAME):	$(OBJS)
-			@echo "Creating $(NAME)"
-			@ar -rcs $(NAME) $(OBJS)
+			@$(call run_and_test, ar -rcs $(NAME) $(OBJS))
 
 $(OBJS):	$(IFPUSH) $(SRC_PUSH) $(FT_H)
-			@echo "Creating objects"
-			@$(CC) -c $(CFLAGS) $(patsubst %,ft_%.c,$(SRCS)) -I$(HEAD)
+			@$(call run_and_test, $(CC) -c $(CFLAGS) $(patsubst %,ft_%.c,$(SRCS)) -I$(HEAD))
 
 $(IFPUSH) :	push
 
@@ -100,12 +123,10 @@ d :
 			@ar -rcs $(NAME) $(OBJS)
 
 clean : push
-	@echo "Cleaning objects"
-	@rm -f $(OBJS) libft.h.gch
+	@$(call run_and_test, rm -f $(OBJS) libft.h.gch)
 
 fclean : clean
-	@echo "Cleaning project"
-	@rm -f $(NAME)
+	@$(call run_and_test, rm -f $(NAME))
 
 f : fclean
 
@@ -133,9 +154,7 @@ are : 	afclean
 		@$(MAKE) a
 
 order :
-ifeq ($(IFORDER), )
-	@echo “Already in order mode”
-else
+ifneq ($(IFORDER), )
 	@$(MAKE) fclean
 	@sed -i '' "s~libft.h~../../includes/libft.h~g" $(patsubst %,ft_%.c,$(SRCS))
 	@mkdir	$(SRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
@@ -152,9 +171,7 @@ else
 endif
 
 push :
-ifeq ($(IFPUSH), )
-	@echo “Already in push mode”
-else
+ifneq ($(IFPUSH), )
 		@$(MAKE) afclean
 		@sed -i '' "s~../../includes/libft.h~libft.h~g" $(A_SRC)
 		@mv -f $(A_SRC) $(HEAD)$(FT_H) ./

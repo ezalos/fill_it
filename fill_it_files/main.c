@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/18 05:17:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:46:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(setup_(head)))
 		return (0);
+	check = 0;
 	while (check != 1)
 	{
 		check = solve_solution(head, 1);

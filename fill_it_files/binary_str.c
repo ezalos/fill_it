@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:31:50 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 20:16:31 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:44:32 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		binary_size(int length)
 	return ((length / 8) + 1);
 }
 
-void	binary_to_str(char *binary, int size, int binary_position)
+void	binary_to_str(char *binary, int binary_position)
 {
 	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
 }

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/20 23:44:42 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/21 14:45:48 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,6 +166,31 @@ GREEN   = '\x1b[32m'
 RED     = '\x1b[31m'
 END     = '\x1b[0m'
 
+COM_COLOR   = \033[0;34m
+OBJ_COLOR   = \033[0;36m
+OK_COLOR    = \033[0;32m
+ERROR_COLOR = \033[0;31m
+WARN_COLOR  = \033[0;33m
+NO_COLOR    = \033[m
+
+#@$(call run_and_test, ar -rc $(NAME) $(D_OBJS_P) $(D_OBJS_L))
+
+define run_and_test
+printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
+	$(1) 2> $@.log; \
+	RESULT=$$?; \
+	if [ $$RESULT -ne 0 ]; then \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(ERROR_COLOR)$(ERROR_STRING)$(NO_COLOR)\n"   ; \
+	elif [ -s $@.log ]; then \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $@" "$(WARN_COLOR)$(WARN_STRING)$(NO_COLOR)\n"   ; \
+	else  \
+	printf "%-60b%b" "$(COM_COLOR)$(COM_STRING)$(OBJ_COLOR) $(@F)" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"   ; \
+	fi; \
+	cat $@.log; \
+	rm -f $@.log; \
+	exit $$RESULT
+endef
+
 ##############################################################################
 ##############################################################################
 ##																			##
@@ -187,7 +212,7 @@ all :	$(NAME)
 $(NAME):
 		@$(MAKE) -C $(LIB_PATH)
 		@echo "$(GREEN) $(LIB) has been created $(END)"
-		@$(CC) $(CFLAGS) $(A_SRC) $(LIB) -o $(NAME)
+		@$(call run_and_test, $(CC) $(CFLAGS) $(A_SRC) $(LIB) -o $(NAME))
 		@echo "$(GREEN) $(NAME) has been created $(END)"
 
 clean :

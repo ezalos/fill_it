@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/20 21:12:58 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 14:48:30 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@
 void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 {
 	binary_to_str(head->solution
-		[piece->tt_pos - piece->pc_pos + ++box[1]],
-		head->p + (head->sqsize * head->sqsize), box[0]);
+		[piece->tt_pos - piece->pc_pos + ++box[1]], box[0]);
 	box[4] = -1;
 	while (++box[4] < 4)
 		binary_to_str(head->solution
 			[piece->tt_pos - piece->pc_pos + box[1]],
-			head->p + (head->sqsize * head->sqsize),
 			head->p + yx_to_j(piece->coord[box[4]]->y + box[2],
 			piece->coord[box[4]]->x + box[3]));
 }
