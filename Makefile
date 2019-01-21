@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 14:45:48 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 17:26:59 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,18 +162,25 @@ VALGRIND = valgrind --track-origins=yes --leak-check=full --show-leak-kinds=defi
 ##						##
 ##########################
 
-GREEN   = '\x1b[32m'
-RED     = '\x1b[31m'
-END     = '\x1b[0m'
+RED     = \x1b[31m
+GREEN   = \x1b[32m
+YELLOW  = \x1b[33m
+BLUE	= \x1b[34m
+MAGENTA	= \x1b[35m
+CYAN	= \x1b[36m
+END     = \x1b[0m
 
-COM_COLOR   = \033[0;34m
-OBJ_COLOR   = \033[0;36m
-OK_COLOR    = \033[0;32m
-ERROR_COLOR = \033[0;31m
-WARN_COLOR  = \033[0;33m
-NO_COLOR    = \033[m
+COM_COLOR   = $(BLUE)
+OBJ_COLOR   = $(CYAN)
+OK_COLOR    = $(GREEN)
+ERROR_COLOR = $(RED)
+WARN_COLOR  = $(YELLOW)
+NO_COLOR    = $(END)
 
-#@$(call run_and_test, ar -rc $(NAME) $(D_OBJS_P) $(D_OBJS_L))
+OK_STRING    = [OK]
+ERROR_STRING = [ERROR]
+WARN_STRING  = [WARNING]
+COM_STRING   = Compiling
 
 define run_and_test
 printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \

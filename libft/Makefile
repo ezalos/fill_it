@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 13:54:47 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 17:01:10 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,16 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
 
-HEAD = ./includes/
+##############################################################################
+##############################################################################
+##																			##
+##									----									##
+##									IFEQ									##
+##									----									##
+##																			##
+##############################################################################
+##############################################################################
 
-FT_H = libft.h
-
-A_SRC_P	=	$(SRC_PATH1), $(SRC_PATH2), $(SRC_PATH3),\
- 			$(SRC_PATH4), $(SRC_PATH5), $(SRC_PATH6), $(SRC_PATH7)
-
-SRC_PATH = srcs/
-SRC_PATH1 = srcs/file/
-SRC_PATH2 = srcs/int/
-SRC_PATH3 = srcs/list/
-SRC_PATH4 = srcs/malloc/
-SRC_PATH5 = srcs/str/
-SRC_PATH6 = srcs/write/
-SRC_PATH7 = srcs/mine/
 
 SRCS =	$(SRCS1) $(SRCS2) $(SRCS3) $(SRCS4) $(SRCS5) $(SRCS6) $(SRCS7)
 
@@ -60,37 +55,117 @@ SRCS7 = char_srch count_lst del factorial fibonacci find_lsth fsqrt intlen\
 		lstcutone nprime power puttab_nb round_upper round nmatch match\
 		pstrnstr patoi nb_char_to_int puttab
 
-A_SRC =	$(addsuffix .c, $(addprefix $(SRC_PATH1)ft_, $(SRCS1))\
-						$(addprefix $(SRC_PATH2)ft_, $(SRCS2))\
-						$(addprefix $(SRC_PATH3)ft_, $(SRCS3))\
-						$(addprefix $(SRC_PATH4)ft_, $(SRCS4))\
-						$(addprefix $(SRC_PATH5)ft_, $(SRCS5))\
-						$(addprefix $(SRC_PATH6)ft_, $(SRCS6))\
-						$(addprefix $(SRC_PATH7)ft_, $(SRCS7)))
+SRC_DIR1	= file
+SRC_DIR2	= int
+SRC_DIR3	= list
+SRC_DIR4	= malloc
+SRC_DIR5	= str
+SRC_DIR6	= write
+SRC_DIR7	= mine
 
-OBJS = $(patsubst %,ft_%.o,$(SRCS))
+SRC_PATH	= ./
+MSRC_PATH	= ./srcs
+SRC_PATH1	= $(MSRC_PATH)/$(SRC_DIR1)
+SRC_PATH2	= $(MSRC_PATH)/$(SRC_DIR2)
+SRC_PATH3	= $(MSRC_PATH)/$(SRC_DIR3)
+SRC_PATH4	= $(MSRC_PATH)/$(SRC_DIR4)
+SRC_PATH5	= $(MSRC_PATH)/$(SRC_DIR5)
+SRC_PATH6	= $(MSRC_PATH)/$(SRC_DIR6)
+SRC_PATH7	= $(MSRC_PATH)/$(SRC_DIR7)
+A_SRC_P		=	$(MSRC_PATH), $(SRC_PATH1), $(SRC_PATH2), $(SRC_PATH3),\
+ 				$(SRC_PATH4), $(SRC_PATH5), $(SRC_PATH6), $(SRC_PATH7)
+
+FT_H = libft.h
+
+DIR_OBJ = ./objs/
+
+##########################
+##						##
+##	   ARCHITECTURE		##
+##						##
+##########################
+IFORDER		= $(shell ls | grep ft_putchar.c)
+##################
+##	   PUSH		##
+##################
+ifneq ("$(IFORDER)","")
+
+SRC_DIR		= ./
+NSRC_DIR  	= $(MSRC_PATH)
+
+A_SRC 		= $(patsubst %,$(SRC_PATH)ft_%.c,$(SRCS))
+NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/ft_, $(SRCS0))\
+								$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
+								$(addprefix $(SRC_PATH2)/ft_, $(SRCS2))\
+								$(addprefix $(SRC_PATH3)/ft_, $(SRCS3))\
+								$(addprefix $(SRC_PATH4)/ft_, $(SRCS4))\
+								$(addprefix $(SRC_PATH5)/ft_, $(SRCS5))\
+								$(addprefix $(SRC_PATH6)/ft_, $(SRCS6))\
+								$(addprefix $(SRC_PATH7)/ft_, $(SRCS7)))
+
+HEAD_DIR	= $(SRC_PATH)
+NHEAD_DIR	= ./includes
+
+OBJS = $(A_SRC:%.c=$(DIR_OBJ)%.o)
+endif
+##################
+##	  ORDER		##
+##################
+IFPUSH		= $(shell ls | grep includes)
+ifneq ("$(IFPUSH)","")
+
+SRC_DIR  	= $(MSRC_PATH)
+NSRC_DIR	= ./
+
+A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/ft_, $(SRCS0))\
+								$(addprefix $(SRC_PATH1)/ft_, $(SRCS1))\
+								$(addprefix $(SRC_PATH2)/ft_, $(SRCS2))\
+								$(addprefix $(SRC_PATH3)/ft_, $(SRCS3))\
+								$(addprefix $(SRC_PATH4)/ft_, $(SRCS4))\
+								$(addprefix $(SRC_PATH5)/ft_, $(SRCS5))\
+								$(addprefix $(SRC_PATH6)/ft_, $(SRCS6))\
+								$(addprefix $(SRC_PATH7)/ft_, $(SRCS7)))
+NA_SRC 		= $(patsubst %,$(SRC_PATH)ft_%.c,$(SRCS))
+
+HEAD_DIR	= ./includes
+NHEAD_DIR	= $(NSRC_PATH)
+endif
+
+
+
 
 OBJ_PATH = $(SRCS:srcs/=objs/)
 
-DIR_OBJ = ./objs
 
 PATH_OBJ = $(addprefix $(DIR_OBJ)/ft_, $(OBJS))
 
-IFORDER = $(shell ls | grep ft_putchar.c)
-IFPUSH = $(shell ls | grep includes)
-
-SRC_PUSH = $(patsubst %,ft_%.c,$(SRCS))
-
 OBJS_ORDER = $(OBJS)
 
-COM_COLOR   = \033[0;34m
-OBJ_COLOR   = \033[0;36m
-OK_COLOR    = \033[0;32m
-ERROR_COLOR = \033[0;31m
-WARN_COLOR  = \033[0;33m
-NO_COLOR    = \033[m
+##########################
+##						##
+##		 COLORS			##
+##						##
+##########################
 
-#@$(call run_and_test, ar -rc $(NAME) $(D_OBJS_P) $(D_OBJS_L))
+RED     = \x1b[31m
+GREEN   = \x1b[32m
+YELLOW  = \x1b[33m
+BLUE	= \x1b[34m
+MAGENTA	= \x1b[35m
+CYAN	= \x1b[36m
+END     = \x1b[0m
+
+COM_COLOR   = $(BLUE)
+OBJ_COLOR   = $(CYAN)
+OK_COLOR    = $(GREEN)
+ERROR_COLOR = $(RED)
+WARN_COLOR  = $(YELLOW)
+NO_COLOR    = $(END)
+
+OK_STRING    = [OK]
+ERROR_STRING = [ERROR]
+WARN_STRING  = [WARNING]
+COM_STRING   = Compiling
 
 define run_and_test
 printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
@@ -108,19 +183,31 @@ printf "%b" "$(COM_COLOR)$(COM_STRING) $(OBJ_COLOR)$(@F)$(NO_COLOR)\r"; \
 	exit $$RESULT
 endef
 
+##############################################################################
+##############################################################################
+##																			##
+##									-----									##
+##									RULES									##
+##									-----									##
+##																			##
+##############################################################################
+##############################################################################
+
+##########################
+##						##
+##		  BASIC			##
+##						##
+##########################
+
 all :	$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(IFPUSH) $(OBJS) $(FT_H)
 			@$(call run_and_test, ar -rcs $(NAME) $(OBJS))
 
-$(OBJS):	$(IFPUSH) $(SRC_PUSH) $(FT_H)
-			@$(call run_and_test, $(CC) -c $(CFLAGS) $(patsubst %,ft_%.c,$(SRCS)) -I$(HEAD))
+$(DIR_OBJ)%.o:%.c
+			@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) -o $@ -c $<)
 
 $(IFPUSH) :	push
-
-d :
-			@$(CC) -c $(DFLAGS) $(patsubst %,ft_%.c,$(SRCS)) -I$(HEAD)
-			@ar -rcs $(NAME) $(OBJS)
 
 clean : push
 	@$(call run_and_test, rm -f $(OBJS) libft.h.gch)
@@ -128,38 +215,24 @@ clean : push
 fclean : clean
 	@$(call run_and_test, rm -f $(NAME))
 
-f : fclean
-
 re : fclean all
 
-a : order
-		@echo "Creating objects"
-		@$(CC) -c $(CFLAGS) $(A_SRC)
-		@echo "Creating $(NAME)"
-		@ar -rcs $(NAME) $(OBJS)
-		@echo "Moving objects"
-		@mkdir $(DIR_OBJ)
-		@mv -f $(OBJS) $(DIR_OBJ)
-
-aclean : order
-		@echo "Cleaning objects"
-		@rm -f $(PATH_OBJ) $(OBJS_) libft.h.gch
-		@rm -rf $(patsubst ./%,%,$(DIR_OBJ))
-
-afclean : 	aclean
-			@echo "Cleaning project"
-			@rm -f $(NAME)
-
-are : 	afclean
-		@$(MAKE) a
+##############################################################################
+##############################################################################
+##																			##
+##									-----									##
+##									BONUS									##
+##									-----									##
+##																			##
+##############################################################################
+##############################################################################
 
 order :
 ifneq ($(IFORDER), )
 	@$(MAKE) fclean
-	@sed -i '' "s~libft.h~../../includes/libft.h~g" $(patsubst %,ft_%.c,$(SRCS))
-	@mkdir	$(SRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
-			$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(SRC_PATH7) $(HEAD)
-	@mv -f $(FT_H) $(HEAD)
+	@mkdir	$(MSRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
+			$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(SRC_PATH7) $(NHEAD_DIR)
+	@mv -f $(HEAD_DIR)$(FT_H) $(NHEAD_DIR)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS1)) $(SRC_PATH1)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS2)) $(SRC_PATH2)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS3)) $(SRC_PATH3)
@@ -167,16 +240,15 @@ ifneq ($(IFORDER), )
 	@mv -f $(patsubst %, ft_%.c, $(SRCS5)) $(SRC_PATH5)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS6)) $(SRC_PATH6)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS7)) $(SRC_PATH7)
-	@echo “Now in order mode”
+	@echo \$(CYAN) $(NAME) \$(MAGENTA) Now in order mode \$(END)
 endif
 
 push :
 ifneq ($(IFPUSH), )
 		@$(MAKE) afclean
-		@sed -i '' "s~../../includes/libft.h~libft.h~g" $(A_SRC)
-		@mv -f $(A_SRC) $(HEAD)$(FT_H) ./
-		@rm -rf $(SRC_PATH) ./objs/ $(HEAD)
-		@echo “Now in push mode”
+		@mv -f $(A_SRC) $(HEAD_DIR)/$(FT_H) $(SRC_PATH)
+		@rm -rf $(MSRC_PATH) $(HEAD_DIR)
+		@echo \$(CYAN) $(NAME) \$(MAGENTA) Now in push mode \$(END)
 endif
 
 git :
@@ -185,10 +257,13 @@ git :
 		@git commit -am "Makefile automated push"
 		@git push
 
-check1 :
-		bash /Users/ldevelle/42/42FileChecker/42FileChecker.sh
+check :
+		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
 
-check2 :
-		yes n | bash /Users/ldevelle/42/Libftest/grademe.sh
+##########################
+##						##
+##		 .PHONY			##
+##						##
+##########################
 
-.PHONY : clean fclean re all a aclean afclean are f d order push git check1 check2
+.PHONY : clean fclean re all a aclean afclean are f d order push git check
