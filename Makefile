@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 18:21:37 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 19:41:44 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SRC_PATH6 	= $(MSRC_PATH)/logistics
 A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
  				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
 
+DIR_OBJ = ./objs/
 ##########################
 ##						##
 ##	   ARCHITECTURE		##
@@ -73,7 +74,7 @@ NPUH		:= $(wildcard ./srcs/main/main.c)
 ##################
 ifeq ("$(NPUH)","")
 
-SRC_PATH	= ./fill_it_files
+SRC_PATH	= fill_it_files
 NSRC_PATH  	= srcs
 
 A_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
@@ -90,7 +91,9 @@ NLIB_PATH	= ./.annex/libft
 HEAD_PATH	= $(SRC_PATH)
 NHEAD_PATH	= ./includes
 NALL_PATH	= ./fill_it_files
+HEAD_		= $(HEAD_PATH)/head.h
 
+OBJS = $(A_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
 ##################
 ##	  ORDER		##
 ##################
@@ -99,6 +102,7 @@ else
 LIB_PATH	= ./.annex/libft
 NLIB_PATH	= ./libft
 HEAD_PATH	= ./includes
+HEAD_		= $(HEAD_PATH)
 NHEAD_PATH	= ./fill_it_files
 NALL_PATH	= ./fill_it_files
 
@@ -113,6 +117,8 @@ A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
 								$(addprefix $(SRC_PATH5)/, $(SRCS5))\
 								$(addprefix $(SRC_PATH6)/, $(SRCS6)))
 NA_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
+
+OBJS = $(NA_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
 endif
 
 NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
@@ -139,9 +145,6 @@ PRINT_R		=	./.annex/printing/print_r_in_color.c.old
 PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
 
 endif
-
-SRCPUSH = $(patsubst %, $(FOLD0)%.c,$(SRCS))
-OBJS = $(patsubst %, ft_%.o,$(SRCS))
 
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h
@@ -216,9 +219,19 @@ endef
 
 all :	$(NAME)
 
-$(NAME):
+$(NAME): $(OBJS) $(HEAD_)
 		@$(MAKE) -C $(LIB_PATH)
-		@$(call run_and_test, $(CC) $(CFLAGS) $(A_SRC) $(LIB) -o $(NAME))
+		@$(call run_and_test, $(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME))
+
+ifeq ("$(NPUH)","")
+$(DIR_OBJ)%.o:$(SRC_PATH)%.c
+		@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) $(LIB) -o $@ -c $<)
+else
+$(OBJS):
+		@$(CC) $(CFLAGS) -I$(HEAD_DIR) $(LIB) -c $(A_SRC)
+		@mv -f $(NA_SRC:%.c=%.o) $(DIR_OBJ)
+		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
+endif
 
 clean :
 		@$(MAKE) clean -C $(LIB_PATH)
@@ -228,7 +241,7 @@ clean :
 fclean : clean
 		@$(MAKE) fclean -C $(LIB_PATH)
 		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
-		@rm -f $(NAME)
+		@rm -rf $(NAME) fillit.dSYM
 
 re :	fclean all
 		@$(MAKE) -C $(LIB_PATH)
