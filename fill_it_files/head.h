@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/21 22:19:51 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 00:29:28 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ int						print_result(t_head *head);
 **************
 */
 int						cre_tetro(const char *name, t_head **head);
-int						check_two(char *buf, int i, int c_hash);
+int						check_two(char *buf, int c_hash);
 int						ft_check_input(int fd, char *buf, t_head **head);
 t_head					*read_check(char *fillit);
 

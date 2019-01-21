@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 22:21:49 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 00:16:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,12 @@ t_head	*setup_head_sol_part(t_head *head)
 	if (!(head->solution = malloc_binary(head)))
 		return (NULL);
 	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) *
-	((size_t)head->tt_pos_all))))
+	((size_t)head->tt_pos_all + 1))))
 		return (free_tab_str(&head->solution, head->tt_pos_all));
 	i = -1;
-	while (++i < head->tt_pos_all + 1)
+	while (++i < head->tt_pos_all)
 		head->y_all_pxnx[i] = 1;
+	head->y_all_pxnx[head->tt_pos_all] = 0;
 	head->config = 1;
 	write_binary(head);
 	i = -1;

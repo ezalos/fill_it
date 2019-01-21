@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/21 22:06:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 00:13:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,17 @@ int		cre_tetro(const char *name, t_head **head)
 	return (1);
 }
 
-int		check_two(char *buf, int i, int c_hash)
+int		check_two(char *buf, int c_hash)
 {
+	int i;
+
+	i = 0;
+	c_hash = 0;
 	while (i < 21)
 	{
-		if (((((i - 4) % 5) == 0) && i != 0) || i == 20)
+		if ((((i - 4) % 5) == 0) && i != 0)
 		{
-			if ((buf[i] != '\n' || (buf[i] == '\0' && i == 20)))
+			if (buf[i] != '\n')
 				return (0);
 			i++;
 		}
@@ -66,6 +70,8 @@ int		check_two(char *buf, int i, int c_hash)
 		}
 		else if (buf[i] == '.')
 			i++;
+		else if ((buf[i] == 0 || buf[i] == '\n') && i == 20)
+			return (c_hash);
 		else
 			return (0);
 	}
@@ -74,7 +80,6 @@ int		check_two(char *buf, int i, int c_hash)
 
 int		ft_check_input(int fd, char *buf, t_head **head)
 {
-	int		i;
 	int		ret;
 	int		c_hash;
 	int		dest;
@@ -82,11 +87,10 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 	dest = 0;
 	while ((ret = (int)read(fd, buf, 21)) >= 20)
 	{
-		i = 0;
-		c_hash = 0;
-		c_hash = check_two(buf, i, c_hash);
+		c_hash = check_two(buf, c_hash);
 		if (c_hash != 4 || !cre_tetro(recog(buf), head))
 			return (0);
+		ft_bzero((void*)buf, (size_t)21);
 		(*head)->p++;
 		if (ret != 0)
 			dest = ret;
@@ -105,7 +109,7 @@ t_head	*read_check(char *fillit)
 
 	if (0 > (fd = open((const char*)fillit, O_RDONLY)))
 		return (ft_putstr_rnull("usage: ./fillit ./path/file\n"));
-	if (!(buf = (char *)malloc(sizeof(char) * 21)))
+	if (!(buf = ft_strnew((size_t)21)))
 		return (ft_putstr_rnull("error\n"));
 	if (!(head = (t_head*)malloc(sizeof(t_head))))
 	{

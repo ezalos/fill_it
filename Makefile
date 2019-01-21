@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 21:55:05 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 00:34:04 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fillit
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS =# -Wall -Wextra -Werror
 
 DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
@@ -146,10 +146,18 @@ PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
 
 endif
 
+CC_SECU		= 0
+ifneq ("$(NPUH)","")
+CC_SECU		= 1
+endif
+ifeq ("$(NOPT)","")
+CC_SECU		= 1
+endif
+
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h
 
-PIECE = ./.annex/tests/good/fit/7_0
+PIECE = ./.annex/tests/bad/I1
 
 ##########################
 ##						##
@@ -223,7 +231,7 @@ $(NAME): $(OBJS) $(HEAD_)
 		@$(MAKE) -C $(LIB_PATH)
 		@$(call run_and_test, $(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME))
 
-ifeq ("$(NPUH)","")
+ifeq ($(CC_SECU),0)
 $(DIR_OBJ)%.o:$(SRC_PATH)%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) $(LIB) -o $@ -c $<)
 else
@@ -299,7 +307,7 @@ testa : all
 		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
 		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
 		@cat ./.annex/tests/last_test
-		@rm -rf ./.annex/tests/random_generated/*
+		#@rm -rf ./.annex/tests/random_generated/*
 
 ##########################
 ##						##
