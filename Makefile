@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/21 19:41:44 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/21 21:55:05 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
--ansi -O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
+-O2 -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int\
 -Werror-implicit-function-declaration -Wmain -Wparentheses -Wsequence-point\
 -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas\
 -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast\
@@ -244,7 +244,6 @@ fclean : clean
 		@rm -rf $(NAME) fillit.dSYM
 
 re :	fclean all
-		@$(MAKE) -C $(LIB_PATH)
 
 git :
 		@git add -A

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 17:07:15 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/21 22:20:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	show_pieces_binary(t_head *head, char **tab_result)
 {
 	int		line;
 	int		j_piece;
-	int 	block;
-	size_t 	i;
+	int		block;
+	size_t	i;
 
 	line = -1;
 	j_piece = 0;

@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/21 19:53:39 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 22:19:51 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,7 @@ void					*free_solsols(t_head *head);
 **************
 */
 int						binary_size(int length);
-void					binary_to_str(char *binary,	int binary_position);
+void					binary_to_str(char *binary, int binary_position);
 char					binstrand(char *s1, char *s2, size_t length);
 char					binary_string_and_start(char *s1, char *s2,
 size_t length, size_t start);

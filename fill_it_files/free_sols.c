@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 20:03:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 22:02:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	*free_linked_sols(t_sol **sol)
 		(*sol)->sol = NULL;
 		free((*sol)->y_all_pxnx);
 		(*sol)->y_all_pxnx = NULL;
-		free((*sol)->sol);
-		sol = NULL;
+		free((*sol));
+		*sol = NULL;
 	}
 	return (NULL);
 }

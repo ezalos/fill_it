@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 20:04:29 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/21 22:21:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,38 @@ t_sol	*next_solve_step(t_head *head, int step)
 	}
 	else
 	{
-		tmp = find_sol(head, step - 1);
+		tmp = find_sol(head, step);
 		if (!(solution = (t_sol*)malloc(sizeof(t_sol))))
 			return (NULL);
 		tmp->sol = solution;
 		if (!(tmp->sol->y_all_pxnx = ft_memalloc((size_t)head->tt_pos_all)))
 			return (NULL);
-		ft_memcpy(tmp->sol->y_all_pxnx, tmp->y_all_pxnx,(size_t)head->tt_pos_all);
+		ft_memcpy(tmp->sol->y_all_pxnx, tmp->y_all_pxnx,
+			(size_t)head->tt_pos_all);
 		tmp->sol->sol = NULL;
 		return (solution);
 	}
+}
+
+t_head	*setup_head_sol_part(t_head *head)
+{
+	int i;
+
+	if (!(head->solution = malloc_binary(head)))
+		return (NULL);
+	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) *
+	((size_t)head->tt_pos_all))))
+		return (free_tab_str(&head->solution, head->tt_pos_all));
+	i = -1;
+	while (++i < head->tt_pos_all + 1)
+		head->y_all_pxnx[i] = 1;
+	head->config = 1;
+	write_binary(head);
+	i = -1;
+	while (++i < head->p)
+		if (!(next_solve_step(head, i)))
+			return (free_head(&head));
+	return (head);
 }
 
 void	*setup_pieces(t_head *head)
@@ -83,26 +105,6 @@ void	*setup_pieces(t_head *head)
 		head->tt_pos_all = find_piece(head, i)->tt_pos;
 		find_piece(head, i)->i = i;
 	}
-	return (head);
-}
-
-t_head	*setup_head_sol_part(t_head *head)
-{
-	int i;
-
-	if (!(head->solution = malloc_binary(head)))
-		return (NULL);
-	if (!(head->y_all_pxnx = (char*)malloc(sizeof(char) * ((size_t)head->tt_pos_all))))
-		return (free_tab_str(&head->solution, head->tt_pos_all));
-	i = -1;
-	while (++i < head->tt_pos_all + 1)
-		head->y_all_pxnx[i] = 1;
-	head->config = 1;
-	write_binary(head);
-	i = 0;
-	while (i <= head->p)
-		if (!(next_solve_step(head, i++)))
-			return (free_head(&head));
 	return (head);
 }
 
