@@ -6,16 +6,12 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:23 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 21:44:02 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 02:43:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  function used to free pieces   **
-**                                  **
-**************************************
+**  Allow to free the tetraminos stored in a linked list
 */
 
 #include "./head.h"

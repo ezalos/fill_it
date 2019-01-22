@@ -6,17 +6,12 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 01:27:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:30:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  functions used to set up   		**
-**  our binary solver               **
-**                                  **
-**************************************
+**  Functions used to malloc and set up our binary strings used to solve.
 */
 
 #include "./head.h"
@@ -45,7 +40,7 @@ void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 void	write_binary(t_head *head)
 {
 	t_piece	*piece;
-	int		box[6];
+	int		box[5];
 
 	box[0] = 0;
 	piece = head->next;

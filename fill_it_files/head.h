@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 16:30:33 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/22 00:29:28 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:02:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,6 @@ t_sol					*find_sol_hash(t_head *head, int sol);
 
 int						yx_to_j(int y, int x);
 int						j_to_yx(t_head *head, int j, int o);
-int						ft_iterative_power(int nb, int power);
 
 /*
 **************

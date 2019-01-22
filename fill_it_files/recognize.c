@@ -6,17 +6,12 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 21:41:20 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 00:12:10 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:19:11 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  functions used to recognize   	**
-**  tetrominos from valid file		**
-**                                  **
-**************************************
+**  Functions used to recognize tetrominos from valid file.
 */
 
 #include "./head.h"

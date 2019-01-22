@@ -6,17 +6,13 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 22:02:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:16:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**********************************
-**                              **
-** functions used to free   	**
-**  unvalid solutions   		**
-**                              **
-**********************************
+**  Allow to free	: the linked list created during the solve process
+**					  part of the memory allocated in the head, used to solve
 */
 
 #include "./head.h"

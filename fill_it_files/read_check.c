@@ -6,17 +6,12 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/22 01:55:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:19:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  functions used as a parser   	**
-**  and to check input validity		**
-**                                  **
-**************************************
+**  Functions used as a parser and to check input validity.
 */
 
 #include "./head.h"

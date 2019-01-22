@@ -6,14 +6,16 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:31:50 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 02:15:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 02:59:55 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**
-**	set of tool functions used by our binary solver
-**
+**	Set of tool to manipulate binary stored in strings
+**	___________________________________________________________________________
+**	binary_size : convert the size of a binary for it to be stored in a string.
+**	binary_to_str : write '1' in the position of our choice in a string.
+**	binstrand : allow to make a binary & on binary stored in strings.
 */
 
 #include "./head.h"
@@ -25,7 +27,7 @@ int		binary_size(int length)
 
 void	binary_to_str(char *binary, int binary_position)
 {
-	binary[binary_position / 8] += ft_iterative_power(2, (binary_position % 8));
+	binary[binary_position / 8] += ft_power(2, (binary_position % 8));
 }
 
 char	binstrand(char *s1, char *s2, size_t length)

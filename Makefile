@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 02:16:09 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 03:52:16 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ SRCS4		= printing_the_result
 SRCS5		= free_all free_pieces free_sols
 SRCS6		= binary_str find_struct j_and_maths
 
+FOLD0		= fill_it_files
+
 MSRC_PATH	= ./srcs
 SRC_PATH0 	= $(MSRC_PATH)/main
 SRC_PATH1 	= $(MSRC_PATH)/read
@@ -63,6 +65,9 @@ A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
  				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
 
 DIR_OBJ = ./objs/
+
+
+CC_SECU		= 0
 ##########################
 ##						##
 ##	   ARCHITECTURE		##
@@ -74,7 +79,7 @@ NPUH		:= $(wildcard ./srcs/main/main.c)
 ##################
 ifeq ("$(NPUH)","")
 
-SRC_PATH	= fill_it_files
+SRC_PATH	= $(FOLD0)
 NSRC_PATH  	= srcs
 
 A_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
@@ -90,7 +95,7 @@ LIB_PATH	= ./libft
 NLIB_PATH	= ./.annex/libft
 HEAD_PATH	= $(SRC_PATH)
 NHEAD_PATH	= ./includes
-NALL_PATH	= ./fill_it_files
+NALL_PATH	= ./$(FOLD0)
 HEAD_		= $(HEAD_PATH)/head.h
 
 OBJS = $(A_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
@@ -103,11 +108,11 @@ LIB_PATH	= ./.annex/libft
 NLIB_PATH	= ./libft
 HEAD_PATH	= ./includes
 HEAD_		= $(HEAD_PATH)
-NHEAD_PATH	= ./fill_it_files
-NALL_PATH	= ./fill_it_files
+NHEAD_PATH	= ./$(FOLD0)
+NALL_PATH	= ./$(FOLD0)
 
 SRC_PATH  	= ./srcs
-NSRC_PATH	= ./fill_it_files
+NSRC_PATH	= ./$(FOLD0)
 
 A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
 								$(addprefix $(SRC_PATH1)/, $(SRCS1))\
@@ -122,6 +127,9 @@ OBJS = $(NA_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
 endif
 
 NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
+
+
+CC_SECU		= 1
 ##################
 ##	  W/_OPT	##
 ##################
@@ -135,6 +143,12 @@ PRINT		= 	$(PRINT_DBG) $(PRINT_R)
 A_SRC 		+= $(TIME_EXE) $(PRINT)
 NA_SRC 		+= time_exe.c time_exe.h print_debug.c print_r_in_color.c
 
+
+#ifeq ($(CC_SECU),0)
+
+#endif
+
+CC_SECU		= 1
 ##################
 ##	  NO_OPT	##
 ##################
@@ -145,15 +159,14 @@ PRINT_DBG	=	./.annex/printing/print_debug.c.old
 PRINT_R		=	./.annex/printing/print_r_in_color.c.old
 PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
 
+
+#ifeq ($(CC_SECU),0)
+
+#endif
+
+CC_SECU		= 1
 endif
 
-CC_SECU		= 0
-ifneq ("$(NPUH)","")
-CC_SECU		= 1
-endif
-ifeq ("$(NOPT)","")
-CC_SECU		= 1
-endif
 
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h

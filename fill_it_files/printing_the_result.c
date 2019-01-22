@@ -6,17 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 22:20:19 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 03:16:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  functions used to print			**
-**  the result     					**
-**                                  **
-**************************************
+**  Functions to print the result.
+**	__________________________________________________________________________
+**		print_pieces	: print every lines of the final square
+**		pos_one_binary	: allow to know the position of the umpteenth 1
+**						  in a binary stored in a tring
+**		show_pieces_bin	: translate the solution stored in binary string
+**						  using J coord in the final square for impression
+**		print_result	: general function
 */
 
 #include "./head.h"

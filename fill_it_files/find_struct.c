@@ -6,18 +6,12 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:32:22 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 15:27:57 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/01/22 02:40:20 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-**                                  **
-**  set of tool functions used by   **
-**  our binary solver to access		**
-**  data contained in our structs	**
-**                                  **
-**************************************
+**	Set of functions that return the umpteenth element of a linked list
 */
 
 #include "./head.h"
