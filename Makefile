@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 19:58:08 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 22:39:12 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,10 +153,6 @@ NP_SRC 		= time_exe.c print_debug.c print_r_in_color.c
 
 CFLAGS		=
 
-#ifeq ($(CC_SECU),0)
-
-#endif
-
 CC_SECU		= 1
 ##################
 ##	  NO_OPT	##
@@ -167,11 +163,6 @@ TIME_EXE_H	= 	./.annex/time/time_exe.h.old
 PRINT_DBG	=	./.annex/printing/print_debug.c.old
 PRINT_R		=	./.annex/printing/print_r_in_color.c.old
 PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
-
-
-#ifeq ($(CC_SECU),0)
-
-#endif
 
 endif
 
@@ -354,11 +345,11 @@ testa : all
 
 order :
 ifneq ($(IFORDER), )
-		@$(MAKE) offption
-		@sed -i '' "s~head.h~../../includes/head.h~g" $(A_SRC)
-		#@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" $(TIME_EXE_H)
+ifeq ("$(NOPT)","")
+	@$(MAKE) offption
+endif
+		@sed -i '' "s~./head.h~../../includes/head.h~g" $(A_SRC)
 		@sed -i '' "s~../libft/libft.h~../.annex/libft/libft.h~g" $(HEAD)
-		#@sed -i '' "s~fill_it_files/head.h~includes/head.h~g" $(PRINT)
 		@mkdir $(A_SRC_P) $(NHEAD_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
 		@mv -f $(LIB_PATH) $(NLIB_PATH)
@@ -374,11 +365,11 @@ endif
 
 push :
 ifneq ($(IFPUSH), )
-		@$(MAKE) offption
+ifeq ("$(NOPT)","")
+	@$(MAKE) offption
+endif
 		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
-		#@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" $(TIME_EXE_H)
 		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
-		#@sed -i '' "s~includes/head.h~fill_it_files/head.h~g" $(PRINT)
 		@mkdir $(NALL_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
 		@mv -f $(A_SRC) $(NALL_PATH)
@@ -387,8 +378,11 @@ ifneq ($(IFPUSH), )
 endif
 
 malloc_check :
-		grep -n -e "memalloc" -e "strdup" srcs/*/*
-#		grep -n "malloc" srcs/*/*
+		sh ./.annex/find_text.sh malloc
+		sh ./.annex/find_text.sh ft_memalloc
+		sh ./.annex/find_text.sh ft_strdup
+		sh ./.annex/find_text.sh ft_strjojn
+		sh ./.annex/find_text.sh ft_strnew
 
 
 ##########################
@@ -397,9 +391,11 @@ malloc_check :
 ##						##
 ##########################
 
-# CAREFULL : OPTIONS ONLY WORK IN PUSH MODE
 onption :
 ifneq ("$(NOPT)","")
+ifneq ($(IFPUSH), )
+	@$(MAKE) push
+endif
 	@bash .annex/time/input_tim.sh
 	@mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
 	@mv -f .annex/time/time_exe.h.old .annex/time/time_exe.h
@@ -410,6 +406,9 @@ endif
 
 offption :
 ifeq ("$(NOPT)","")
+ifneq ($(IFPUSH), )
+	@$(MAKE) push
+endif
 	@sed -i '' '/time_exe/d' fill_it_files/*.c
 	@sed -i '' '/print_debug/d' fill_it_files/setup_struct.c
 	@sed -i '' 's/print_pieces_color/print_pieces/' fill_it_files/printing_the_result.c
