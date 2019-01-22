@@ -6,17 +6,14 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:31:50 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 13:44:32 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 02:15:17 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**************************************
-** 									**
-**	set of tool functions used by 	**
-**	our binary solver 				**
-**									**
-**************************************
+**
+**	set of tool functions used by our binary solver
+**
 */
 
 #include "./head.h"
