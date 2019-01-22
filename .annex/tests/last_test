@@ -1,50 +1,37 @@
 ./fillit ./.annex/tests/random_generated/test0
-AAA.BC..
-..ABBCCC
-.DDEBFF.
-DD.EIIFF
-HHEEIGGG
-LHMMIJ.G
-LHM.JJ.K
-LLM.JKKK
+.A..
+.A..
+AA..
+BBBB
  
 ./fillit ./.annex/tests/random_generated/test1
-AAAABBC.
-.D.BBCCF
-DDDG.CFF
-EEEGG.FH
-IIE.GHHH
-KIIJ.LLL
-KKJJJMML
-.K....MM
+ABB
+A.B
+AAB
  
 ./fillit ./.annex/tests/random_generated/test2
-.ABCC.DM
-AABBCCDM
-A..BF.DM
-EEE.FFDM
-EGG.HF.J
-IGKLHHHJ
-IGKLL.JJ
-IIKKL...
  
 ./fillit ./.annex/tests/random_generated/test3
-A..B...C
-AAABBCCC
-DDD.BEEE
-DFF.GGKE
-HHFFGKKK
-HHLIG.MM
-LLLIJJJM
-..II..JM
+.A.B
+AABB
+.A.B
+....
  
 ./fillit ./.annex/tests/random_generated/test4
-AA...BCG
-.AABBBCG
-.DEEECCG
-DDEF..JG
-DH.FFJJL
-IHHHFMJL
-II.KMM.L
-IKKKM..L
+AA..
+.AA.
+BB..
+BB..
+ 
+./fillit ./.annex/tests/random_generated/test5
+.A..
+AA..
+.ABB
+.BB.
+ 
+./fillit ./.annex/tests/random_generated/test6
+AAAA
+BBB.
+..B.
+....
  

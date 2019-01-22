@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 00:38:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 01:35:59 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ void	*setup_pieces(t_head *head)
 			find_piece(head, i)->pc_pos + find_piece(head, i - 1)->tt_pos;
 		if (!coord_setup(find_piece(head, i)))
 			return (free_linked_pieces(&head->next));
-		head->tt_pos_all = find_piece(head, i)->tt_pos;
+		if (i == 1)
+			head->tt_pos_all = head->next->pc_pos;
+		else
+			head->tt_pos_all = find_piece(head, i)->tt_pos;
 		find_piece(head, i)->i = i;
 	}
 	return (head);
@@ -112,6 +115,11 @@ void	*setup_pieces(t_head *head)
 t_head	*setup_(t_head *head)
 {
 	head->sqsize = (ft_round_upper(ft_fsqrt(head->p, 0) * 2));
+	if (head->p == 1 && head->next->name[0] == 'I')
+		head->sqsize += 2;
+	if (head->p == 2 &&
+		(head->next->name[0] == 'I' || head->next->next->name[0] == 'I'))
+		head->sqsize++;
 	if (!(setup_pieces(head)))
 		return (NULL);
 	if (!(setup_head_sol_part(head)))

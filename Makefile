@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 00:34:04 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 01:41:43 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,8 @@ PRINT_DBG	=	./.annex/printing/print_debug.c
 PRINT_R		=	./.annex/printing/print_r_in_color.c
 PRINT		= 	$(PRINT_DBG) $(PRINT_R)
 
-A_SRC += $(TIME_EXE) $(PRINT)
+A_SRC 		+= $(TIME_EXE) $(PRINT)
+NA_SRC 		+= time_exe.c time_exe.h print_debug.c print_r_in_color.c
 
 ##################
 ##	  NO_OPT	##
@@ -307,7 +308,7 @@ testa : all
 		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
 		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
 		@cat ./.annex/tests/last_test
-		#@rm -rf ./.annex/tests/random_generated/*
+		@rm -rf ./.annex/tests/random_generated/*
 
 ##########################
 ##						##
