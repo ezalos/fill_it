@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 23:22:27 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 23:28:47 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ NHEAD_PATH	= ./includes
 NALL_PATH	= ./$(FOLD0)
 HEAD_		= $(HEAD_PATH)/head.h
 
+PROTEC_rsbs		:= $(shell grep print_soltion_link $(FOLD0)/solve.c)
 
 OBJS = $(A_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
 ##################
@@ -437,13 +438,14 @@ ifneq ("$(NOPT)","")
 endif
 	@sh .annex/show/sbs.sh
 
-PROTEC_rsbs		:= $(shell grep print_soltion_link $(FOLD0)/solve.c)
 rsbs :
 ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
 ifneq ("$(PROTEC_rsbs)","")
+ifeq ("$(NPUH)","")
 	@sed -i ‘’ ‘/print_soltion_link/d’ $(A_SRC)
+endif
 else
 	@echo No rsbs needed.
 endif
