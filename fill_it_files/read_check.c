@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/22 00:13:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/22 01:55:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 			dest = ret;
 	}
 	ft_strdel(&buf);
-	if ((*head)->next == NULL || ret > 0 || dest == 21)
+	if ((*head)->next == NULL || ret > 0 || dest == 21 || (*head)->p > 26)
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 01:41:43 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 01:53:44 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -277,6 +277,15 @@ teste : all
 		./$(NAME)
 		./$(NAME) ./.annex/test lol
 		./$(NAME) ./.annex
+		./$(NAME) ./.annex/tests/bad/otherTest/binary1.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/binary2.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/binary3.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/eof.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/twentyseven.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/twentysix.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot1.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot2.txt
+		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot3.txt
 
 testv :	all
 		$(VALGRIND) ./$(NAME) $(PIECE)
