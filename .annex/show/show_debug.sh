@@ -7,7 +7,7 @@ cat fill_it_files/tmp.c >> fill_it_files/setup_struct.c
 rm fill_it_files/tmp.c
 
 ### TO INPUT PRINT_PIECES_COLOR INSTEAD OF PRINT_PIECES IN PRINTING_THE_RESULT ###
-awk '/print_pieces/{c++;if(c==2){sub("print_pieces","print_pieces_color");c=0}}1' fill_it_files/printing_the_result.c > temp.c
+awk '/print_pieces/{c++;if(c==3){sub("print_pieces","print_pieces_color");c=0}}1' fill_it_files/printing_the_result.c > temp.c
 rm fill_it_files/printing_the_result.c
 cat temp.c > fill_it_files/printing_the_result.c
 rm temp.c
