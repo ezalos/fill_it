@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 23:15:54 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 23:22:27 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -261,7 +261,7 @@ clean :
 		@$(MAKE) clean -C $(LIB_PATH)
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(OBJS)
-ifneq ("$(NOPT)","")
+ifeq ("$(NOPT)","")
 		@rm -f $(NP_SRC:%.c=%.o)
 endif
 
