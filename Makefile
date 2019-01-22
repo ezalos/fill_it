@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 23:03:28 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 23:15:54 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -257,7 +257,7 @@ $(OBJS):
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
 
-clean : $(OBJS)
+clean :
 		@$(MAKE) clean -C $(LIB_PATH)
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(OBJS)
@@ -265,7 +265,7 @@ ifneq ("$(NOPT)","")
 		@rm -f $(NP_SRC:%.c=%.o)
 endif
 
-fclean : clean $(NAME)
+fclean : clean
 		@$(MAKE) fclean -C $(LIB_PATH)
 		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -rf $(NAME) fillit.dSYM
@@ -437,11 +437,16 @@ ifneq ("$(NOPT)","")
 endif
 	@sh .annex/show/sbs.sh
 
+PROTEC_rsbs		:= $(shell grep print_soltion_link $(FOLD0)/solve.c)
 rsbs :
 ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
+ifneq ("$(PROTEC_rsbs)","")
 	@sed -i ‘’ ‘/print_soltion_link/d’ $(A_SRC)
+else
+	@echo No rsbs needed.
+endif
 
 ##########################
 ##						##
