@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 03:52:16 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 19:58:08 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,11 @@ A_SRC_P		=	srcs $(SRC_PATH0) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
  				$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6)
 
 DIR_OBJ = ./objs/
+IFOBJDIR	= $(shell ls | grep objs)
 
+ifeq ("$(IFOBJDIR)","")
+DIR_OBJ		=
+endif
 
 CC_SECU		= 0
 ##########################
@@ -94,11 +98,13 @@ NA_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
 LIB_PATH	= ./libft
 NLIB_PATH	= ./.annex/libft
 HEAD_PATH	= $(SRC_PATH)
+HEAD_DIR	= $(SRC_PATH)
 NHEAD_PATH	= ./includes
 NALL_PATH	= ./$(FOLD0)
 HEAD_		= $(HEAD_PATH)/head.h
 
-OBJS = $(A_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
+
+OBJS = $(A_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
 ##################
 ##	  ORDER		##
 ##################
@@ -107,6 +113,7 @@ else
 LIB_PATH	= ./.annex/libft
 NLIB_PATH	= ./libft
 HEAD_PATH	= ./includes
+HEAD_DIR	= $(HEAD_PATH)
 HEAD_		= $(HEAD_PATH)
 NHEAD_PATH	= ./$(FOLD0)
 NALL_PATH	= ./$(FOLD0)
@@ -123,13 +130,14 @@ A_SRC 		= $(addsuffix .c,	$(addprefix $(SRC_PATH0)/, $(SRCS0))\
 								$(addprefix $(SRC_PATH6)/, $(SRCS6)))
 NA_SRC 		= $(patsubst %,$(SRC_PATH)/%.c,$(SRCS))
 
-OBJS = $(NA_SRC:$(SRC_PATH)%.c=$(DIR_OBJ)%.o)
+OBJS = $(NA_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
+
+CC_SECU		= 1
 endif
 
 NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
 
 
-CC_SECU		= 1
 ##################
 ##	  W/_OPT	##
 ##################
@@ -140,9 +148,10 @@ PRINT_DBG	=	./.annex/printing/print_debug.c
 PRINT_R		=	./.annex/printing/print_r_in_color.c
 PRINT		= 	$(PRINT_DBG) $(PRINT_R)
 
-A_SRC 		+= $(TIME_EXE) $(PRINT)
-NA_SRC 		+= time_exe.c time_exe.h print_debug.c print_r_in_color.c
+P_SRC 		= $(TIME_EXE) $(PRINT)
+NP_SRC 		= time_exe.c print_debug.c print_r_in_color.c
 
+CFLAGS		=
 
 #ifeq ($(CC_SECU),0)
 
@@ -164,14 +173,13 @@ PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
 
 #endif
 
-CC_SECU		= 1
 endif
 
 
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h
 
-PIECE = ./.annex/tests/bad/I1
+PIECE = ./.annex/tests/good/fit/7_0
 
 ##########################
 ##						##
@@ -243,15 +251,18 @@ all :	$(NAME)
 
 $(NAME): $(OBJS) $(HEAD_)
 		@$(MAKE) -C $(LIB_PATH)
-		@$(call run_and_test, $(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME))
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(OBJS) $(NP_SRC:%.c=%.o) $(LIB) -o $(NAME))
 
-ifeq ($(CC_SECU),0)
-$(DIR_OBJ)%.o:$(SRC_PATH)%.c
-		@$(call run_and_test, $(CC) $(CFLAGS) -I$(HEAD_DIR) $(LIB) -o $@ -c $<)
+ifeq ($(CC_SECU), 0)
+$(DIR_OBJ)%.o:$(SRC_PATH)/%.c
+		@$(call run_and_test, $(CC) $(CFLAGS) -o $@ -c $<)
 else
 $(OBJS):
-		@$(CC) $(CFLAGS) -I$(HEAD_DIR) $(LIB) -c $(A_SRC)
-		@mv -f $(NA_SRC:%.c=%.o) $(DIR_OBJ)
+#	echo $(OBJS)
+		@$(CC) $(CFLAGS) -I./$(HEAD_DIR) -c $(P_SRC) $(A_SRC)
+#ifneq ("$(NOPT)","")
+#		mv -f $(NA_SRC:%.c=%.o) $(DIR_OBJ)
+#endif
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
 
@@ -259,6 +270,9 @@ clean :
 		@$(MAKE) clean -C $(LIB_PATH)
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(OBJS)
+ifneq ("$(NOPT)","")
+		@rm -f $(NP_SRC:%.c=%.o)
+endif
 
 fclean : clean
 		@$(MAKE) fclean -C $(LIB_PATH)
@@ -342,9 +356,9 @@ order :
 ifneq ($(IFORDER), )
 		@$(MAKE) offption
 		@sed -i '' "s~head.h~../../includes/head.h~g" $(A_SRC)
-		@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" $(TIME_EXE_H)
+		#@sed -i '' "s~../../libft/libft.h~../libft/libft.h~g" $(TIME_EXE_H)
 		@sed -i '' "s~../libft/libft.h~../.annex/libft/libft.h~g" $(HEAD)
-		@sed -i '' "s~fill_it_files/head.h~includes/head.h~g" $(PRINT)
+		#@sed -i '' "s~fill_it_files/head.h~includes/head.h~g" $(PRINT)
 		@mkdir $(A_SRC_P) $(NHEAD_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
 		@mv -f $(LIB_PATH) $(NLIB_PATH)
@@ -362,9 +376,9 @@ push :
 ifneq ($(IFPUSH), )
 		@$(MAKE) offption
 		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
-		@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" $(TIME_EXE_H)
+		#@sed -i '' "s~../libft/libft.h~../../libft/libft.h~g" $(TIME_EXE_H)
 		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
-		@sed -i '' "s~includes/head.h~fill_it_files/head.h~g" $(PRINT)
+		#@sed -i '' "s~includes/head.h~fill_it_files/head.h~g" $(PRINT)
 		@mkdir $(NALL_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
 		@mv -f $(A_SRC) $(NALL_PATH)
@@ -383,7 +397,7 @@ malloc_check :
 ##						##
 ##########################
 
-# to put time_exe in *.c. Note that it will be configured to work when project is using the topush_ file structure.
+# CAREFULL : OPTIONS ONLY WORK IN PUSH MODE
 onption :
 ifneq ("$(NOPT)","")
 	@bash .annex/time/input_tim.sh
@@ -394,8 +408,6 @@ ifneq ("$(NOPT)","")
 	@bash .annex/show/show_debug.sh
 endif
 
-# to remove time_exe from *.c.
-# Attention a nos wildcards. Il y en a une autre ligne 212.
 offption :
 ifeq ("$(NOPT)","")
 	@sed -i '' '/time_exe/d' fill_it_files/*.c
@@ -409,6 +421,24 @@ ifeq ("$(NOPT)","")
 	@mv -f .annex/printing/print_debug.c .annex/printing/print_debug.c.old
 	@sed -i '' 's/define ONPTION/define OFFPTION/' fill_it_files/head.h
 endif
+
+##########################
+##                      ##
+##    STEP BY STEP      ##
+##                      ##
+##########################
+
+sbs :
+ifneq ("$(NOPT)","")
+	@$(MAKE) onption
+endif
+	@sh .annex/show/sbs.sh
+
+rsbs :
+ifneq ("$(NOPT)","")
+	@$(MAKE) onption
+endif
+	@sed -i ‘’ ‘/print_soltion_link/d’ fill_it_files/solve.c
 
 ##########################
 ##						##
