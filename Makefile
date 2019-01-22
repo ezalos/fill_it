@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 22:49:02 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 23:03:28 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -257,7 +257,7 @@ $(OBJS):
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
 
-clean :
+clean : $(OBJS)
 		@$(MAKE) clean -C $(LIB_PATH)
 		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -f $(OBJS)
@@ -265,7 +265,7 @@ ifneq ("$(NOPT)","")
 		@rm -f $(NP_SRC:%.c=%.o)
 endif
 
-fclean : clean
+fclean : clean $(NAME)
 		@$(MAKE) fclean -C $(LIB_PATH)
 		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
 		@rm -rf $(NAME) fillit.dSYM
@@ -348,6 +348,7 @@ ifneq ($(IFORDER), )
 ifeq ("$(NOPT)","")
 	@$(MAKE) offption
 endif
+		@$(MAKE) fclean
 		@sed -i '' "s~./head.h~../../includes/head.h~g" $(A_SRC)
 		@sed -i '' "s~../libft/libft.h~../.annex/libft/libft.h~g" $(HEAD)
 		@mkdir $(A_SRC_P) $(NHEAD_PATH)
@@ -368,6 +369,7 @@ ifneq ($(IFPUSH), )
 ifeq ("$(NOPT)","")
 	@$(MAKE) offption
 endif
+		@$(MAKE) fclean
 		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
 		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
 		@mkdir $(NALL_PATH)
@@ -396,6 +398,7 @@ ifneq ("$(NOPT)","")
 ifneq ($(IFPUSH), )
 	@$(MAKE) push
 endif
+	@$(MAKE) fclean
 	@bash .annex/time/input_tim.sh
 	@mv -f .annex/printing/print_r_in_color.c.old .annex/printing/print_r_in_color.c
 	@mv -f .annex/time/time_exe.h.old .annex/time/time_exe.h
@@ -409,6 +412,7 @@ ifeq ("$(NOPT)","")
 ifneq ($(IFPUSH), )
 	@$(MAKE) push
 endif
+	@$(MAKE) fclean
 	@sed -i '' '/time_exe/d' $(A_SRC)
 	@sed -i '' '/print_debug/d' $(A_SRC)
 	@sed -i '' 's/print_pieces_color/print_pieces/' $(A_SRC)
