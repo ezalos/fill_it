@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 22:39:12 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/22 22:49:02 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -409,16 +409,16 @@ ifeq ("$(NOPT)","")
 ifneq ($(IFPUSH), )
 	@$(MAKE) push
 endif
-	@sed -i '' '/time_exe/d' fill_it_files/*.c
-	@sed -i '' '/print_debug/d' fill_it_files/setup_struct.c
-	@sed -i '' 's/print_pieces_color/print_pieces/' fill_it_files/printing_the_result.c
-	@sed -i '' '/print_soltion_link/d' fill_it_files/solve.c
+	@sed -i '' '/time_exe/d' $(A_SRC)
+	@sed -i '' '/print_debug/d' $(A_SRC)
+	@sed -i '' 's/print_pieces_color/print_pieces/' $(A_SRC)
+	@sed -i '' '/print_soltion_link/d' $(A_SRC)
 	@sed -i '' '/print_time/d' .annex/printing/print_r_in_color.c
 	@mv -f .annex/printing/print_r_in_color.c .annex/printing/print_r_in_color.c.old
 	@mv -f .annex/time/time_exe.h .annex/time/time_exe.h.old
 	@mv -f .annex/time/time_exe.c .annex/time/time_exe.c.old
 	@mv -f .annex/printing/print_debug.c .annex/printing/print_debug.c.old
-	@sed -i '' 's/define ONPTION/define OFFPTION/' fill_it_files/head.h
+	@sed -i '' 's/define ONPTION/define OFFPTION/' $(HEAD)
 endif
 
 ##########################
@@ -437,7 +437,7 @@ rsbs :
 ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
-	@sed -i ‘’ ‘/print_soltion_link/d’ fill_it_files/solve.c
+	@sed -i ‘’ ‘/print_soltion_link/d’ $(A_SRC)
 
 ##########################
 ##						##
