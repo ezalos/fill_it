@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/23 18:15:30 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/23 18:27:47 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -251,6 +251,9 @@ $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 else
 $(OBJS):
 		@$(CC) $(CFLAGS) -I./$(HEAD_DIR) -c $(P_SRC) $(A_SRC)
+ifneq ("$(IFOBJDIR)","")
+		@mv $(P_SRC:%.c=%.o) $(SRCS:%=%.o) $(DIR_OBJ)
+endif
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
 
@@ -364,6 +367,7 @@ endif
 		@mkdir $(A_SRC_P) $(NHEAD_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NHEAD_PATH)
 		@mv -f $(LIB_PATH) $(NLIB_PATH)
+		@mkdir ./objs ./.annex/libft/objs
 		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS0)) $(SRC_PATH0)
 		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS1)) $(SRC_PATH1)
 		@mv -f $(patsubst %, $(NALL_PATH)/%.c, $(SRCS2)) $(SRC_PATH2)
@@ -382,6 +386,7 @@ endif
 		@$(MAKE) fclean
 		@sed -i '' "s~../../includes/head.h~./head.h~g" $(A_SRC)
 		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
+		@rm -rf ./objs ./.annex/libft/objs
 		@mkdir $(NALL_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
 		@mv -f $(A_SRC) $(NALL_PATH)
