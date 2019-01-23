@@ -6,14 +6,18 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:30:44 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:08:27 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:37:22 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **  set of functions used to calculate J coordinates using X and Y.
-**			J coord allow to name each case using only one number
-**			a low J coord always show a better placement for a piece
+**			J coord allows to name each case using only one number
+**			The lower the J coord is, the better the piece placement will be
+**	___________________________________________________________________________
+**		yx_to_j : translates Y and X coordinates into a J coordinate
+**		j_to_yx	: if o == 0	: translates J into Y
+**				  if o == 1	: translates J into X
 **
 **	  +------ 0 - 1 - 2 - 3 -->	 X
 **	  |

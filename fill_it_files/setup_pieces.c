@@ -6,18 +6,18 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:33:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:35:54 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **  Functions used to setup and update our pieces.
 **	___________________________________________________________________________
-**		update_pieces : recalculate all values depending of size_square
-**		p_yx	: store y & x in piece->coord[]
-**		size_pieces : for a size_square return how many different times a piece
-**					  can be place
-**		coord_setup : fill in all the values in the coord struct of a piece
+**		update_pieces : recalculates all values depending of size_square
+**		p_yx	: stores y & x in piece->coord[]
+**		size_pieces : for a size_square returns how many different times a
+**					  piece can be placed
+**		coord_setup : fills in every value in the coord struct of a piece
 */
 
 #include "./head.h"

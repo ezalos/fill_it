@@ -6,16 +6,30 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:39:21 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:29:46 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:36:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
+**	Functions allowing us to solve fill_it using combinatorial optimization
+**	algorithms
+**	___________________________________________________________________________
+**	fill_it belongs to the NP problems class. Therefore, we did use an
+**	algorithm belonging to the NP-Complete class.
+**	It operates on the domain of those optimization problems, in which the set
+**	of feasible solutions is discrete or can be reduced to discrete,
+**	and in which the goal is to find the best solution ; here the smallest
+**	square with each piece in the most top-left corner.
 **
-**
-**
-**
-**
+**	deleter_of_binaries	: deletes every string in head->solution for which
+**						  our 'binary_and' applied to the chosen path on
+**						  the strings is != 0
+**	how_many_paths	: computes for each step in 'solve' how many different
+**					  choices can be made when choosing our path of 'solve'
+**	sol_turn_mem	: restores the state of being of each string in our
+**					  head->solution every time a wrong path has been chosen
+**	solve_solution	: recursive part, calls every function in the optimal
+**					  order at each step.
 */
 
 #include "./head.h"

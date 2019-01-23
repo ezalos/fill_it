@@ -6,15 +6,15 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 02:43:01 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:37:04 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **  Set of functions used to free, in case :
-**		-we found a wrong input
-**		-we need to expand our solution table
-**		-we want to properly free everything at the end of the program
+**		- we found a wrong input
+**		- we need to expand our solution table
+**		- we want to properly free everything at the end of the program
 */
 
 #include "./head.h"

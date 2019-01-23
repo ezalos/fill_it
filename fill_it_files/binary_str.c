@@ -6,16 +6,16 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:31:50 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 02:59:55 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:37:16 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**	Set of tool to manipulate binary stored in strings
+**	Set of tools to manipulate binaries stored in strings
 **	___________________________________________________________________________
-**	binary_size : convert the size of a binary for it to be stored in a string.
-**	binary_to_str : write '1' in the position of our choice in a string.
-**	binstrand : allow to make a binary & on binary stored in strings.
+**	binary_size : converts the size of a binary for it to be stored in a string
+**	binary_to_str : writes '1' in the position of our choice in a string.
+**	binstrand : allows to make a 'binary &' on binaries stored in strings.
 */
 
 #include "./head.h"

@@ -15,7 +15,7 @@
 **					  part of the memory allocated in the head, used to solve
 */
 
-#include "./head.h"
+#include "head.h"
 
 void	*free_linked_sols(t_sol **sol)
 {

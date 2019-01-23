@@ -6,7 +6,11 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2019/01/23 05:28:24 by aboitier         ###   ########.fr        #
+=======
+#    Updated: 2019/01/23 01:40:35 by ldevelle         ###   ########.fr        #
+>>>>>>> 2a0bd15843d8a8a8bb16fe3f47a4b8594669e8cd
 #                                                                              #
 # **************************************************************************** #
 
@@ -250,11 +254,7 @@ $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
 		@$(call run_and_test, $(CC) $(CFLAGS) -o $@ -c $<)
 else
 $(OBJS):
-#	echo $(OBJS)
 		@$(CC) $(CFLAGS) -I./$(HEAD_DIR) -c $(P_SRC) $(A_SRC)
-#ifneq ("$(NOPT)","")
-#		mv -f $(NA_SRC:%.c=%.o) $(DIR_OBJ)
-#endif
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
 
@@ -303,6 +303,7 @@ teste : all
 		./$(NAME) ./.annex/tests/bad/err4
 		./$(NAME) ./.annex/tests/bad/err5
 		./$(NAME) ./.annex/tests/bad/err6
+		./$(NAME) ./.annex/tests/bad/err7
 		./$(NAME)
 		./$(NAME) ./.annex/test lol
 		./$(NAME) ./.annex
@@ -381,7 +382,7 @@ ifeq ("$(NOPT)","")
 	@$(MAKE) offption
 endif
 		@$(MAKE) fclean
-		@sed -i '' "s~../../includes/head.h~head.h~g" $(A_SRC)
+		@sed -i '' "s~../../includes/head.h~./head.h~g" $(A_SRC)
 		@sed -i '' "s~../.annex/libft/libft.h~../libft/libft.h~g" $(HEAD)
 		@mkdir $(NALL_PATH)
 		@mv -f $(HEAD_PATH)/head.h $(NALL_PATH)
