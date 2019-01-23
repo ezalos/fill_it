@@ -6,7 +6,15 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2019/01/23 18:15:30 by ldevelle         ###   ########.fr        #
+=======
+<<<<<<< HEAD
+#    Updated: 2019/01/23 05:28:24 by aboitier         ###   ########.fr        #
+=======
+#    Updated: 2019/01/23 01:40:35 by ldevelle         ###   ########.fr        #
+>>>>>>> 2a0bd15843d8a8a8bb16fe3f47a4b8594669e8cd
+>>>>>>> efcdbc5831f031b3bbbaf3bf5bebbd893f810b7a
 #                                                                              #
 # **************************************************************************** #
 
@@ -269,6 +277,16 @@ fclean : clean
 
 re :	fclean all
 
+
+short :
+		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@rm -f $(OBJS)
+ifeq ("$(NOPT)","")
+		@rm -f $(NP_SRC:%.c=%.o)
+endif
+		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@rm -rf $(NAME) fillit.dSYM
+
 git :
 		@git add -A
 		@git status
@@ -447,7 +465,11 @@ ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
 	@sh .annex/show/sbs.sh
+<<<<<<< HEAD
 	@$(MAKE) re
+=======
+	@$(MAKE) short 
+>>>>>>> efcdbc5831f031b3bbbaf3bf5bebbd893f810b7a
 else
 	@echo No sbs needed.
 endif
@@ -458,8 +480,13 @@ ifneq ("$(NOPT)","")
 endif
 ifneq ("$(PROTEC_rsbs)","")
 ifeq ("$(NPUH)","")
+<<<<<<< HEAD
 	@sed -i '' "/print_soltion_link/d" $(A_SRC)
 	@$(MAKE) re
+=======
+	@sed -i '' '/print_soltion_link/d' $(A_SRC)
+	@$(MAKE) short
+>>>>>>> efcdbc5831f031b3bbbaf3bf5bebbd893f810b7a
 endif
 else
 	@echo No rsbs needed.
