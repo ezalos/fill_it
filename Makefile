@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/23 01:40:35 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/23 18:15:30 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -330,10 +330,22 @@ check :
 ##########################
 
 testa : all
+ifneq ("$(p)", "")
+ifneq ("$(n)", "")
+ifneq ("$(PROTEC_rsbs)","")
+		@bash ./.annex/training_set/make_tests.sh $(p) 1
+		@bash ./.annex/tests/launch_tests.sh $(NAME) 1
+else
 		@bash ./.annex/training_set/make_tests.sh $(p) $(n)
 		@bash ./.annex/tests/launch_tests.sh $(NAME) $(n) > ./.annex/tests/last_test
 		@cat ./.annex/tests/last_test
 		@rm -rf ./.annex/tests/random_generated/*
+endif
+endif
+else
+		@echo 'usage: make test a=x p=y'
+		@echo 'for (p >= 1 && n >= 1)'
+endif
 
 ##########################
 ##						##
@@ -430,10 +442,15 @@ endif
 ##########################
 
 sbs :
+ifeq ("$(PROTEC_rsbs)","")
 ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
 	@sh .annex/show/sbs.sh
+	@$(MAKE) re
+else
+	@echo No sbs needed.
+endif
 
 rsbs :
 ifneq ("$(NOPT)","")
@@ -441,7 +458,8 @@ ifneq ("$(NOPT)","")
 endif
 ifneq ("$(PROTEC_rsbs)","")
 ifeq ("$(NPUH)","")
-	@sed -i ‘’ ‘/print_soltion_link/d’ $(A_SRC)
+	@sed -i '' "/print_soltion_link/d" $(A_SRC)
+	@$(MAKE) re
 endif
 else
 	@echo No rsbs needed.
