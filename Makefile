@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 23:28:47 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/23 05:28:24 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -273,6 +273,16 @@ fclean : clean
 
 re :	fclean all
 
+
+short :
+		@echo "\$(YELLOW)fill_objs \$(END)\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@rm -f $(OBJS)
+ifeq ("$(NOPT)","")
+		@rm -f $(NP_SRC:%.c=%.o)
+endif
+		@echo "\$(YELLOW)$(NAME) \$(END)\\t\\thas been \$(GREEN)\\t\\t\\t  $@\$(END)"
+		@rm -rf $(NAME) fillit.dSYM
+
 git :
 		@git add -A
 		@git status
@@ -433,10 +443,15 @@ endif
 ##########################
 
 sbs :
+ifeq ("$(PROTEC_rsbs)","")
 ifneq ("$(NOPT)","")
 	@$(MAKE) onption
 endif
 	@sh .annex/show/sbs.sh
+	@$(MAKE) short 
+else
+	@echo No sbs needed.
+endif
 
 rsbs :
 ifneq ("$(NOPT)","")
@@ -444,7 +459,8 @@ ifneq ("$(NOPT)","")
 endif
 ifneq ("$(PROTEC_rsbs)","")
 ifeq ("$(NPUH)","")
-	@sed -i ‘’ ‘/print_soltion_link/d’ $(A_SRC)
+	@sed -i '' '/print_soltion_link/d' $(A_SRC)
+	@$(MAKE) short
 endif
 else
 	@echo No rsbs needed.
