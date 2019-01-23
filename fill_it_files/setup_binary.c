@@ -6,12 +6,17 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:30:22 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:35:26 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **  Functions used to malloc and set up our binary strings used to solve.
+**	___________________________________________________________________________
+**		while_in_write_binary : continuation of 'write_binary' function
+**		write_binary : correctly fills every 'bianry string' of our
+**					   head->solution
+**		malloc_binary : allocates the necessary memory for head->solution
 */
 
 #include "./head.h"
@@ -27,15 +32,6 @@ void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 			head->p + yx_to_j(piece->coord[box[4]]->y + box[2],
 			piece->coord[box[4]]->x + box[3]));
 }
-
-/*
-**	int box[5] is containing
-** 	box[0] = current_piece;
-** 	box[1] = pnnx;
-** 	box[2] = y;
-** 	box[3] = x;
-** 	box[4] = i;
-*/
 
 void	write_binary(t_head *head)
 {
@@ -58,6 +54,15 @@ void	write_binary(t_head *head)
 		box[0]++;
 	}
 }
+
+/*
+**	int box[5] is containing
+** 	box[0] = current_piece;
+** 	box[1] = pnnx;
+** 	box[2] = y;
+** 	box[3] = x;
+** 	box[4] = i;
+*/
 
 char	**malloc_binary(t_head *head)
 {

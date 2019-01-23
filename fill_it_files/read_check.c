@@ -6,12 +6,22 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/22 03:19:45 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:37:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 **  Functions used as a parser and to check input validity.
+**	___________________________________________________________________________
+**	cre_tetro : allocates memory for a recognized tetromino while naming it
+** 	check_two : checks for the number of '#', '\n'
+** 				checks the positions of '\n', '\0'
+**				checks that we only read valid characters such as '.',
+** 				'\n', '\0' and '#'
+**	ft_check_input : reads in a securitized manner from the 'fd' and checks
+** 					 that '\0' is the final char
+**	ft_read_check : opens the file, creates and frees the 'buf' to make the
+**					read function operates and initializes 'head'
 */
 
 #include "./head.h"

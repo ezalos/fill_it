@@ -6,16 +6,19 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 04:53:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:40:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/23 01:36:01 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-**	
-**
-**
-**
-**
+**	Set of functions for our structure which :
+**	___________________________________________________________________________
+**		init_head	: initializes variables in head structure's fields
+**		next_solve_step	: allocates memory to manage the solution setup
+**		setup_pieces	: computes each value of the pieces struct and
+**						  fill them in
+**		setup_	: calls every necessary function for the setup of all
+**				  our structs
 */
 
 #include "./head.h"
