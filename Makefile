@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/23 18:27:47 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/01/24 16:10:02 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,9 +136,9 @@ OBJS = $(NA_SRC:$(SRC_PATH)/%.c=$(DIR_OBJ)%.o)
 CC_SECU		= 1
 endif
 
+PROTEC		:= $(wildcard ./.annex)
+ifneq ("$(PROTEC)","")
 NOPT		:= $(wildcard ./.annex/time/time_exe.c.old)
-
-
 ##################
 ##	  W/_OPT	##
 ##################
@@ -166,12 +166,13 @@ PRINT_R		=	./.annex/printing/print_r_in_color.c.old
 PRINT 		= 	$(PRINT_DBG) $(PRINT_R)
 
 endif
+PIECE = ./.annex/tests/good/fit/7_0
+endif
 
 
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h
 
-PIECE = ./.annex/tests/good/fit/7_0
 
 ##########################
 ##						##
@@ -278,6 +279,7 @@ git :
 		@git commit -am "Makefile automated push"
 		@git push
 
+ifneq ("$(PROTEC)","")
 ##########################
 ##						##
 ##		  TESTS			##
@@ -484,7 +486,7 @@ grep_ :
 hide_ :
 		sed -i '' '/printf/d' $(A_SRC)
 		sed -i '' '/time/d' $(A_SRC)
-
+endif
 ##########################
 ##						##
 ##		 .PHONY			##
