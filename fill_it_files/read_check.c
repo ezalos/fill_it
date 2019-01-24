@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/23 01:37:35 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/01/24 16:15:53 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 	{
 		c_hash = check_two(buf, c_hash);
 		if (c_hash != 4 || !cre_tetro(recog(buf), head))
+		{
+			ft_strdel(&buf);
 			return (0);
+		}
 		ft_bzero((void*)buf, (size_t)21);
 		(*head)->p++;
 		if (ret != 0)
