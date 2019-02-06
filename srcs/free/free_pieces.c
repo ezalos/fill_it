@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_pieces.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 02:13:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/23 01:37:27 by ldevelle         ###   ########.fr       */
+/*   Created: 2019/01/17 12:38:23 by ldevelle          #+#    #+#             */
+/*   Updated: 2019/01/23 01:37:45 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./head.h"
+/*
+**  Allow to free the tetraminos stored in a linked list
+*/
 
-int		main(int ac, char **av)
+#include "../../includes/head.h"
+
+void	*free_linked_pieces(t_piece **next)
 {
-	t_head	*head;
-	int		check;
+	int i;
 
-	if (ac != 2)
+	if (next && *next)
 	{
-		ft_putendl("usage: ./fillit ./path/file");
-		return (0);
-	}
-	if (!(head = read_check(av[1])))
-		return (0);
-	if (!(setup_(head)))
-		return (0);
-	check = 0;
-	while (check != 1)
-	{
-		check = solve_solution(head, 1);
-		if (check == 1)
-			print_result(head);
-		else
+		free_linked_pieces(&((*next)->next));
+		(*next)->next = NULL;
+		i = -1;
+		while (++i < 4)
 		{
-			if (!(restart_and_grow(head)))
-				return (0);
+			free((*next)->coord[i]);
+			(*next)->coord[i] = NULL;
 		}
+		free(*next);
+		*next = NULL;
 	}
-	return (0);
+	return (NULL);
 }

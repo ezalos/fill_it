@@ -19,7 +19,7 @@
 **		malloc_binary : allocates the necessary memory for head->solution
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 {

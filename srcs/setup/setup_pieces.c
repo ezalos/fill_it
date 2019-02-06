@@ -20,7 +20,7 @@
 **		coord_setup : fills in every value in the coord struct of a piece
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 void	update_pieces(t_head *head)
 {

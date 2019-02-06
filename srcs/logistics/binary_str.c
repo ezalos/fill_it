@@ -18,7 +18,7 @@
 **	binstrand : allows to make a 'binary &' on binaries stored in strings.
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 int		binary_size(int length)
 {

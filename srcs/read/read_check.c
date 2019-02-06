@@ -24,7 +24,7 @@
 **					read function operates and initializes 'head'
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 int		cre_tetro(const char *name, t_head **head)
 {

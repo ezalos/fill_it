@@ -21,7 +21,7 @@
 **				  our structs
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 void	init_head(t_head *head)
 {

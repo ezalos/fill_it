@@ -14,7 +14,7 @@
 **	Set of functions that return the umpteenth element of a linked list
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 t_piece	*find_piece(t_head *head, int piece)
 {

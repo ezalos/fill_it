@@ -35,7 +35,7 @@
 **    Y
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 int		yx_to_j(int y, int x)
 {

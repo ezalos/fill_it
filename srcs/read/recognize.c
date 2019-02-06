@@ -14,7 +14,7 @@
 **  Functions used to recognize tetrominos from valid file.
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 const char	*part10(char *s, int i, int div, int mod)
 {

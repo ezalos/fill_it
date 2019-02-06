@@ -32,7 +32,7 @@
 **					  order at each step.
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 {

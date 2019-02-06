@@ -17,7 +17,7 @@
 **		- we want to properly free everything at the end of the program
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 void	*free_head(t_head **head)
 {

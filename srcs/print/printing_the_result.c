@@ -21,7 +21,7 @@
 **		print_result	: calls all the necessary functions to print the result
 */
 
-#include "./head.h"
+#include "../../includes/head.h"
 
 void	print_pieces(t_head *head, char **tab_result)
 {
