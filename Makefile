@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/24 16:10:02 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/02/28 11:58:45 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Winline -Wlong-long -Wunreachable-code
 
 #CFLAGS = $(DFLAGS)
+#NAME = ./bro/fillit
+
 
 ##############################################################################
 ##############################################################################
@@ -286,27 +288,27 @@ ifneq ("$(PROTEC)","")
 ##						##
 ##########################
 
-teste : all
-		./$(NAME) ./.annex/tests/bad/err0
-		./$(NAME) ./.annex/tests/bad/err1
-		./$(NAME) ./.annex/tests/bad/err2
-		./$(NAME) ./.annex/tests/bad/err3
-		./$(NAME) ./.annex/tests/bad/err4
-		./$(NAME) ./.annex/tests/bad/err5
-		./$(NAME) ./.annex/tests/bad/err6
-		./$(NAME) ./.annex/tests/bad/err7
-		./$(NAME)
-		./$(NAME) ./.annex/test lol
-		./$(NAME) ./.annex
-		./$(NAME) ./.annex/tests/bad/otherTest/binary1.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/binary2.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/binary3.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/eof.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/twentyseven.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/twentysix.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot1.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot2.txt
-		./$(NAME) ./.annex/tests/bad/otherTest/wrongdot3.txt
+teste : #all
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err0
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err1
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err2
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err3
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err4
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err5
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err6
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/err7
+		$(VALGRIND) ./$(NAME)
+		$(VALGRIND) ./$(NAME) ./.annex/test lol
+		$(VALGRIND) ./$(NAME) ./.annex
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/binary1.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/binary2.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/binary3.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/eof.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/twentyseven.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/twentysix.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/wrongdot1.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/wrongdot2.txt
+		$(VALGRIND) ./$(NAME) ./.annex/tests/bad/otherTest/wrongdot3.txt
 
 testv :	all
 		$(VALGRIND) ./$(NAME) $(PIECE)
@@ -314,6 +316,10 @@ testv :	all
 
 testp :	all
 		./$(NAME) $(PIECE)
+
+testbro :
+			make re -C ./bro
+			$(VALGRIND) ./bro/fillit $(PIECE)
 
 check :
 		bash /Users/ldevelle/42/TESTS/42FileChecker/42FileChecker.sh
