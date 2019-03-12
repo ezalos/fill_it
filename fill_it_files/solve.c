@@ -36,7 +36,6 @@
 
 int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 {
-	time_exe(__func__, clock());
 	int		comp;
 	int		pos_rev;
 	int		champ;
@@ -66,7 +65,6 @@ int		deleter_of_binaries(t_head *head, int depth, int pos_choy)
 
 int		how_many_paths(t_head *head, int deepness)
 {
-	time_exe(__func__, clock());
 	int path;
 
 	path = 0;
@@ -88,7 +86,6 @@ int		how_many_paths(t_head *head, int deepness)
 
 void	sol_turn_mem(t_head *head, int deepness)
 {
-	time_exe(__func__, clock());
 	if (deepness == 1)
 		ft_memcpy(find_sol(head, deepness)->y_all_pxnx,
 		head->y_all_pxnx, (size_t)head->tt_pos_all);
@@ -100,7 +97,6 @@ void	sol_turn_mem(t_head *head, int deepness)
 
 int		solve_solution(t_head *head, int deepness)
 {
-	time_exe(__func__, clock());
 	if (deepness <= head->p)
 	{
 		find_sol(head, deepness)->current_path = -1;

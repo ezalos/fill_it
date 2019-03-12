@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 14:33:18 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 17:00:16 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/07 17:06:30 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		ft_patoi(const char *str)
 	int			neg;
 
 	neg = 1;
-	num = 0;
 	nb = 0;
 	if (str == NULL || *str == '\0')
 		return (0);

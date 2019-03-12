@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 01:20:28 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/23 01:35:54 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 21:01:44 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 void	update_pieces(t_head *head)
 {
-	time_exe(__func__, clock());
 	int i;
 
 	i = 0;
@@ -43,14 +42,12 @@ void	update_pieces(t_head *head)
 
 void	p_yx(t_piece *piece, int y, int x)
 {
-	time_exe(__func__, clock());
 	piece->y_size = y;
 	piece->x_size = x;
 }
 
 int		size_pieces(char s, int size)
 {
-	time_exe(__func__, clock());
 	if (s == 'O')
 		return ((size - 1) * (size - 1));
 	else if (s == 'I')
@@ -61,7 +58,6 @@ int		size_pieces(char s, int size)
 
 void	pieces_yx(t_piece *tmp)
 {
-	time_exe(__func__, clock());
 	if (tmp->name[0] == 'O')
 		p_yx(tmp, 2, 2);
 	else if (tmp->name[0] == 'I')
@@ -89,17 +85,16 @@ void	pieces_yx(t_piece *tmp)
 
 int		coord_setup(t_piece *piece)
 {
-	time_exe(__func__, clock());
 	int		i;
 
 	i = -1;
 	while (++i <= 3)
 	{
-		if (!(piece->coord[i] = (t_coord*)malloc(sizeof(t_coord))))
+		if (!(piece->coord[i] = (t_coord*)P_MALLOC(sizeof(t_coord))))
 		{
 			while (i >= 0)
 			{
-				free(piece->coord[i]);
+				ft_memdel((void**)&piece->coord[i]);
 				piece->coord[i--] = NULL;
 			}
 			return (0);

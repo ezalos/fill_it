@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 19:43:23 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 16:59:41 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:42:56 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_del(void *content, size_t size)
 {
 	(void)size;
-	free(content);
+	ft_memdel((void**)content);
 }

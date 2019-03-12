@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:38:29 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/22 03:16:57 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:56:50 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 
 void	*free_linked_sols(t_sol **sol)
 {
-	time_exe(__func__, clock());
 	if (sol && *sol)
 	{
 		free_linked_sols(&((*sol)->sol));
 		(*sol)->sol = NULL;
-		free((*sol)->y_all_pxnx);
+		ft_memdel((void**)&(*sol)->y_all_pxnx);
 		(*sol)->y_all_pxnx = NULL;
-		free((*sol));
+		ft_memdel((void**)&(*sol));
 		*sol = NULL;
 	}
 	return (NULL);
@@ -34,7 +33,6 @@ void	*free_linked_sols(t_sol **sol)
 
 void	*free_solsols(t_head *head)
 {
-	time_exe(__func__, clock());
 	int y;
 
 	y = -1;
@@ -42,15 +40,15 @@ void	*free_solsols(t_head *head)
 	{
 		while (++y < head->tt_pos_all)
 		{
-			free(head->solution[y]);
+			ft_memdel((void**)&head->solution[y]);
 			head->solution[y] = NULL;
 		}
-		free(head->solution);
+		ft_memdel((void**)&head->solution);
 		head->solution = NULL;
 	}
 	if (head->y_all_pxnx)
 	{
-		free(head->y_all_pxnx);
+		ft_memdel((void**)&head->y_all_pxnx);
 		head->y_all_pxnx = NULL;
 	}
 	free_linked_sols(&(head->sol));

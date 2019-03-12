@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 13:36:11 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/09 14:09:58 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:45:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	**free_scnd(char **s, size_t i)
 {
 	while (i-- != 0)
 		ft_strdel(&(s[i]));
-	free(s);
+	ft_memdel((void**)&s);
 	s = NULL;
 	return (NULL);
 }
@@ -66,7 +66,7 @@ char		**ft_strsplit(char const *s, char c)
 		return (NULL);
 	i = -1;
 	word = count_words(s, c);
-	if (!(words = (char**)malloc(sizeof(char*) * (word + 1))))
+	if (!(words = (char**)P_MALLOC(sizeof(char*) * (word + 1))))
 		return (NULL);
 	while (++i < word)
 	{

@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/25 10:07:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/23 01:35:26 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 21:01:27 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 {
-	time_exe(__func__, clock());
 	binary_to_str(head->solution
 		[piece->tt_pos - piece->pc_pos + ++box[1]], box[0]);
 	box[4] = -1;
@@ -36,7 +35,6 @@ void	while_in_write_binary(t_head *head, t_piece *piece, int *box)
 
 void	write_binary(t_head *head)
 {
-	time_exe(__func__, clock());
 	t_piece	*piece;
 	int		box[5];
 
@@ -68,19 +66,18 @@ void	write_binary(t_head *head)
 
 char	**malloc_binary(t_head *head)
 {
-	time_exe(__func__, clock());
 	char	**sol;
 	int		i;
 	int		line;
 	int		u;
 
-	if (!(sol = (char**)malloc(sizeof(char*) * (size_t)head->tt_pos_all)))
+	if (!(sol = (char**)P_MALLOC(sizeof(char*) * (size_t)head->tt_pos_all)))
 		return (NULL);
 	i = -1;
 	line = ((head->p + (head->sqsize * head->sqsize)) / 8) + 1;
 	while (++i < head->tt_pos_all)
 	{
-		if (!(sol[i] = (char*)malloc(sizeof(char) * (size_t)line)))
+		if (!(sol[i] = (char*)P_MALLOC(sizeof(char) * (size_t)line)))
 			return (free_tab_str(&sol, i));
 		u = -1;
 		while (++u < line)

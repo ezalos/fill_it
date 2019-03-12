@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/01/22 17:49:07 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/08 22:29:25 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 -Wmissing-noreturn -Wformat -Wmissing-format-attribute\
 -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs\
 -Winline -Wlong-long -Wunreachable-code
+
+#CFLAGS = $(DFLAGS)
 
 ##############################################################################
 ##############################################################################
@@ -51,9 +53,20 @@ SRCS5 = bzero isalnum isalpha isascii isdigit islower\
 		strncmp strncpy strnequ strnstr strrchr strstr strsub strtrim tolower\
 		toupper
 SRCS6 = putchar putendl putnbr putstr putstr_rnull putstr_r0
-SRCS7 = char_srch count_lst del factorial fibonacci find_lsth fsqrt intlen\
-		lstcutone nprime power puttab_nb round_upper round nmatch match\
-		pstrnstr patoi nb_char_to_int puttab
+SRCS7 = char_srch lst_count del factorial fibonacci lstfind_th fsqrt intlen\
+		lstcutone nprime power puttab_len round_upper round nmatch match\
+		pstrnstr patoi nb_char_to_int puttab get_next_line place_cursor\
+		random swap strnlen print_address_color\
+		u_nb_to_a nb_to_a u_nb_len nb_len putbnbr_str putnstr\
+		lstnew_ptr lstadd_here lst_reach_end lstadd_end lstadd_start\
+		rgb_color strjoin_multi strdel_multi putstr_color rgb_bcolor wait_pls\
+		tab_print_one_elmnt tab_print_dir tabiter tabnew_ptr tab_lendir\
+		tab_dirth tab_dir_clock tab_dir_rclock tab_dir_reverse tabnew_dir\
+		tab_connect_dir tab_square_it tab_dir_nclock tab_connect_structs\
+		tab_delete_row tab_delete_row_len tab_access tabnew_rectangle\
+		tab_reach_end tabadd_start tabadd_end tabadd_here tabadd tab_cutone\
+		tabloop_lendir tabloop_it\
+		cnalloc nalloc clean_garbage burn_garbage lst_free garbage_collector
 
 SRC_DIR1	= file
 SRC_DIR2	= int
@@ -62,7 +75,6 @@ SRC_DIR4	= malloc
 SRC_DIR5	= str
 SRC_DIR6	= write
 SRC_DIR7	= mine
-
 SRC_PATH	= ./
 MSRC_PATH	= srcs
 SRC_PATH1	= $(MSRC_PATH)/$(SRC_DIR1)
@@ -233,7 +245,7 @@ re : fclean all
 
 order : fclean
 ifneq ($(IFORDER), )
-	@mkdir	$(MSRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3)\
+	@mkdir	$(MSRC_PATH) $(SRC_PATH1) $(SRC_PATH2) $(SRC_PATH3) objs\
 			$(SRC_PATH4) $(SRC_PATH5) $(SRC_PATH6) $(SRC_PATH7) $(NHEAD_DIR)
 	@mv -f $(HEAD_DIR)$(FT_H) $(NHEAD_DIR)
 	@mv -f $(patsubst %, ft_%.c, $(SRCS1)) $(SRC_PATH1)
@@ -249,7 +261,7 @@ endif
 push : fclean
 ifneq ($(IFPUSH), )
 		@mv -f $(A_SRC) $(HEAD_DIR)/$(FT_H) $(SRC_PATH)
-		@rm -rf $(MSRC_PATH) $(HEAD_DIR)
+		@rm -rf $(MSRC_PATH) $(HEAD_DIR) objs
 		@echo \$(GREEN) $(NAME) \$(END) Now in \$(MAGENTA)$@ mode \$(END)
 endif
 

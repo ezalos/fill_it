@@ -6,7 +6,7 @@
 /*   By: aboitier <aboitier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 18:42:18 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/24 16:15:53 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 21:32:19 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@
 
 int		cre_tetro(const char *name, t_head **head)
 {
-	time_exe(__func__, clock());
 	t_piece *tetro;
 
 	if (name == NULL)
 		return (0);
 	if ((*head)->next == NULL)
 	{
-		if (!((*head)->next = (t_piece*)malloc(sizeof(t_piece))))
+		if (!((*head)->next = (t_piece*)P_MALLOC(sizeof(t_piece))))
 			return (0);
 		(*head)->next->name = (char*)name;
 		(*head)->next->next = NULL;
@@ -44,7 +43,7 @@ int		cre_tetro(const char *name, t_head **head)
 	tetro = (*head)->next;
 	while (tetro->next != NULL)
 		tetro = tetro->next;
-	if (!(tetro->next = (t_piece*)malloc(sizeof(t_piece))))
+	if (!(tetro->next = (t_piece*)P_MALLOC(sizeof(t_piece))))
 	{
 		free_linked_pieces(&(*head)->next);
 		return (0);
@@ -57,7 +56,6 @@ int		cre_tetro(const char *name, t_head **head)
 
 int		check_two(char *buf, int c_hash)
 {
-	time_exe(__func__, clock());
 	int i;
 
 	i = 0;
@@ -87,7 +85,6 @@ int		check_two(char *buf, int c_hash)
 
 int		ft_check_input(int fd, char *buf, t_head **head)
 {
-	time_exe(__func__, clock());
 	int		ret;
 	int		c_hash;
 	int		dest;
@@ -114,7 +111,6 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 
 t_head	*read_check(char *fillit)
 {
-	time_exe(__func__, clock());
 	char	*buf;
 	t_head	*head;
 	int		fd;
@@ -123,7 +119,7 @@ t_head	*read_check(char *fillit)
 		return (ft_putstr_rnull("usage: ./fillit ./path/file\n"));
 	if (!(buf = ft_strnew((size_t)21)))
 		return (ft_putstr_rnull("error\n"));
-	if (!(head = (t_head*)malloc(sizeof(t_head))))
+	if (!(head = (t_head*)P_MALLOC(sizeof(t_head))))
 	{
 		ft_strdel(&buf);
 		return (ft_putstr_rnull("error\n"));
@@ -131,6 +127,6 @@ t_head	*read_check(char *fillit)
 	init_head(head);
 	if (ft_check_input(fd, buf, &head))
 		return (head);
-	free(head);
+	ft_memdel((void**)&head);
 	return (ft_putstr_rnull("error\n"));
 }

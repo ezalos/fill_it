@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/02/28 11:58:45 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/03/08 21:15:27 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,7 @@ endif
 PIECE = ./.annex/tests/good/fit/7_0
 endif
 
-
+#LIB_PATH	= ./../libft
 LIB			= $(LIB_PATH)/libft.a
 HEAD		= $(HEAD_PATH)/head.h
 
@@ -244,8 +244,7 @@ endef
 
 all :	$(NAME)
 
-$(NAME): $(OBJS) $(HEAD_)
-		@$(MAKE) -C $(LIB_PATH)
+$(NAME): $(LIB_PATH) $(OBJS) $(HEAD_)
 		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(OBJS) $(NP_SRC:%.c=%.o) $(LIB) -o $(NAME))
 
 ifeq ($(CC_SECU), 0)
@@ -259,6 +258,11 @@ ifneq ("$(IFOBJDIR)","")
 endif
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif
+
+$(LIB_PATH) : FORCE
+			@$(MAKE) -C $(LIB_PATH)
+
+FORCE:
 
 clean :
 		@$(MAKE) clean -C $(LIB_PATH)

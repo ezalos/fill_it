@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 11:42:04 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/17 11:53:17 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/02/11 18:23:41 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int		ft_putstr_r0(char const *s)
 	if (s == NULL)
 		return (0);
 	while (*s)
-		write(1, s++, 1);
+		write(2, s++, 1);
 	return (0);
 }

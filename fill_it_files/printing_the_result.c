@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 17:18:38 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/23 01:37:31 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 21:00:57 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 void	print_pieces(t_head *head, char **tab_result)
 {
-	time_exe(__func__, clock());
 	int i;
 	int j;
 
@@ -41,7 +40,6 @@ void	print_pieces(t_head *head, char **tab_result)
 
 int		pos_one_binary(char *str, size_t length, size_t umpteenth)
 {
-	time_exe(__func__, clock());
 	int				i;
 	int				j;
 	unsigned char	nb;
@@ -69,7 +67,6 @@ int		pos_one_binary(char *str, size_t length, size_t umpteenth)
 
 void	show_pieces_binary(t_head *head, char **tab_result)
 {
-	time_exe(__func__, clock());
 	int		line;
 	int		j_piece;
 	int		block;
@@ -91,16 +88,15 @@ void	show_pieces_binary(t_head *head, char **tab_result)
 		}
 		j_piece++;
 	}
-	print_pieces_color(head, tab_result);
+	print_pieces(head, tab_result);
 }
 
 int		print_result(t_head *head)
 {
-	time_exe(__func__, clock());
 	char	**tab_result;
 	int		i;
 
-	if (!(tab_result = (char**)malloc(((size_t)head->sqsize) * sizeof(char*))))
+	if (!(tab_result = (char**)P_MALLOC(((size_t)head->sqsize) * sizeof(char*))))
 		return (0);
 	i = -1;
 	while (++i < head->sqsize)

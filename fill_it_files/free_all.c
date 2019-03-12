@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 10:04:26 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/23 01:37:04 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:54:49 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 void	*free_head(t_head **head)
 {
-	time_exe(__func__, clock());
 	if (head && *head)
 	{
 		if ((*head)->next)
@@ -29,28 +28,24 @@ void	*free_head(t_head **head)
 		if ((*head)->sol)
 			free_linked_sols(&(*head)->sol);
 		free_solsols(*head);
-		free(*head);
-		*head = NULL;
+		ft_memdel((void**)&*head);
 	}
 	return (NULL);
 }
 
 void	*free_tab_str(char ***ptr_on_tab, int lines)
 {
-	time_exe(__func__, clock());
 	if (ptr_on_tab && *ptr_on_tab)
 	{
 		while (0 <= --lines)
 			ft_strdel(&(*ptr_on_tab)[lines]);
-		free(*ptr_on_tab);
-		*ptr_on_tab = NULL;
+		ft_memdel((void**)ptr_on_tab);
 	}
 	return (NULL);
 }
 
 t_head	*restart_and_grow(t_head *head)
 {
-	time_exe(__func__, clock());
 	free_solsols(head);
 	head->sqsize++;
 	update_pieces(head);

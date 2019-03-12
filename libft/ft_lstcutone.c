@@ -6,7 +6,7 @@
 /*   By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 01:53:37 by ldevelle          #+#    #+#             */
-/*   Updated: 2019/01/21 16:59:52 by ldevelle         ###   ########.fr       */
+/*   Updated: 2019/03/08 20:44:35 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	ft_lstcutone(t_list **alst, void (*del)(void *, size_t))
 
 	ptr = (*alst)->next->next;
 	del((*alst)->next->content, (*alst)->next->content_size);
-	free((*alst)->next);
+	ft_memdel((void**)&(*alst)->next);
 	(*alst)->next = ptr;
 }
