@@ -18,6 +18,7 @@
 
 const char	*part10(char *s, int i, int div, int mod)
 {
+	time_exe(__func__, clock());
 	if (mod >= 1 && s[i + 5 - 1] == '#')
 	{
 		if (div < 2 && s[i + (5 * 2) - 1] == '#')
@@ -36,6 +37,7 @@ const char	*part10(char *s, int i, int div, int mod)
 
 const char	*part1(char *s, int i, int div, int mod)
 {
+	time_exe(__func__, clock());
 	if (div < 3 && s[i + 5] == '#')
 	{
 		if (mod <= 2 && s[i + 5 + 1] == '#')
@@ -65,6 +67,7 @@ const char	*part1(char *s, int i, int div, int mod)
 
 const char	*part0(char *s, int i, int div, int mod)
 {
+	time_exe(__func__, clock());
 	if (mod <= 2 && s[i + 1] == '#')
 	{
 		if (mod <= 1 && s[i + 2] == '#')
@@ -93,6 +96,7 @@ const char	*part0(char *s, int i, int div, int mod)
 
 const char	*recog(char *s)
 {
+	time_exe(__func__, clock());
 	int		i;
 	int		div;
 	int		mod;

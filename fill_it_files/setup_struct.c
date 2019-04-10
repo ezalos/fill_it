@@ -25,6 +25,7 @@
 
 void	init_head(t_head *head)
 {
+	time_exe(__func__, clock());
 	head->solution = NULL;
 	head->y_all_pxnx = NULL;
 	head->p = 0;
@@ -38,6 +39,7 @@ void	init_head(t_head *head)
 
 t_sol	*next_solve_step(t_head *head, int step)
 {
+	time_exe(__func__, clock());
 	t_sol				*solution;
 	t_sol				*tmp;
 
@@ -67,6 +69,7 @@ t_sol	*next_solve_step(t_head *head, int step)
 
 t_head	*setup_head_sol_part(t_head *head)
 {
+	time_exe(__func__, clock());
 	int i;
 
 	if (!(head->solution = malloc_binary(head)))
@@ -89,6 +92,7 @@ t_head	*setup_head_sol_part(t_head *head)
 
 void	*setup_pieces(t_head *head)
 {
+	time_exe(__func__, clock());
 	int			i;
 
 	i = 0;
@@ -115,6 +119,7 @@ void	*setup_pieces(t_head *head)
 
 t_head	*setup_(t_head *head)
 {
+	time_exe(__func__, clock());
 	head->sqsize = (ft_round_upper(ft_fsqrt(head->p, 0) * 2));
 	if (head->p == 1 && head->next->name[0] == 'I')
 		head->sqsize += 2;
@@ -125,5 +130,6 @@ t_head	*setup_(t_head *head)
 		return (NULL);
 	if (!(setup_head_sol_part(head)))
 		return (NULL);
+	print_debug(head);
 	return (head);
 }

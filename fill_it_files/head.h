@@ -51,7 +51,7 @@
 # include <fcntl.h>
 # include "./../libft/libft.h"
 
-# define OFFPTION
+# define ONPTION
 
 # ifdef ONPTION
 #  include "../.annex/time/time_exe.h"

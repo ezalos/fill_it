@@ -6,7 +6,7 @@
 #    By: ldevelle <ldevelle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/12 15:04:16 by ldevelle          #+#    #+#              #
-#    Updated: 2019/03/08 21:15:27 by ldevelle         ###   ########.fr        #
+#    Updated: 2019/04/10 22:30:34 by ldevelle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -245,7 +245,7 @@ endef
 all :	$(NAME)
 
 $(NAME): $(LIB_PATH) $(OBJS) $(HEAD_)
-		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(OBJS) $(NP_SRC:%.c=%.o) $(LIB) -o $(NAME))
+		@$(call run_and_test, $(CC) $(CFLAGS) -I./$(HEAD_DIR) $(OBJS) $(NP_SRC:%.c=$(DIR_OBJ)%.o) $(LIB) -o $(NAME))
 
 ifeq ($(CC_SECU), 0)
 $(DIR_OBJ)%.o:$(SRC_PATH)/%.c
@@ -254,7 +254,7 @@ else
 $(OBJS):
 		@$(CC) $(CFLAGS) -I./$(HEAD_DIR) -c $(P_SRC) $(A_SRC)
 ifneq ("$(IFOBJDIR)","")
-		@mv $(P_SRC:%.c=%.o) $(SRCS:%=%.o) $(DIR_OBJ)
+		@mv $(NP_SRC:%.c=%.o) $(SRCS:%=%.o) $(DIR_OBJ)
 endif
 		@echo "\$(BLUE)Compiling \$(CYAN)objects\$(GREEN)\\t\\t\\t\\t  [OK]\$(END)"
 endif

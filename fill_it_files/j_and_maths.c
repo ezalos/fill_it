@@ -39,6 +39,7 @@
 
 int		yx_to_j(int y, int x)
 {
+	time_exe(__func__, clock());
 	if (y >= x)
 		return ((y * (y + 1)) + x);
 	else
@@ -47,6 +48,7 @@ int		yx_to_j(int y, int x)
 
 int		j_to_yx(t_head *head, int j, int o)
 {
+	time_exe(__func__, clock());
 	int		x;
 	int		y;
 

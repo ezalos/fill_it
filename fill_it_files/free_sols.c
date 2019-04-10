@@ -19,6 +19,7 @@
 
 void	*free_linked_sols(t_sol **sol)
 {
+	time_exe(__func__, clock());
 	if (sol && *sol)
 	{
 		free_linked_sols(&((*sol)->sol));
@@ -33,6 +34,7 @@ void	*free_linked_sols(t_sol **sol)
 
 void	*free_solsols(t_head *head)
 {
+	time_exe(__func__, clock());
 	int y;
 
 	y = -1;

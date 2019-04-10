@@ -18,6 +18,7 @@
 
 void	*free_linked_pieces(t_piece **next)
 {
+	time_exe(__func__, clock());
 	int i;
 
 	if (next && *next)

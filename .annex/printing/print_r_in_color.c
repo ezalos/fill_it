@@ -58,6 +58,7 @@ void	print_pieces_color(t_head *head, char **tab_result)
 	int i;
 	int j;
 
+	print_time(time_exe(__func__, clock()));
 	i = -1;
 	ft_putchar('\n');
 	ft_putchar('\n');

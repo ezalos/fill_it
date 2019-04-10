@@ -28,6 +28,7 @@
 
 int		cre_tetro(const char *name, t_head **head)
 {
+	time_exe(__func__, clock());
 	t_piece *tetro;
 
 	if (name == NULL)
@@ -56,6 +57,7 @@ int		cre_tetro(const char *name, t_head **head)
 
 int		check_two(char *buf, int c_hash)
 {
+	time_exe(__func__, clock());
 	int i;
 
 	i = 0;
@@ -85,6 +87,7 @@ int		check_two(char *buf, int c_hash)
 
 int		ft_check_input(int fd, char *buf, t_head **head)
 {
+	time_exe(__func__, clock());
 	int		ret;
 	int		c_hash;
 	int		dest;
@@ -111,6 +114,7 @@ int		ft_check_input(int fd, char *buf, t_head **head)
 
 t_head	*read_check(char *fillit)
 {
+	time_exe(__func__, clock());
 	char	*buf;
 	t_head	*head;
 	int		fd;
